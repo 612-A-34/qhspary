@@ -41,7 +41,6 @@ router.get('/sort',(req,res)=>{
 //     });
 
  //产品中心-分类查询-每一类三个
-
  router.get('/productCenter',(req,res)=>{
      console.log("productClassfiy",productClassfiy)
      let productCenter = [];
@@ -74,6 +73,23 @@ router.get('/sort',(req,res)=>{
             data:productCenter
         })
       });
+});
+
+//产品列表-某个分类
+router.get('/sort',(req,res)=>{
+  db.query(`SELECT productClassfiy,id FROM productclassfiy`,(err,data)=>{
+      if(err){
+          console.log('website/product/sort',err);
+          res.status(500).send('website/product/sort database error').end();
+      }else{
+       productClassfiy = data;
+          res.json({
+              erron:0,
+              data:data
+          })
+           console.log('查询数据',data)
+      }
+});
 });
 
 

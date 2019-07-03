@@ -30,29 +30,32 @@ export default new Router({
           name: 'Home',
           component: Home
         },
-        {
-          path: '/productCenter',
+        {  
+          path: 'productCenter',
           name: 'productCenter',
           component: productCenter,
-          children:[
-            {
-              path: '/productCenter/productList',
-              name: 'productList',
-              component: productList
-            },
-            {
-              path: '/productCenter/productList/productDetial',
-              name: 'productDetial',
-              component: productDetial
-            },
-          ],
+          meta: {
+            isRoot: true
+          },
+          //最好是配合子组件的时候再用
+          children:[ ],
+        },
+        {
+          path: 'productCenter/productList/:productSort',
+          name: 'productList',
+          component: productList
+        },
+        {
+          path: 'productList/productDetial/:productId',
+          name: 'productDetial',
+          component: productDetial
         },
         {
           path: '/service',
           name: 'service',
           component: service
         },
-        {
+        { //合作案例
           path: '/cooperationCase',
           name: 'cooperationCase',
           component: cooperationCase

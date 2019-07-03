@@ -1,6 +1,7 @@
 <template>
 <div>
      <div class="container-fluid mini">
+         55555
         </div>
      <section id="main">
             <div id="slider">
@@ -12,17 +13,15 @@
             </div>
             <nav class="crumbs">
                 <div class="container">
-                    <div class="con">
+                    <div class="con" style='float:left'>
                         当前位置:
                         <a href='/'>
                             主页
                         </a>
                         >
-                        <a href='/a/chanpinzhongxin/'>
-                            产品中心
-                        </a>
+                        <a href="">产品中心</a>
                         >
-                        <a href='/a/chanpinzhongxin/zhulujixie/'>
+                        <a href=''>
                             筑路机械
                         </a>
                         >
@@ -32,17 +31,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9 content">
-                        <div class="title-con">
+                         <div class="title-con">
                             <h3>
                                 筑路机械
                             </h3>
-                            <!-- <ul class="cp-child">
-                            <li class="cat-item cat-item-19"><a href="#"​>泵车</a>
+                             <ul class="cp-child">
+                            <li class="cat-item cat-item-19"><a href=""​>泵车</a>
                             </li>
-                            <li class="cat-item cat-item-18"><a href="#"​>拖泵</a>
+                            <li class="cat-item cat-item-18"><a href=""​>拖泵</a>
                             </li>
                             </ul>
-                            -->
                         </div>
                         <!-- 文章列表开始 -->
                         <div class="cp-list">
@@ -56,7 +54,7 @@
                                     </figure>
                                     <div class="entry-content col-md-6 col-sm-6 col-xs-12">
                                         <h2 class="entry-title">
-                                            <a href="#" rel="bookmark">
+                                            <a href="" rel="bookmark">
                                                 <b>
                                                     SSR220AC-8全液压单驱单钢轮压路机
                                                 </b>
@@ -91,10 +89,10 @@
                                             12 小时不间断连续泵送，三一拖泵仍能不辱使命； 60000 方混凝土浇筑 60 小时内不间断完成； B90、C150、三级配等高难度混凝土轻松应对；
                                             淤泥、矿渣、废料等亦可泵送； 故障自诊断技
                                         </p>
-                                        <a class="more" href="/a/chanpinzhongxin/zhulujixie/8.html" rel="bookmark"
+                                        <!-- <a class="more" href="/a/chanpinzhongxin/zhulujixie/8.html" rel="bookmark"
                                         title="<b>SAG200C-6平地机</b>">
                                             查看详情 +
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </div>
                             </article>
@@ -118,7 +116,7 @@
                             <h3>
                                 产品分类
                             </h3>
-                            <ul>
+                             <ul>
                                 <li class="cat-item">
                                     <a href="">
                                         混凝土机械
@@ -154,55 +152,41 @@
                             </div>
                             <ul>
                                 <li>
-                                    <a href="#" rel="bookmark" title="“七七事变”80周年，三一为“中国制造”增添骨气”">
+                                    <a href='' rel='bookmark' title=' “七七事变”80周年，三一为“中国制造”增添骨气” '>
                                         “七七事变”80周年，三一为“中国
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" rel="bookmark" title="三一美国实现稳健发展，特朗普万亿计划将带来”">
-                                        三一美国实现稳健发展，特朗普万
+                                    <a href='' rel='bookmark' title=' “七七事变”80周年，三一为“中国制造”增添骨气” '>
+                                        “七七事变”80周年，三一为“中国
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" rel="bookmark" title="三一C8路机春季巡展圆满落幕：用数据说话，听客”">
-                                        三一C8路机春季巡展圆满落幕：用数
+                                    <a href='' rel='bookmark' title=' “七七事变”80周年，三一为“中国制造”增添骨气” '>
+                                        “七七事变”80周年，三一为“中国
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#"​ rel="bookmark" title="湖南工业开局良好三一、 中联等骨干企业总产值”">
-                                        湖南工业开局良好三一、 中联等骨
+                                    <a href='' rel='bookmark' title=' “七七事变”80周年，三一为“中国制造”增添骨气” '>
+                                        “七七事变”80周年，三一为“中国
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#"​ rel="bookmark" title="合作共赢 协作发展——淮南矿业与三一重装召开”">
-                                        合作共赢 协作发展——淮南矿业与
+                                    <a href='' rel='bookmark' title=' “七七事变”80周年，三一为“中国制造”增添骨气” '>
+                                        “七七事变”80周年，三一为“中国
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#"​ rel="bookmark" title="发改委督促签订煤炭中长协合同”">
-                                        发改委督促签订煤炭中长协合同
+                                    <a href='' rel='bookmark' title=' “七七事变”80周年，三一为“中国制造”增添骨气” '>
+                                        “七七事变”80周年，三一为“中国
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#"​ rel="bookmark" title="三一集团将与挪威NBT公司在新兴市场开展风机合”">
-                                        三一集团将与挪威NBT公司在新兴市
+                                    <a href='' rel='bookmark' title=' “七七事变”80周年，三一为“中国制造”增添骨气” '>
+                                        “七七事变”80周年，三一为“中国
                                     </a>
                                 </li>
-                                <li>
-                                    <a href="#"​ rel="bookmark" title="三一市值位居行业榜首，受资本市场追捧”">
-                                        三一市值位居行业榜首，受资本市
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"​ rel="bookmark" title="三一重工混凝土泵车所向无敌 引领中国智造走向”">
-                                        三一重工混凝土泵车所向无敌 引领
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"​ rel="bookmark" title="三一路机成套养护设备服务三农，品质铺就民心”">
-                                        三一路机成套养护设备服务三农，
-                                    </a>
-                                </li>
+                                
                             </ul>
                         </aside>
                         <aside class="s400">
@@ -218,9 +202,7 @@
                                 </div>
                             </div>
                             <h3>
-                                <a href="#"​>
-                                    400-8888-9999
-                                </a>
+                                <a href="">400-8888-9999</a>
                                 <span>
                                     全国服务热线
                                 </span>
@@ -234,7 +216,6 @@
             <successCase></successCase>
         </section>
 </div>
-    
 </template>
 <script>
 import successCase from '@/components/web/successCase'
@@ -242,7 +223,9 @@ export default {
     name: 'productList',
     components:{ successCase },
   data() {
-    return {}
+    return {
+
+    }
   }  
 }
 </script>

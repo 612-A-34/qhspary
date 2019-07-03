@@ -52,11 +52,12 @@
                             <a @click="" href="">首页</a>
                         </li>
                         <li class="menu-item menu-item-type-taxonomy menu-item-object-products">
-                            <router-link :to="{ path: 'productCenter' }">产品中心</router-link>
+                            <router-link :to="{ name: 'productCenter' }">产品中心</router-link>
                             <ul class="sub-menu"  >
                                 <li class="menu-item menu-item-type-taxonomy menu-item-object-products" v-for='item in productsSort'>
                                     <!-- <a @click="" href="">{{item.cnname}}</a> -->
-                                    <a @click="" href="">{{item.productClassfiy}}</a>
+                                    <a @click="toProductList(item.productClassfiy)">{{item.productClassfiy}}</a>
+                                    
                                 </li>
                             </ul>
                         </li>
@@ -239,6 +240,7 @@ export default {
   data() {
     return {
         productsSort:[],
+        selectProSotr:'',
     }
   },
   mounted(){
@@ -254,6 +256,12 @@ export default {
         .catch(function (error) {
             console.log(error);
         });
+    },
+    toProductList(sort){
+        console.log('执行，sort',sort)
+        console.log('this.$router',this.$router)  //???router引用是为什么要加$????
+        this.$router.push({path:'/productCenter/productList/'+ sort});
+        // this.$router.push({path:'/productCenter'});
     },      
 }
 };
