@@ -1,0 +1,218 @@
+<template>
+    <div>
+          <div class="container-fluid mini">
+        </div>
+        <section id="main">
+            <div id="slider">
+                <div class="sliders">
+                    <div class="item">
+                        <img src="../../../../static/picture/111.jpg">
+                    </div>
+                </div>
+            </div>
+            <nav class="crumbs">
+                <div class="container">
+                    <div class="con">
+                        当前位置:
+                        <a href='/'>
+                            主页
+                        </a>
+                        >
+                        <a href='/a/wajueji/'>
+                            挖掘机
+                        </a>
+                        >
+                    </div>
+                </div>
+            </nav>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9 content">
+                        <div class="title-con">
+                            <h3>
+                                挖掘机
+                            </h3>
+                            <!-- <ul class="cp-child">
+                            <li class="cat-item cat-item-19"><a href="#"​>泵车</a>
+                            </li>
+                            <li class="cat-item cat-item-18"><a href="#"​>拖泵</a>
+                            </li>
+                            </ul>
+                            -->
+                        </div>
+                        <!-- 文章列表开始 -->
+                        <div class="cp-list">
+                            <article class="product type-product status-publish has-post-thumbnail hentry">
+                                <div class="row">
+                                    <figure class="entry-img col-md-6 col-sm-6 col-xs-12">
+                                        <a href="hntjxshow.html"​ rel="bookmark" title="SY16C迷你微型液压挖掘机">
+                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="picture/1-1FFPIF4-lp.jpg"
+                                            alt="SY16C迷你微型液压挖掘机" />
+                                        </a>
+                                    </figure>
+                                    <div class="entry-content col-md-6 col-sm-6 col-xs-12">
+                                        <h2 class="entry-title">
+                                            <a href="hntjxshow.html"​ rel="bookmark">
+                                                SY16C迷你微型液压挖掘机
+                                            </a>
+                                        </h2>
+                                        <p>
+                                            12 小时不间断连续泵送，三一拖泵仍能不辱使命； 60000 方混凝土浇筑 60 小时内不间断完成； B90、C150、三级配等高难度混凝土轻松应对；
+                                            淤泥、矿渣、废料等亦可泵送； 故障自诊断技
+                                        </p>
+                                        <a class="more" href="hntjxshow.html" rel="bookmark" title="SY16C迷你微型液压挖掘机">
+                                            查看详情 +
+                                        </a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div>
+                        <div class="page-nav">
+                            <span class="pageinfo">
+                                共
+                                <strong>
+                                    1
+                                </strong>
+                                页
+                                <strong>
+                                    1
+                                </strong>
+                                条记录
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-3 sidebar hidden-xs hidden-sm">
+                        <aside class="cp-cat">
+                            <h3>
+                                产品分类
+                            </h3>
+                            <ul>
+                                <li class="cat-item">
+                                    <a href="#"​>
+                                        混凝土机械
+                                    </a>
+                                </li>
+                                <li class="cat-item">
+                                    <a href="#"​>
+                                        挖掘机
+                                    </a>
+                                </li>
+                                <li class="cat-item">
+                                    <a href="#"​>
+                                        煤炭机械
+                                    </a>
+                                </li>
+                                <li class="cat-item">
+                                    <a href="#"​>
+                                        筑路机械
+                                    </a>
+                                </li>
+                                <li class="cat-item">
+                                    <a href="#"​>
+                                        起重机
+                                    </a>
+                                </li>
+                            </ul>
+                        </aside>
+                        <aside class="sidebar-hot">
+                            <div class="widget-title">
+                                <h2>
+                                    推荐新闻
+                                </h2>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a href="#"​ rel="bookmark" title="“七七事变”80周年，三一为“中国制造”增添骨气”">
+                                        “七七事变”80周年，三一为“中国
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"​ rel="bookmark" title="三一美国实现稳健发展，特朗普万亿计划将带来”">
+                                        三一美国实现稳健发展，特朗普万
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"​ rel="bookmark" title="三一C8路机春季巡展圆满落幕：用数据说话，听客”">
+                                        三一C8路机春季巡展圆满落幕：用数
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"​ rel="bookmark" title="湖南工业开局良好三一、 中联等骨干企业总产值”">
+                                        湖南工业开局良好三一、 中联等骨
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"​ rel="bookmark" title="合作共赢 协作发展——淮南矿业与三一重装召开”">
+                                        合作共赢 协作发展——淮南矿业与
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"​ rel="bookmark" title="发改委督促签订煤炭中长协合同”">
+                                        发改委督促签订煤炭中长协合同
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"​ rel="bookmark" title="三一集团将与挪威NBT公司在新兴市场开展风机合”">
+                                        三一集团将与挪威NBT公司在新兴市
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"​ rel="bookmark" title="三一市值位居行业榜首，受资本市场追捧”">
+                                        三一市值位居行业榜首，受资本市
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"​ rel="bookmark" title="三一重工混凝土泵车所向无敌 引领中国智造走向”">
+                                        三一重工混凝土泵车所向无敌 引领
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#"​ rel="bookmark" title="三一路机成套养护设备服务三农，品质铺就民心”">
+                                        三一路机成套养护设备服务三农，
+                                    </a>
+                                </li>
+                            </ul>
+                        </aside>
+                        <aside class="s400">
+                            <div class="kf">
+                                <div class="kf-con">
+                                    <img src="../../../../static/picture/kf.png">
+                                    <p>
+                                        “客户为根，服务为本”深深铭刻在每个华能中天人心中，时时微笑、处处用心的服务品质在无线电波中传递，让数以万计的客户更加信赖华能中天。
+                                    </p>
+                                    <span>
+                                        ——在线客服：小平
+                                    </span>
+                                </div>
+                            </div>
+                            <h3>
+                                <a href="">
+                                    400-8888-9999
+                                </a>
+                                <span>
+                                    全国服务热线
+                                </span>
+                            </h3>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+           <!--轮播-成功案例-->
+            <successCase></successCase>
+        </section>
+    </div>
+</template>
+<script>
+import successCase from '@/components/web/successCase'
+export default {
+  name: 'productDetail',
+  components:{ successCase },
+  data() {
+    return {}
+  }
+    
+}
+</script>
+<style>
+
+</style>
