@@ -37,13 +37,13 @@ export default new Router({
           meta: {
             isRoot: true
           },
-          //最好是配合子组件的时候再用
-          children:[ ],
+          children:[ ],             //最好是配合子组件的时候再用
         },
         {
           path: 'productCenter/productList/:productSort',
           name: 'productList',
-          component: productList
+          component: productList,
+          props: true,
         },
         {
           path: 'productList/productDetial/:productId',

@@ -44,7 +44,7 @@ router.get('/sort',(req,res)=>{
  router.get('/productCenter',(req,res)=>{
      console.log("productClassfiy",productClassfiy)
      let productCenter = [];
-        
+
       new Promise(
         /* 执行器 executor */
         function (resolve, reject) {
@@ -75,25 +75,25 @@ router.get('/sort',(req,res)=>{
       });
 });
 
-//产品列表-某个分类
-router.get('/sort',(req,res)=>{
-  db.query(`SELECT productClassfiy,id FROM productclassfiy`,(err,data)=>{
+//产品列表-某个分类下所有产品列表-分页
+router.get('/productList/:productSort',(req,res)=>{
+  console.log('req.params: ',req.params)
+  db.query(`SELECT * FROM product_table WHERE productClassfiy='${req.params.productSort}' ORDER BY orderid DESC`,(err,data)=>{
+   // db.query(`SELECT * FROM product_table WHERE productClassfiyId='${req.params.productSort}' ORDER BY orderid DESC`,(err,data)=>{
       if(err){
-          console.log('website/product/sort',err);
+          console.log('/productList/:productSort-err',err);
           res.status(500).send('website/product/sort database error').end();
       }else{
-       productClassfiy = data;
           res.json({
               erron:0,
               data:data
           })
-           console.log('查询数据',data)
+           console.log('/productList/:productSort',data)
       }
 });
 });
 
 
 
-   
 
 module.exports = router;

@@ -1,8 +1,7 @@
 <template>
 <div>
-     <div class="container-fluid mini">
-         55555
-        </div>
+     <!-- <div class="container-fluid mini">
+        </div> -->
      <section id="main">
             <div id="slider">
                 <div class="sliders">
@@ -35,64 +34,39 @@
                             <h3>
                                 筑路机械
                             </h3>
-                             <ul class="cp-child">
-                            <li class="cat-item cat-item-19"><a href=""​>泵车</a>
+                             <!-- <ul class="cp-child">
+                            <li class="cat-item cat-item-19">
+                                <a >泵车</a>
                             </li>
-                            <li class="cat-item cat-item-18"><a href=""​>拖泵</a>
+                            <li class="cat-item cat-item-18">
+                                <a >泵车</a>
                             </li>
-                            </ul>
+                            </ul> -->
                         </div>
                         <!-- 文章列表开始 -->
-                        <div class="cp-list">
+                        <div class="cp-list" v-for='item in productsList'>
                             <article class="product type-product status-publish has-post-thumbnail hentry">
                                 <div class="row">
                                     <figure class="entry-img col-md-6 col-sm-6 col-xs-12">
-                                        <a href="#" rel="bookmark" title="<b>SSR220AC-8全液压单驱单钢轮压路机</b>">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../../picture/1-1FFH156110-L.jpg"
+                                        <a href='' rel="bookmark" title="<b>SSR220AC-8全液压单驱单钢轮压路机</b>">
+                                            <img class="lazy thumbnail" src="../../../../static/picture/1-1ffh155390-l.jpg" data-original="../../../../picture/1-1FFH156110-L.jpg"
                                             alt="<b>SSR220AC-8全液压单驱单钢轮压路机</b>" />
                                         </a>
                                     </figure>
                                     <div class="entry-content col-md-6 col-sm-6 col-xs-12">
                                         <h2 class="entry-title">
                                             <a href="" rel="bookmark">
-                                                <b>
-                                                    SSR220AC-8全液压单驱单钢轮压路机
-                                                </b>
+                                                <b> {{item.pro_name}} </b>
                                             </a>
                                         </h2>
-                                        <p>
-                                        </p>
-                                        <a class="more" href="/a/chanpinzhongxin/zhulujixie/9.html" rel="bookmark"
+                                        <p>  简介：{{item.Introduction}}</p>
+                                        <p>  参数：{{}}  </p>
+                                        <p>  参数：{{}}  </p>
+                                        <p>  参数：{{}}  </p>
+                                        <a class="more" href='' rel="bookmark"
                                         title="<b>SSR220AC-8全液压单驱单钢轮压路机</b>">
                                             查看详情 +
                                         </a>
-                                    </div>
-                                </div>
-                            </article>
-                            <article class="product type-product status-publish has-post-thumbnail hentry">
-                                <div class="row">
-                                    <figure class="entry-img col-md-6 col-sm-6 col-xs-12">
-                                        <a href="#" rel="bookmark" title="<b>SAG200C-6平地机</b>">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../../picture/1-1FFH155390-L.jpg"
-                                            alt="<b>SAG200C-6平地机</b>" />
-                                        </a>
-                                    </figure>
-                                    <div class="entry-content col-md-6 col-sm-6 col-xs-12">
-                                        <h2 class="entry-title">
-                                            <a href="#" rel="bookmark">
-                                                <b>
-                                                    SAG200C-6平地机
-                                                </b>
-                                            </a>
-                                        </h2>
-                                        <p>
-                                            12 小时不间断连续泵送，三一拖泵仍能不辱使命； 60000 方混凝土浇筑 60 小时内不间断完成； B90、C150、三级配等高难度混凝土轻松应对；
-                                            淤泥、矿渣、废料等亦可泵送； 故障自诊断技
-                                        </p>
-                                        <!-- <a class="more" href="/a/chanpinzhongxin/zhulujixie/8.html" rel="bookmark"
-                                        title="<b>SAG200C-6平地机</b>">
-                                            查看详情 +
-                                        </a> -->
                                     </div>
                                 </div>
                             </article>
@@ -222,11 +196,28 @@ import successCase from '@/components/web/successCase'
 export default {
     name: 'productList',
     components:{ successCase },
+    props: ["productSort",],
   data() {
     return {
-
+      productsList:[],
     }
-  }  
+  },
+   mounted(){
+      this.selectProductsSort();
+    },  
+   methods:{
+       //查询某类产品
+       selectProductsSort(){
+        this.$axios.get(this.BASE_URL+'/website/products/productList/'+this.productSort)
+        .then((response)=>{
+            this.productsList = response.data.data;
+            console.log('this.productsList',this.productsList);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+    },
+   },
 }
 </script>
 <style scoped>

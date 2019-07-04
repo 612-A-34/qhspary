@@ -93,6 +93,7 @@
 
     <!--页面渲染入口-->
     <router-view></router-view>
+    
      <section id="footer">
             <div class="container">
                 <div class="row">
@@ -259,9 +260,8 @@ export default {
     },
     toProductList(sort){
         console.log('执行，sort',sort)
-        console.log('this.$router',this.$router)  //???router引用是为什么要加$????
         this.$router.push({path:'/productCenter/productList/'+ sort});
-        // this.$router.push({path:'/productCenter'});
+
     },      
 }
 };
