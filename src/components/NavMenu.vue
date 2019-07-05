@@ -54,7 +54,7 @@
                         <li class="menu-item menu-item-type-taxonomy menu-item-object-products">
                             <router-link :to="{ name: 'productCenter' }">产品中心</router-link>
                             <ul class="sub-menu"  >
-                                <li class="menu-item menu-item-type-taxonomy menu-item-object-products" v-for='item in productsSort'>
+                                <li class="menu-item menu-item-type-taxonomy menu-item-object-products" v-for='item in productsSorts'>
                                     <!-- <a @click="" href="">{{item.cnname}}</a> -->
                                     <a @click="toProductList(item.productClassfiy)">{{item.productClassfiy}}</a>
                                     
@@ -236,32 +236,24 @@
   </div>
 </template>
 <script>
+import website from "@/mixins/website";
 export default {
   name: 'NavMemu',
+  mixins:[website], 
   data() {
     return {
-        productsSort:[],
+        productsSorts:[],
         selectProSotr:'',
     }
   },
   mounted(){
-     this.queryproductsSort();   
+      //所有分类
+     this._queryproductsSorts();     
     },
   methods: {
-    queryproductsSort(){
-        this.$axios.get(this.BASE_URL+'/website/products/sort')
-        .then((response)=>{
-            this.productsSort = response.data.data;
-            console.log('this.productsSort',this.productsSort);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-    },
     toProductList(sort){
         console.log('执行，sort',sort)
         this.$router.push({path:'/productCenter/productList/'+ sort});
-
     },      
 }
 };

@@ -77,9 +77,10 @@ router.get('/sort',(req,res)=>{
 
 //产品列表-某个分类下所有产品列表-分页
 router.get('/productList/:productSort',(req,res)=>{
-  console.log('req.params: ',req.params)
+  console.log('req.params:',req.params)
+  console.log('req.query:',req.query)                              //注意：拿到的是字符串
+  let skip = (parseInt(req.query.currentPage)-1)*parseInt(pageSize);  //索引值
   db.query(`SELECT * FROM product_table WHERE productClassfiy='${req.params.productSort}' ORDER BY orderid DESC`,(err,data)=>{
-   // db.query(`SELECT * FROM product_table WHERE productClassfiyId='${req.params.productSort}' ORDER BY orderid DESC`,(err,data)=>{
       if(err){
           console.log('/productList/:productSort-err',err);
           res.status(500).send('website/product/sort database error').end();

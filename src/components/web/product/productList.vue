@@ -20,9 +20,7 @@
                         >
                         <a href="">产品中心</a>
                         >
-                        <a href=''>
-                            筑路机械
-                        </a>
+                        <a>{{this.productSort}}</a>
                         >
                     </div>
                 </div>
@@ -71,50 +69,32 @@
                                 </div>
                             </article>
                         </div>
-                        <div class="page-nav">
-                            <span class="pageinfo">
-                                共
-                                <strong>
-                                    1
-                                </strong>
-                                页
-                                <strong>
-                                    2
-                                </strong>
-                                条记录
-                            </span>
+                        <!--分页-->
+                        <div>
+                            <!-- <div class="page-nav"> -->
+                            <!-- <span class="pageinfo"> -->
+                                <!-- 共<strong> 1</strong>页<strong> 2</strong> 条记录 -->
+                            <!-- </span> -->
+                             <el-pagination
+                                @size-change="handleSizeChange"
+                                @current-change="handleCurrentChange"
+                                :current-page="pageParam.currentPage"
+                                :page-sizes="[5, 8, 10, 12]"
+                                :page-size="pageParam.pageSize"
+                                layout="total, sizes, prev, pager, next, jumper"
+                                :total="total">
+                                </el-pagination>
                         </div>
                     </div>
+                    <!--右侧推荐-->
                     <div class="col-md-3 sidebar hidden-xs hidden-sm">
                         <aside class="cp-cat">
                             <h3>
                                 产品分类
                             </h3>
-                             <ul>
+                             <ul v-for='item in productsSorts'>
                                 <li class="cat-item">
-                                    <a href="">
-                                        混凝土机械
-                                    </a>
-                                </li>
-                                <li class="cat-item">
-                                    <a href="">
-                                        挖掘机
-                                    </a>
-                                </li>
-                                <li class="cat-item">
-                                    <a href="">
-                                        煤炭机械
-                                    </a>
-                                </li>
-                                <li class="cat-item">
-                                    <a href="">
-                                        筑路机械
-                                    </a>
-                                </li>
-                                <li class="cat-item">
-                                    <a href="">
-                                        起重机
-                                    </a>
+                                    <a @click="reRendProductList(item.productClassfiy)">{{item.productClassfiy}}</a>
                                 </li>
                             </ul>
                         </aside>
@@ -124,7 +104,7 @@
                                     推荐新闻
                                 </h2>
                             </div>
-                            <ul>
+                            <ul v-for=''>
                                 <li>
                                     <a href='' rel='bookmark' title=' “七七事变”80周年，三一为“中国制造”增添骨气” '>
                                         “七七事变”80周年，三一为“中国
@@ -192,23 +172,37 @@
 </div>
 </template>
 <script>
-import successCase from '@/components/web/successCase'
+import successCase from '@/components/web/successCase';
+import website from "@/mixins/website";
 export default {
     name: 'productList',
+    mixins:[website],           
     components:{ successCase },
     props: ["productSort",],
   data() {
     return {
       productsList:[],
+      productsSorts:[],
+      querySortParam:'',
+      total:100,
+      pageParam:{
+        currentPage: 4,
+        pageSize:5,
+      },
     }
   },
    mounted(){
-      this.selectProductsSort();
+      this.selectProductSort();
+      //所有产品分类
+      this._queryproductsSorts();   
     },  
    methods:{
        //查询某类产品
-       selectProductsSort(){
-        this.$axios.get(this.BASE_URL+'/website/products/productList/'+this.productSort)
+       selectProductSort(){
+        this.querySortParam = this.productSort;
+        console.log('查询productSort',this.productSort)
+        this.$axios.get(this.BASE_URL+'/website/products/productList/'+this.querySortParam,
+        {params:this.pageParam})
         .then((response)=>{
             this.productsList = response.data.data;
             console.log('this.productsList',this.productsList);
@@ -217,6 +211,19 @@ export default {
             console.log(error);
         });
     },
+    //重新渲染分类列表
+    reRendProductList(sort){
+        console.log('重新渲染sort',sort)
+        this.querySortParam = sort;
+        this.selectProductSort();
+    },  
+    //分页
+     handleSizeChange(val) {
+        console.log(`每页 ${val} 条`);
+      },
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`);
+      }   
    },
 }
 </script>
