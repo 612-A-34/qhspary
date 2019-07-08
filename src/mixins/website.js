@@ -7,7 +7,6 @@ export default {
     methods: {
        //查询所有产品分类
        _queryproductsSorts(){
-           console.log('mixins')
            this.$axios.get(this.BASE_URL+'/website/products/sort')
            .then((response)=>{
             this.productsSorts = response.data.data;

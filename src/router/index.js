@@ -46,9 +46,10 @@ export default new Router({
           props: true,
         },
         {
-          path: 'productList/productDetial/:productId',
+          path: 'productCenter/productDetial/:productSort/:productId',
           name: 'productDetial',
-          component: productDetial
+          component: productDetial,
+          props: true,
         },
         {
           path: '/service',

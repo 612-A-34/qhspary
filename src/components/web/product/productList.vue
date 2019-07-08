@@ -61,8 +61,7 @@
                                         <p>  参数：{{}}  </p>
                                         <p>  参数：{{}}  </p>
                                         <p>  参数：{{}}  </p>
-                                        <a class="more" href='' rel="bookmark"
-                                        title="<b>SSR220AC-8全液压单驱单钢轮压路机</b>">
+                                        <a class="more"rel="bookmark":title="item.pro_name" @click="gotoProductDetial(item.id)">
                                             查看详情 +
                                         </a>
                                     </div>
@@ -86,8 +85,8 @@
                                 </el-pagination>
                         </div>
                     </div>
-                    <!--右侧推荐-->
-                    <div class="col-md-3 sidebar hidden-xs hidden-sm">
+                    <!--右侧推荐-分类-新闻-->
+                     <div class="col-md-3 sidebar hidden-xs hidden-sm">
                         <aside class="cp-cat">
                             <h3>
                                 产品分类
@@ -163,6 +162,7 @@
                             </h3>
                         </aside>
                     </div>
+             
                 </div>
             </div>
 
@@ -176,8 +176,8 @@ import successCase from '@/components/web/successCase';
 import website from "@/mixins/website";
 export default {
     name: 'productList',
-    mixins:[website],           
-    components:{ successCase },
+    mixins:[website],     
+    components:{ successCase},
     props: ["productSort",],
   data() {
     return {
@@ -186,10 +186,19 @@ export default {
       querySortParam:'',
       total:100,
       pageParam:{
-        currentPage: 4,
+        currentPage:1,
         pageSize:5,
       },
     }
+  },
+  watch:{
+      productSort: {
+            handler: function (val, oldVal) {
+            console.log('new c: %s, old: %s', val, oldVal)
+            this.selectProductSort();
+            },
+            deep: true
+        },
   },
    mounted(){
       this.selectProductSort();
@@ -197,16 +206,17 @@ export default {
       this._queryproductsSorts();   
     },  
    methods:{
-       //查询某类产品
-       selectProductSort(){
+     //查询某类产品
+     selectProductSort(){
         this.querySortParam = this.productSort;
         console.log('查询productSort',this.productSort)
         this.$axios.get(this.BASE_URL+'/website/products/productList/'+this.querySortParam,
         {params:this.pageParam})
         .then((response)=>{
-            this.productsList = response.data.data;
+            this.productsList = response.data.data.secletList;
+            this.total = response.data.data.total;
             console.log('this.productsList',this.productsList);
-        })
+        })                                                                                                                                                                                                                                                                                                               
         .catch(function (error) {
             console.log(error);
         });
@@ -214,7 +224,8 @@ export default {
     //重新渲染分类列表
     reRendProductList(sort){
         console.log('重新渲染sort',sort)
-        this.querySortParam = sort;
+        this.$router.push({path:'/productCenter/productList/'+ sort});
+        this.productSort = sort;
         this.selectProductSort();
     },  
     //分页
@@ -223,7 +234,12 @@ export default {
       },
       handleCurrentChange(val) {
         console.log(`当前页: ${val}`);
-      }   
+      },
+    //跳转详情
+    gotoProductDetial(productId){
+         console.log('productId',productId)
+         this.$router.push({path:'/productCenter/productDetial/'+this.productSort+'/'+ productId});
+    },   
    },
 }
 </script>
