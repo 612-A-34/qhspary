@@ -19,6 +19,7 @@ Vue.config.productionTip = false               //
 Vue.prototype.BASE_URL = 'http://localhost:3000';   //请求路径
 Vue.prototype.$axios = axios;
 Vue.use(ElementUI);
+axios.defaults.withCredentials = true;           //axios默认设置不接受cookie
 
 /* eslint-disable no-new */
 new Vue({

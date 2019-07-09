@@ -8,7 +8,8 @@ const bodyParser = require('body-parser');        //http请求解析
 
 //路由
 const indexRouter = require('./routes/index');                   //渲染首页的路由
-const usersRouter = require('./routes/users'); 
+// const usersRouter = require('./routes/users'); 
+const usersRouter = require('./routes/admin/users'); 
 const productsWebRouter = require('./routes/website/products');  //孟-添加产品的路由
 
 var app = express();
@@ -22,12 +23,14 @@ app.set('view engine', 'html');                   //设置引擎
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(cookieParser());                           //cookie处理
+app.use(bodyParser.json());                        //对post数据进行json转换
 app.use(express.static(path.join(__dirname, 'public'))); //存取静态文件
 
 //跨域
 app.use(function (req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:3001');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
 
@@ -40,7 +43,7 @@ app.use(function (req, res, next) {
 
 //路由
 app.use('/', indexRouter);                             // 当访问/文件目录下的时候加载index
-app.use('/users', usersRouter); 
+app.use('/admin/users', usersRouter); 
 app.use('/website/products', productsWebRouter );      //孟 
 
 

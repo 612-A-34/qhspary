@@ -52,7 +52,8 @@ export default new Router({
           props: true,
         },
         {
-          path: '/service',
+          
+          path: 'service',
           name: 'service',
           component: service
         },

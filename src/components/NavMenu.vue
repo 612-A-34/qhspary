@@ -56,19 +56,18 @@
                             <ul class="sub-menu"  >
                                 <li class="menu-item menu-item-type-taxonomy menu-item-object-products" v-for='item in productsSorts'>
                                     <!-- <a @click="" href="">{{item.cnname}}</a> -->
-                                    <a @click="toProductList(item.productClassfiy)">{{item.productClassfiy}}</a>
-                                    
+                                    <a @click="toProductList(item.productClassfiy)">{{item.productClassfiy}}</a>                              
                                 </li>
                             </ul>
                         </li>
                         <li class="menu-item menu-item-type-taxonomy menu-item-object-products ">
-                           <router-link :to="{ path: 'service' }">服务支持</router-link>
+                           <router-link :to="{ name: 'service' }">服务支持</router-link>
                         </li>
                         <li class="menu-item menu-item-type-taxonomy menu-item-object-products ">
-                            <router-link :to="{ path: 'cooperationCase' }">合作案例</router-link>
+                            <router-link :to="{ name: 'cooperationCase' }">合作案例</router-link>
                         </li>
                         <li class="menu-item menu-item-type-taxonomy menu-item-object-products ">
-                           <router-link :to="{ path: 'newsList' }">新闻动态</router-link>
+                           <router-link :to="{ name: 'newsList' }">新闻动态</router-link>
                             <ul class="sub-menu"  >
                                 <li class="menu-item menu-item-type-taxonomy menu-item-object-products">
                                     <a @click="" href="">公司新闻</a>
@@ -82,7 +81,7 @@
                             </ul>
                         </li>
                         <li class="menu-item menu-item-type-taxonomy menu-item-object-products ">
-                            <router-link :to="{ path: 'aboutUs' }">关于我们</router-link>
+                            <router-link :to="{ name: 'aboutUs' }">关于我们</router-link>
                         </li>
                     </ul>
                 </div>

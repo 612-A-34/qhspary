@@ -29,11 +29,11 @@
               <el-form-item>
                 <el-button class="subBtn" type="primary" @click="submitForm">登录</el-button>
               </el-form-item>
-              <p class="smalltxt">
+              <!-- <p class="smalltxt">
                 <router-link class="a" to="#">忘记密码</router-link>
                 <router-link class="a" to="#">忘记会员名</router-link>
                 <router-link class="a" to="#">免费注册</router-link>
-              </p>
+              </p> -->
             </el-form>
           </el-card>
 
@@ -69,34 +69,54 @@ export default {
     return {
       smdl: true,
       loginForm: {
-        username: 'vue-xuadmin',
+        username: 'mengjia11',
         password: '123456'
       }
     }
   },
   methods: {
+    //提交用户名密码
+    // submitForm () {
+    //   let that = this
+    //   if (this.loginForm.username === '' || this.loginForm.password === '') {
+    //     this.$message({
+    //       showClose: true,
+    //       message: '账号或密码不能为空',
+    //       type: 'error'
+    //     })
+    //     return false
+    //   } else {
+    //     // 将 username 设置为 token 存储在 store，仅为测试效果，实际存储 token 以后台返回为准
+    //     that.$store.dispatch('setToken', that.loginForm.username).then(() => {
+    //       that.$router.push({path: '/'})
+    //     }).catch(res => {
+    //       that.$message({
+    //         showClose: true,
+    //         message: res,
+    //         type: 'error'
+    //       })
+    //     })
+    //   }
+    // },
     submitForm () {
-      let that = this
-      if (this.loginForm.username === '' || this.loginForm.password === '') {
-        this.$message({
-          showClose: true,
-          message: '账号或密码不能为空',
-          type: 'error'
-        })
-        return false
-      } else {
-        // 将 username 设置为 token 存储在 store，仅为测试效果，实际存储 token 以后台返回为准
-        that.$store.dispatch('setToken', that.loginForm.username).then(() => {
-          that.$router.push({path: '/'})
-        }).catch(res => {
-          that.$message({
-            showClose: true,
-            message: res,
-            type: 'error'
-          })
-        })
-      }
+      console.log('执行login-ost')
+       this.$axios.post(this.BASE_URL+'/admin/users/login',{params:this.loginForm})   //get方法和post方法的区别是get有参数加‘params:’
+        .then((response)=>{
+            let resp = response.data;
+            console.log('response',response)
+            console.log('this.resp',resp);
+            if(resp.state===0){
+               
+              
+            }else{
+
+            }
+        })                                                                                                                                                                                                                                                                                                               
+        .catch(function (error) {
+            console.log(error);
+        });
     },
+
     message() {
       const h = this.$createElement;
       this.$notify({
