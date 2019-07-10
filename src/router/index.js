@@ -14,6 +14,7 @@ import newsDetail from '@/components/web/news/newsDetail'
 import aboutUs from '@/components/web/aboutUs'
 //admin
 import adminLogin from '@/components/admin/login/index'
+import adminIndex from '@/components/admin/layout/layout'
 
 
 Vue.use(Router)
@@ -87,19 +88,19 @@ export default new Router({
     //admin
     {
       path: '/admin',
+      redirect:'/admin/login',
+    },
+    {
+      path: '/admin/login',
       name: 'adminLogin',
-      component: adminLogin,
+      component: adminLogin
+    },
+    {
+      path: '/admin/home',
+      name: 'dc-home',
+      component: adminIndex,
       children: [
-        {
-          path: '/admin/login',
-          name: 'adminLogin',
-          component: adminLogin
-        },
-        {
-          path: '/productCenter',
-          name: 'productCenter',
-          component: productCenter
-        },
+
       ]
     },
 

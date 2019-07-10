@@ -1,7 +1,8 @@
 const createError = require('http-errors');        
 const express = require('express');
 const path = require('path');                     //node自带模块-处理文件路径
-const cookieParser = require('cookie-parser');    //获取cookie信息
+const cookieParser = require('cookie-parser');    //获取cookie信息 
+const cookieSession = require('cookie-session');  //cookie签名-不是加密
 const logger = require('morgan');                 //日志输出
 const ejs = require('ejs');                       //ejs模板
 const bodyParser = require('body-parser');        //http请求解析
@@ -16,16 +17,21 @@ var app = express();
 console.log('服务开启');
 
 // view engine setup  ---设置引擎
-app.set('views', path.join(__dirname, 'views'));  //设置视图访问目录
+app.set('views', path.join(__dirname, 'views'));          //设置视图访问目录
 app.engine('.html',ejs.__express);
-app.set('view engine', 'html');                   //设置引擎
+app.set('view engine', 'html');                           //设置引擎
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());                           //cookie处理
-app.use(bodyParser.json());                        //对post数据进行json转换
-app.use(express.static(path.join(__dirname, 'public'))); //存取静态文件
+app.use(cookieParser('shyboxkgy73(&'));                   //cookie处理-添加cookie签名+防止本地进行篡改
+app.use(cookieSession({                                   //cookieSession 必须放在cookieParser后面
+  keys: ['7u6', ')ij', '$3h'],                            //session的秘钥，防止session劫持。这个秘钥会被循环使用，秘钥越长，数量越多，破解难度越高。
+  maxAge: 20*60*1000,
+  name: 'session'                                         //可以改变浏览器cookie的名字
+ }));
+app.use(bodyParser.json());                               //对post数据进行json转换
+app.use(express.static(path.join(__dirname, 'public')));  //存取静态文件
 
 //跨域
 app.use(function (req, res, next) {

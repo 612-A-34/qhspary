@@ -100,21 +100,42 @@ export default {
     // },
     submitForm () {
       console.log('执行login-ost')
+      if (this.loginForm.username === '' || this.loginForm.password === '') {
+        this.$message({
+          showClose: true,
+          message: '账号或密码不能为空',
+          type: 'error'
+        })
+        return false
+      } else {
        this.$axios.post(this.BASE_URL+'/admin/users/login',{params:this.loginForm})   //get方法和post方法的区别是get有参数加‘params:’
         .then((response)=>{
             let resp = response.data;
-            console.log('response',response)
             console.log('this.resp',resp);
-            if(resp.state===0){
-               
-              
+            if(resp.status===0){
+               this.$message({
+                showClose: true,
+                message: '登录成功',
+                type:'success'
+              })
+              this.$router.push({path: '/admin/home'});
             }else{
-
+              this.$message({
+                  showClose: true,
+                  message: resp.message,
+                  type: 'error'
+                })
             }
         })                                                                                                                                                                                                                                                                                                               
         .catch(function (error) {
-            console.log(error);
+             this.$message({
+                  showClose: true,
+                  message: error,
+                  type: 'error'
+                })
         });
+      }
+
     },
 
     message() {

@@ -20,9 +20,10 @@ router.post('/login', function(req, res, next) {
                 //cooike-session
                 res.cookie('userID',data[0].password,{        //(name,value,{path（那个目录下可以读取到cookie）,有效期}
                     path:'/',
-                    maxAge:1000*30
+                    maxAge:1000*30,
+                    signed:true,                              //cookie签名
                 });
-               //req.session.user=data;                        //
+               req.session['user']=data;                      //seccion？？？？加密？？
                 res.json({
                     status:0,
                     message:"查询成功",
@@ -30,14 +31,14 @@ router.post('/login', function(req, res, next) {
                 })
                }else{
                 res.json({
-                    status:0,
+                    status:1,
                     message:"密码错误",
                     data:null
                 })
                }
             }else{
                 res.json({
-                    status:0,
+                    status:1,
                     message:"用户名错误",
                     data:null
                 })
