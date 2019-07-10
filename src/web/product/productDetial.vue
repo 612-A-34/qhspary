@@ -5,7 +5,7 @@
             <div id="slider">
                 <div class="sliders">
                     <div class="item">
-                        <img src="../../../../static/picture/111.jpg">
+                        <img src="../../../static/picture/111.jpg">
                     </div>
                 </div>
             </div>
@@ -26,11 +26,11 @@
                                 <div class="swiper-container">
                                     <div class="swiper-wrapper">
                                         <div class="swiper-slide">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/1-1FFH15P50-L.jpg" data-original="picture/1-1FFH00508.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/1-1FFH15P50-L.jpg" data-original="picture/1-1FFH00508.jpg"
                                             alt="60系列拖泵HBT6013C-5S3" />
                                         </div>
                                         <div class="swiper-slide">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/1-1FFH15P50-L.jpg" data-original="picture/1-1FFH00509.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/1-1FFH15P50-L.jpg" data-original="picture/1-1FFH00509.jpg"
                                             alt="60系列拖泵HBT6013C-5S3" />
                                         </div>
                                     </div>
@@ -113,25 +113,25 @@
                     <ul v-for=''>
                         <li class="col-md-3 col-sm-3 col-xs-6">
                             <a rel="bookmark" title="SSR220AC-8全液压单驱单钢轮压路机">
-                                <img class="thumbnail" src="../../../../static/picture/1-1ffh156110-l.jpg" alt="SSR220AC-8全液压单驱单钢轮压路机"/>
+                                <img class="thumbnail" src="../../../static/picture/1-1ffh156110-l.jpg" alt="SSR220AC-8全液压单驱单钢轮压路机"/>
                                 <p>SSR220AC-8全液压单驱单钢轮</p>
                             </a>
                         </li>
                          <li class="col-md-3 col-sm-3 col-xs-6">
                             <a rel="bookmark" title="SSR220AC-8全液压单驱单钢轮压路机">
-                                <img class="thumbnail" src="../../../../static/picture/1-1ffh156110-l.jpg" alt="SSR220AC-8全液压单驱单钢轮压路机"/>
+                                <img class="thumbnail" src="../../../static/picture/1-1ffh156110-l.jpg" alt="SSR220AC-8全液压单驱单钢轮压路机"/>
                                 <p>SSR220AC-8全液压单驱单钢轮</p>
                             </a>
                         </li>
                          <li class="col-md-3 col-sm-3 col-xs-6">
                             <a rel="bookmark" title="SSR220AC-8全液压单驱单钢轮压路机">
-                                <img class="thumbnail" src="../../../../static/picture/1-1ffh156110-l.jpg" alt="SSR220AC-8全液压单驱单钢轮压路机"/>
+                                <img class="thumbnail" src="../../../static/picture/1-1ffh156110-l.jpg" alt="SSR220AC-8全液压单驱单钢轮压路机"/>
                                 <p>SSR220AC-8全液压单驱单钢轮</p>
                             </a>
                         </li>
                          <li class="col-md-3 col-sm-3 col-xs-6">
                             <a rel="bookmark" title="SSR220AC-8全液压单驱单钢轮压路机">
-                                <img class="thumbnail" src="../../../../static/picture/1-1ffh156110-l.jpg" alt="SSR220AC-8全液压单驱单钢轮压路机"/>
+                                <img class="thumbnail" src="../../../static/picture/1-1ffh156110-l.jpg" alt="SSR220AC-8全液压单驱单钢轮压路机"/>
                                 <p>SSR220AC-8全液压单驱单钢轮</p>
                             </a>
                         </li>
@@ -144,7 +144,7 @@
     </div>
 </template>
 <script>
-import successCase from '@/components/web/successCase';
+import successCase from '@/web/successCase';
 export default {
   name: 'productDetail',
   components:{ successCase},

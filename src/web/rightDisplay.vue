@@ -13,7 +13,7 @@
                                 <li>
                                     <a class="hot-img" href='/a/chanpinzhongxin/zhulujixie/9.html' rel="bookmark"
                                     title="SSR220AC-8全液压单驱单钢轮压路机">
-                                        <img class="thumbnail" src="../../../static/picture/1-1ffh156110-l.jpg" alt="SSR220AC-8全液压单驱单钢轮压路机"
+                                        <img class="thumbnail" src="../../static/picture/1-1ffh156110-l.jpg" alt="SSR220AC-8全液压单驱单钢轮压路机"
                                         />
                                     </a>
                                     <p>
@@ -25,7 +25,7 @@
                                 <li>
                                     <a class='hot-img' href='/a/chanpinzhongxin/zhulujixie/8.html' rel="bookmark"
                                     title="SAG200C-6平地机">
-                                        <img class="thumbnail" src='../../../static/picture/1-1ffh155390-l.jpg' alt='SAG200C-6平地机'
+                                        <img class="thumbnail" src='../../static/picture/1-1ffh155390-l.jpg' alt='SAG200C-6平地机'
                                         />
                                     </a>
                                     <p>
@@ -98,7 +98,7 @@
                         <aside class="s400">
                             <div class="kf">
                                 <div class="kf-con">
-                                    <img src="../../../static/picture/kf.png">
+                                    <img src="../../static/picture/kf.png">
                                     <p>
                                         “客户为根，服务为本”深深铭刻在每个华能中天人心中，时时微笑、处处用心的服务品质在无线电波中传递，让数以万计的客户更加信赖群华涂装。
                                     </p>

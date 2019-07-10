@@ -6,7 +6,7 @@
             <div id="slider">
                 <div class="sliders">
                     <div class="item">
-                        <img src="../../../../static/picture/s1.png">
+                        <img src="../../../static/picture/s1.png">
                     </div>
                 </div>
             </div>
@@ -44,7 +44,7 @@
                             <ul v-for='item in classfiy '>
                                 <li class="col-md-3 col-sm-4 col-xs-12">
                                     <a href="" title="EBZ160H悬臂式掘进机">
-                                        <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../static/picture/1-1FFH155060-L.jpg"
+                                        <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="../../../static/picture/1-1FFH155060-L.jpg"
                                         :alt="item.pro_name" />
                                         <p>
                                           {{item.pro_name}}
@@ -65,7 +65,7 @@
   </div>
 </template>
 <script>
-import successCase from '@/components/web/successCase'
+import successCase from '@/web/successCase'
 export default {
   name: 'productCenter',
   components:{ successCase },

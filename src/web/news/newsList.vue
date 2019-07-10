@@ -4,7 +4,7 @@
             <div id="slider">
                 <div class="sliders">
                     <div class="item">
-                        <img src="../../../../static/picture/111.jpg">
+                        <img src="../../../static/picture/111.jpg">
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a  rel="bookmark" title="“七七事变”80周年，三一为“中国制造”增添骨气">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../../static/picture/0I4093535-0-lp.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="../../../static/picture/0I4093535-0-lp.jpg"
                                             alt="“七七事变”80周年，三一为“中国制造”增添骨气" />
                                         </a>
                                     </figure>
@@ -62,7 +62,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a  rel="bookmark" title="三一美国实现稳健发展，特朗普万亿计划将带来">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../../static/picture/0I32J560-0-lp.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="../../../static/picture/0I32J560-0-lp.jpg"
                                             alt="三一美国实现稳健发展，特朗普万亿计划将带来" />
                                         </a>
                                     </figure>
@@ -95,7 +95,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a href='xinwenshow.html' rel="bookmark" title="三一C8路机春季巡展圆满落幕：用数据说话，听客">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../../static/picture/0I3062622-0-lp.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="../../../static/picture/0I3062622-0-lp.jpg"
                                             alt="三一C8路机春季巡展圆满落幕：用数据说话，听客" />
                                         </a>
                                     </figure>
@@ -128,7 +128,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a rel="bookmark" title="湖南工业开局良好三一、 中联等骨干企业总产值">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../../static/picture/0I2516038-0-lp.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="../../../static/picture/0I2516038-0-lp.jpg"
                                             alt="湖南工业开局良好三一、 中联等骨干企业总产值" />
                                         </a>
                                     </figure>
@@ -160,7 +160,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a rel="bookmark" title="合作共赢 协作发展——淮南矿业与三一重装召开">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../../static/picture/0I22GF4-0-lp.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="../../../static/picture/0I22GF4-0-lp.jpg"
                                             alt="合作共赢 协作发展——淮南矿业与三一重装召开" />
                                         </a>
                                     </figure>
@@ -193,7 +193,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a rel="bookmark" title="发改委督促签订煤炭中长协合同">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../../static/picture/0I2106361-0-lp.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="../../../static/picture/0I2106361-0-lp.jpg"
                                             alt="发改委督促签订煤炭中长协合同" />
                                         </a>
                                     </figure>
@@ -225,7 +225,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a rel="bookmark" title="三一集团将与挪威NBT公司在新兴市场开展风机合">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../../static/picture/0I145C55-0-lp.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="../../../static/picture/0I145C55-0-lp.jpg"
                                             alt="三一集团将与挪威NBT公司在新兴市场开展风机合" />
                                         </a>
                                     </figure>
@@ -258,7 +258,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a rel="bookmark" title="三一市值位居行业榜首，受资本市场追捧">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../../static/picture/0I12VG0-0-lp.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="../../../static/picture/0I12VG0-0-lp.jpg"
                                             alt="三一市值位居行业榜首，受资本市场追捧" />
                                         </a>
                                     </figure>
@@ -288,7 +288,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a rel="bookmark" title="三一重工混凝土泵车所向无敌 引领中国智造走向">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="../../../../static/picture/0I1094b2-0-lp.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="../../../static/picture/0I1094b2-0-lp.jpg"
                                             alt="三一重工混凝土泵车所向无敌 引领中国智造走向" />
                                         </a>
                                     </figure>
@@ -339,8 +339,8 @@
   </div>
 </template>
 <script>
-import rightDisplay from '@/components/web/rightDisplay';
-import successCase from '@/components/web/successCase';
+import rightDisplay from '@/web/rightDisplay';
+import successCase from '@/web/successCase';
 export default {
   name:'newsList',
   components:{ rightDisplay,successCase },

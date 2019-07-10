@@ -404,7 +404,7 @@
  </div>
 </template>
 <script>
-import successCase from '@/components/web/successCase'
+import successCase from '@/web/successCase'
 export default {
   name: 'Home',
   components:{ successCase },

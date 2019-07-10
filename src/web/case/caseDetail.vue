@@ -5,7 +5,7 @@
   </div>
 </template>
 <script>
-import rightDisplay from '@/components/web/rightDisplay';
+import rightDisplay from '@/web/rightDisplay';
 export default {
   name: 'caseDetail',
   components:{ rightDisplay },

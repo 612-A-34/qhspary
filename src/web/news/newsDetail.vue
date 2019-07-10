@@ -4,7 +4,7 @@
             <div id="slider">
                 <div class="sliders">
                     <div class="item">
-                        <img src="../../../../static/picture/111.jpg">
+                        <img src="../../../static/picture/111.jpg">
                     </div>
                 </div>
             </div>
@@ -90,11 +90,11 @@
                                     </a>
                                     销量超过十万台，连续6年冠销中国，造就业界销量神话，成为外资巨头标榜学习的对象。
                                 </p>
-                                <p style="font-family: &quot;Microsoft Yahei&quot;, &quot;Times New Roman&quot;; transition: background 0.6s; margin: 0px; padding: 0px 0px 15px; line-height: 26px; font-size: 16px; color: rgb(98, 98, 98); text-indent: 2em; text-align: center;">
-                                    <img alt="0707-06.jpg" data-bd-imgshare-binded="1" height="350" src="../../../../static/picture/0i4093535-0.jpg"
+                                <!-- <p style="font-family: &quot;Microsoft Yahei&quot;, &quot;Times New Roman&quot;; transition: background 0.6s; margin: 0px; padding: 0px 0px 15px; line-height: 26px; font-size: 16px; color: rgb(98, 98, 98); text-indent: 2em; text-align: center;">
+                                    <img alt="0707-06.jpg" data-bd-imgshare-binded="1" height="350" src="../../../static/picture/0i4093535-0.jpg"
                                     style="font-family: &quot;Microsoft Yahei&quot;, &quot;&quot;, &quot;Times New Roman&quot;; transition: background 0.6s; border: none; max-width: 100%; vertical-align: top; display: block; margin: 0px auto;"
                                     width="640" />
-                                </p>
+                                </p> -->
                                 <p style="font-family: &quot;Microsoft Yahei&quot;, &quot;Times New Roman&quot;; transition: background 0.6s; margin: 0px; padding: 0px 0px 15px; line-height: 26px; font-size: 16px; color: rgb(98, 98, 98); text-indent: 2em; text-align: center;">
                                     ▲三一微挖成为
                                 <a class="infotextkey" href="http://product.sanygroup.com/excavator-b0.html"
@@ -114,9 +114,9 @@
                                     较2015年增长227%。
                                 </p>
                                 <p style="font-family: &quot;Microsoft Yahei&quot;, &quot;Times New Roman&quot;; transition: background 0.6s; margin: 0px; padding: 0px 0px 15px; line-height: 26px; font-size: 16px; color: rgb(98, 98, 98); text-indent: 2em; text-align: center;">
-                                    <img alt="0707-05.jpg" data-bd-imgshare-binded="1" height="293" src="../../../../static/picture/0i4095048-1.jpg"
+                                    <!-- <img alt="0707-05.jpg" data-bd-imgshare-binded="1" height="293" src="../../../static/picture/0i4095048-1.jpg"
                                     style="font-family: &quot;Microsoft Yahei&quot;, &quot;&quot;, &quot;Times New Roman&quot;; transition: background 0.6s; border: none; max-width: 100%; vertical-align: top; display: block; margin: 0px auto;"
-                                    width="536" />
+                                    width="536" /> -->
                                 </p>
                                 <p style="font-family: &quot;Microsoft Yahei&quot;, &quot;Times New Roman&quot;; transition: background 0.6s; margin: 0px; padding: 0px 0px 15px; line-height: 26px; font-size: 16px; color: rgb(98, 98, 98); text-indent: 2em; text-align: center;">
                                     ▲三一挖掘机国内占有率超过20%
@@ -145,8 +145,8 @@
   </div>
 </template>
 <script>
-import rightDisplay from '@/components/web/rightDisplay';
-import successCase from '@/components/web/successCase';
+import rightDisplay from '@/web/rightDisplay';
+import successCase from '@/web/successCase';
 export default {
   name: 'newsDetail',
   components:{ rightDisplay,successCase },

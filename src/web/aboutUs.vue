@@ -3,7 +3,7 @@
         <section id="main">
             <div id="slider">
                 <div class="sliders">
-                    <img src=" ../../../../static/picture/111.jpg">
+                    <img src=" ../../static/picture/111.jpg">
                 </div>
             </div>
             <nav class="crumbs">
@@ -46,8 +46,8 @@
   </div>
 </template>
 <script>
-import rightDisplay from '@/components/web/rightDisplay';
-import successCase from '@/components/web/successCase';
+import rightDisplay from '@/web/rightDisplay';
+import successCase from '@/web/successCase';
 export default {
   name:'aboutUs',
   components:{ rightDisplay,successCase },

@@ -3,7 +3,7 @@
        <section id="main">
             <div id="slider">
                 <div class="sliders">
-                    <img src="../../../static/picture/111.jpg">
+                    <img src="../../static/picture/111.jpg">
                 </div>
             </div>
             <nav class="crumbs">
@@ -46,7 +46,7 @@
                                 信息化服务
                             </h2>
                             <p style="box-sizing: border-box; border: 0px; font-size: 16px; outline: 0px; padding: 0px 0px 15px; margin: 0px; vertical-align: baseline; line-height: 26px; color: rgb(98, 98, 98); font-family: &quot;Microsoft YaHei&quot;, Arial, Helvetica, sans-serif, 宋体; text-align: center;">
-                                <img alt="" src="../../../static/picture/1-1ffh20236114.png" />
+                                <img alt="" src="../../static/picture/1-1ffh20236114.png" />
                             </p>
                         </div>
                         
@@ -60,7 +60,7 @@
   </div>
 </template>
 <script>
-import rightDisplay from '@/components/web/rightDisplay'
+import rightDisplay from '@/web/rightDisplay'
 export default {
   name: 'service',
   components:{ rightDisplay },

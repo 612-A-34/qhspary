@@ -4,7 +4,7 @@
             <div id="slider">
                 <div class="sliders">
                     <div class="item">
-                        <img src="../../../../static/picture/111.jpg">
+                        <img src="../../../static/picture/111.jpg">
                     </div>
                 </div>
             </div>
@@ -37,7 +37,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a href='anlishow.html' rel="bookmark" title="<b>三一摊铺机“浙东第一街”显身手</b>">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="picture/1-1FFH221180-L.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="picture/1-1FFH221180-L.jpg"
                                             alt="<b>三一摊铺机“浙东第一街”显身手</b>" />
                                         </a>
                                     </figure>
@@ -70,7 +70,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a href='anlishow.html' rel="bookmark" title="<b>超级工程丨三一设备封顶“非洲第一高楼”</b>">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="picture/1-1FFH221330-L.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="picture/1-1FFH221330-L.jpg"
                                             alt="<b>超级工程丨三一设备封顶“非洲第一高楼”</b>" />
                                         </a>
                                     </figure>
@@ -103,7 +103,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a href='anlishow.html' rel="bookmark" title="<b>三一在南非大区的项目汇总</b>">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="picture/1-1FFH220020-L.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="picture/1-1FFH220020-L.jpg"
                                             alt="<b>三一在南非大区的项目汇总</b>" />
                                         </a>
                                     </figure>
@@ -137,7 +137,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-4 col-sm-4 col-xs-6">
                                         <a href='anlishow.html' rel="bookmark" title="<b>三一起重机援助非洲最大火电厂</b>">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/image-pending.png" data-original="picture/22115Tc8-0-lp.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/image-pending.png" data-original="picture/22115Tc8-0-lp.jpg"
                                             alt="<b>三一起重机援助非洲最大火电厂</b>" />
                                         </a>
                                     </figure>
@@ -194,8 +194,8 @@
   </div>
 </template>
 <script>
-import rightDisplay from '@/components/web/rightDisplay';
-import successCase from '@/components/web/successCase';
+import rightDisplay from '@/web/rightDisplay';
+import successCase from '@/web/successCase';
 export default {
   name: 'service',
   components:{ rightDisplay ,successCase},

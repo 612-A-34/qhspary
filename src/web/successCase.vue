@@ -14,7 +14,7 @@
                             <div class="swiper-wrapper">
                                 <div class="swiper-slide">
                                     <a href="http://www.baidu.com" title="三一摊铺机“浙东第一街”显身手">
-                                        <img class="thumbnail" src="../../../static/picture/1-1ffh221180-l.jpg" alt="三一摊铺机“浙东第一街”显身手"
+                                        <img class="thumbnail" src="../../static/picture/1-1ffh221180-l.jpg" alt="三一摊铺机“浙东第一街”显身手"
                                         />
                                         <p>
                                             三一摊铺机“浙东第一街”显身手
@@ -23,7 +23,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <a href="http://www.baidu.com" title="三一摊铺机“浙东第一街”显身手">
-                                        <img class="thumbnail" src="../../../static/picture/1-1ffh221330-l.jpg" alt="超级工程丨三一设备封顶“非洲第"
+                                        <img class="thumbnail" src="../../static/picture/1-1ffh221330-l.jpg" alt="超级工程丨三一设备封顶“非洲第"
                                         />
                                         <p>
                                             超级工程丨三一设备封顶“非洲第
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <a href="http://www.baidu.com" title="三一摊铺机“浙东第一街”显身手">
-                                        <img class="thumbnail" src="../../../static/picture/1-1ffh220020-l.jpg" alt="三一在南非大区的项目汇总"/>
+                                        <img class="thumbnail" src="../../static/picture/1-1ffh220020-l.jpg" alt="三一在南非大区的项目汇总"/>
                                         <p>
                                             三一在南非大区的项目汇总
                                         </p>
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="swiper-slide">
                                     <a href="http://www.baidu.com" title="三一摊铺机“浙东第一街”显身手">
-                                        <img class="thumbnail" src="../../../static/picture/22115tc8-0-lp.jpg" alt="三一起重机援助非洲最大火电厂"
+                                        <img class="thumbnail" src="../../static/picture/22115tc8-0-lp.jpg" alt="三一起重机援助非洲最大火电厂"
                                         />
                                         <p>
                                             三一起重机援助非洲最大火电厂

@@ -1,20 +1,20 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 //web
-import Home from '@/components/Home'
-import NavMenu from '@/components/NavMenu'
-import service from '@/components/web/service'
-import productCenter from '@/components/web/product/productCenter'
-import productList from '@/components/web/product/productList'
-import productDetial from '@/components/web/product/productDetial'
-import cooperationCase from '@/components/web/case/cooperationCase'
-import caseDetail from '@/components/web/case/caseDetail'
-import newsList from '@/components/web/news/newsList'
-import newsDetail from '@/components/web/news/newsDetail'
-import aboutUs from '@/components/web/aboutUs'
+import Home from '@/web/Home'
+import NavMenu from '@/web/NavMenu'
+import service from '@/web/service'
+import productCenter from '@/web/product/productCenter'
+import productList from '@/web/product/productList'
+import productDetial from '@/web/product/productDetial'
+import cooperationCase from '@/web/case/cooperationCase'
+import caseDetail from '@/web/case/caseDetail'
+import newsList from '@/web/news/newsList'
+import newsDetail from '@/web/news/newsDetail'
+import aboutUs from '@/web/aboutUs'
 //admin
-import adminLogin from '@/components/admin/login/index'
-import adminIndex from '@/components/admin/layout/layout'
+import adminLogin from '@/admin/login/index'
+import adminIndex from '@/admin/layout/layout'
 
 
 Vue.use(Router)

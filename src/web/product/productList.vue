@@ -6,7 +6,7 @@
             <div id="slider">
                 <div class="sliders">
                     <div class="item">
-                        <img src="../../../../static/picture/111.jpg">
+                        <img src="../../../static/picture/111.jpg">
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                                 <div class="row">
                                     <figure class="entry-img col-md-6 col-sm-6 col-xs-12">
                                         <a href='' rel="bookmark" title="<b>SSR220AC-8全液压单驱单钢轮压路机</b>">
-                                            <img class="lazy thumbnail" src="../../../../static/picture/1-1ffh155390-l.jpg" data-original="../../../../picture/1-1FFH156110-L.jpg"
+                                            <img class="lazy thumbnail" src="../../../static/picture/1-1ffh155390-l.jpg" data-original="../../../../picture/1-1FFH156110-L.jpg"
                                             alt="<b>SSR220AC-8全液压单驱单钢轮压路机</b>" />
                                         </a>
                                     </figure>
@@ -145,7 +145,7 @@
                         <aside class="s400">
                             <div class="kf">
                                 <div class="kf-con">
-                                    <img src="../../../../static/picture/kf.png">
+                                    <img src="../../../static/picture/kf.png">
                                     <p>
                                         “客户为根，服务为本”深深铭刻在每个华能中天人心中，时时微笑、处处用心的服务品质在无线电波中传递，让数以万计的客户更加信赖华能中天。
                                     </p>
@@ -172,7 +172,7 @@
 </div>
 </template>
 <script>
-import successCase from '@/components/web/successCase';
+import successCase from '@/web/successCase';
 import website from "@/mixins/website";
 export default {
     name: 'productList',
