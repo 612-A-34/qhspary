@@ -3,12 +3,12 @@ var router = express.Router();
 const mysql = require('mysql');
 
 let db=mysql.createPool({host:'localhost',port:'3306',user:'root',password:'mengjia88',database:'qhspray'});//保持连接
-//登录注册
+//登录
 router.post('/login', function(req, res, next) {
      //post 参数通过req.body来获取
       let params = {
-        username: req.body.params.username,
-        password: req.body.params.password
+        username: req.body.username,
+        password: req.body.password
       }
       db.query(`SELECT username,password FROM admin_table WHERE username='${params.username}'`,(err,data)=>{
         if(err){
@@ -47,6 +47,36 @@ router.post('/login', function(req, res, next) {
    });
 
 });
+
+//退出账号
+router.post('/logout', function(req, res, next) {
+        res.cookie('userID','',{        
+            path:'/admin',
+            maxAge:0,                                 //立即过期
+        });
+        res.json({
+            status:0,
+            message:"登出成功",
+            data:null
+        })
+
+});
+
+//用户信息的校验
+router.post('checkLogin', function(req, res, next) {
+    res.cookie('userID','',{       
+        path:'/admin',
+        maxAge:0,                                 
+    });
+    res.json({
+        status:0,
+        message:"登出成功",
+        data:null
+    })
+
+});
+
+
 
 //增加用户
 

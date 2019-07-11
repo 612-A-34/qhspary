@@ -1,36 +1,36 @@
 <template>
-  <div id="loyout">
-    <el-container>
-        首页首页
-      <layoutAside></layoutAside>
+  <div id="layout">
+      <!--admin-首页布局-->
       <el-container>
-        <layoutHeader></layoutHeader>
+         <layoutAside></layoutAside>
+      <el-container>
+         <layoutHeader></layoutHeader>
         <el-main id="elmain">
-          <transition name="main" mode="out-in">
-            <router-view></router-view>
-          </transition>
+              <transition name="main" mode="out-in">
+                <router-view></router-view>
+              </transition>
         </el-main>
-        <el-footer>
-          <Bottom></Bottom>
-        </el-footer>
       </el-container>
     </el-container>
+
+
   </div>
 </template>
 
 <script>
 //  import layoutAside from './aside/aside'
  // import layoutHeader from './header/header'
- // import Bottom from './Footer/bottom'
-  // import langSelect from '../../components/lang/langSelect'
+ // import langSelect from '../../components/lang/langSelect'
+
+  import layoutHeader from './header'
+  import layoutAside from './aside'
 
   export default {
-    name: 'dc-home',
+    name: 'adminHome',
     components: {
-  //    layoutHeader,
-   //   Bottom,
+      layoutHeader,
    //   langSelect,
-    //  layoutAside
+      layoutAside
     },
     created () {
      // this.$router.push('/index')
@@ -57,7 +57,6 @@
     margin: 0px;
     padding: 0px;
   }
-
   body {
     background-color: #f2f2f2;
     font-size: 14px;
@@ -89,7 +88,7 @@
     cursor: pointer;
   }
 
-  html, body, #loyout, .el-container, #asideNav, ul.el-menu {
+  html, body, #layout, .el-container, #asideNav, ul.el-menu {
     @extend %h100;
   }
 

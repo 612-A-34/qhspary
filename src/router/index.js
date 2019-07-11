@@ -97,7 +97,7 @@ export default new Router({
     },
     {
       path: '/admin/home',
-      name: 'dc-home',
+      name: 'adminHome',
       component: adminIndex,
       children: [
 

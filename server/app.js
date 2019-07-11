@@ -20,7 +20,7 @@ console.log('服务开启');
 app.set('views', path.join(__dirname, 'views'));          //设置视图访问目录
 app.engine('.html',ejs.__express);
 app.set('view engine', 'html');                           //设置引擎
-
+// --设置中间件
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -47,13 +47,30 @@ app.use(function (req, res, next) {
   }
 })
 
+//登录拦截
+app.use(function(req, res, next) {
+   if(req.cookies.userId){
+     next();                                //req取数据不是res发送数据，cookies而不是cookie
+   }else{
+      if(req.originalUrl==='/admin/users/login'||req.originalUrl==='/admin/users/logout' ){
+         next();
+      }else{
+        res.json({
+           status:0,
+           message:'当前用户未登录',
+           data:''
+        })
+      }
+   }                                 
+});
+
 //路由
 app.use('/', indexRouter);                             // 当访问/文件目录下的时候加载index
 app.use('/admin/users', usersRouter); 
 app.use('/website/products', productsWebRouter );      //孟 
 
 
-// catch 404 and forward to error handler
+// catch 404 and forward to error handler-捕获
 app.use(function(req, res, next) {
   next(createError(404));
 });
