@@ -15,6 +15,8 @@ import aboutUs from '@/web/aboutUs'
 //admin
 import adminLogin from '@/admin/login/index'
 import adminIndex from '@/admin/layout/layout'
+import adminHome from '@/admin/adminHome'
+
 
 
 Vue.use(Router)
@@ -100,7 +102,12 @@ export default new Router({
       name: 'adminHome',
       component: adminIndex,
       children: [
-
+        {
+          path: '',
+          name: 'adminHome',
+          component: adminHome
+        },
+          
       ]
     },
 
