@@ -30,29 +30,30 @@
           </el-menu-item>
         </template>
       </el-menu> -->
-      
-       <el-menu default-active="2" text-color="rgba(255,255,255,.7)" background-color="#03152A"
+
+
+      <!--孟佳-->
+       <!-- <el-menu default-active="2" text-color="rgba(255,255,255,.7)" background-color="#03152A"
                 active-text-color="#ffffff"  class="el-menu-vertical"
                 @select="selectmenu1"  @open="handleOpen" @close="handleClose">
-        <el-submenu  v-for="(index,item) in navMenu" :index="index+" >
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>{{item}}</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="1-1">轮播图</el-menu-item>
-            <el-menu-item index="1-2">推荐产品</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
+          <el-submenu  v-for="(item,index) in navMenu" :index="index+''" :key='index' >
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>{{item}}</span>
+            </template>
+              <el-menu-item-group>
+                <el-menu-item index="1-1" v-for="(item1,index1) in item" :index=" index+'-'+index1 " :key='index1'  >轮播图</el-menu-item>
+              </el-menu-item-group>
+         </el-submenu>
 
         <el-menu-item index="6">
           <i class="el-icon-setting"></i>
           <span slot="title">用户管理</span>
          </el-menu-item>
-    </el-menu>
+    </el-menu> -->
 
       
-
+     <!--实验-->
       <el-menu default-active="2" text-color="rgba(255,255,255,.7)" background-color="#03152A"
                 active-text-color="#ffffff"  class="el-menu-vertical"
                 @select="selectmenu"
@@ -62,10 +63,10 @@
             <i class="el-icon-location"></i>
             <span>首页管理</span>
           </template>
-          <el-menu-item-group>
-            <el-menu-item index="1-1">轮播图</el-menu-item>
-            <el-menu-item index="1-2">推荐产品</el-menu-item>
-          </el-menu-item-group>
+            <el-menu-item-group>
+              <el-menu-item index="1-1" @click="">轮播图</el-menu-item>
+              <el-menu-item index="1-2" >推荐产品</el-menu-item>
+            </el-menu-item-group>
         </el-submenu>
         <el-submenu index="2">
          <template slot="title">
@@ -114,9 +115,6 @@
          </el-menu-item>
     </el-menu>
 
-
-
-
     </el-aside>
   </div>
 </template>
@@ -153,6 +151,9 @@
     //   '$route.path': function (val) {
     //     this.selectmenu(val)
     //   }
+    },
+    mounted(){
+    console.log('this.store',this.$store.state)
     },
     methods: {
       selectmenu (key) {

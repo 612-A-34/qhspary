@@ -3,21 +3,22 @@ import Router from 'vue-router'
 //web
 import Home from '@/web/Home'
 import NavMenu from '@/web/NavMenu'
-import service from '@/web/service'
-import productCenter from '@/web/product/productCenter'
-import productList from '@/web/product/productList'
-import productDetial from '@/web/product/productDetial'
-import cooperationCase from '@/web/case/cooperationCase'
-import caseDetail from '@/web/case/caseDetail'
-import newsList from '@/web/news/newsList'
-import newsDetail from '@/web/news/newsDetail'
-import aboutUs from '@/web/aboutUs'
+//web--懒加载
+const productCenter = () => import('@/web/product/productCenter')
+const productList = () => import('@/web/product/productList')
+const productDetial = () => import('@/web/product/productDetial')
+const cooperationCase = () => import('@/web/case/cooperationCase')
+const caseDetail = () => import('@/web/case/caseDetail')
+const newsList = () => import('@/web/news/newsList')
+const newsDetail = () => import('@/web/news/newsDetail')
+const service = () => import('@/web/service')
+const aboutUs = () => import('@/web/aboutUs')
 //admin
 import adminLogin from '@/admin/login/index'
 import adminIndex from '@/admin/layout/layout'
 import adminHome from '@/admin/adminHome'
-
-
+//admin--懒加载
+const carousel = () => import('@/admin/home/carousel')
 
 Vue.use(Router)
 
@@ -103,9 +104,9 @@ export default new Router({
       component: adminIndex,
       children: [
         {
-          path: '',
-          name: 'adminHome',
-          component: adminHome
+          path: 'carousel',
+          name: 'carousel',
+          component: carousel
         },
           
       ]

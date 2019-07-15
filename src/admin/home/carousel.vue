@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h1> hi~ this is admin home</h1>
-    <router-view></router-view>
+    <h1>轮播图管理</h1>
+    
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 // import LineEcharts from '../../components/ECharts/lineEcharts'
 // import Maintable from '../table/maintable'
 export default {
-  name: 'mainIndex',
+  name: 'carousel',
  // components: {Maintable, LineEcharts},
   mounted () {
     // this.selfAdaption()

@@ -3,6 +3,7 @@
 import Vue from 'vue';
 import App from './App';
 import axios from 'axios';
+import store from './store';
 import router from './router';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
@@ -24,6 +25,7 @@ axios.defaults.withCredentials = true;           //axios默认设置不接受coo
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  store,
   router,
   components: { App },
   template: '<App/>'

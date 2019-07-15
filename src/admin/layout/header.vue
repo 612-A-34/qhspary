@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-header id="header">
-      <!-- <span class="hideAside" @click="collapse"><i class="fa fa-indent fa-lg"></i></span> -->
+      <span class="hideAside" @click="collapse"><i class="fa fa-indent fa-lg"></i></span>
        <ul class="personal">
            <li>1111</li>
            <li>222</li>
@@ -49,7 +49,8 @@
     },
     methods: {
       collapse () {
-        this.$store.dispatch('collapse')
+          
+       // this.$store.dispatch('collapse')
       },
       fullScreen () {
         if (this.isfullScreen) {
