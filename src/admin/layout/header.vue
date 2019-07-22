@@ -3,40 +3,41 @@
     <el-header id="header">
       <span class="hideAside" @click="collapse"><i class="fa fa-indent fa-lg"></i></span>
        <ul class="personal">
-           <li>1111</li>
-           <li>222</li>
-           <li>1111</li>
-           <li>1111</li>
         <li class="fullScreen" @click="fullScreen">
             <el-tooltip class="item" effect="dark" content="全屏" placement="bottom">
             <i class="fa fa-arrows-alt fa-lg"></i></el-tooltip>
         </li>
 
         <!-- <li> <langSelect></langSelect>  </li>
-        <li>{{ $t(`role.${this.$store.getters.info.role}`) }}</li>
+
+        <!-- <li>{{ $t(`role.${this.$store.getters.info.role}`) }}</li> -->
+        <li>欢迎！超级管理员：</li>
+
         <li>
           <el-dropdown @command="handleCommand">
                   <span class="el-dropdown-link">
-                    夏洛克丶旭<i class="el-icon-arrow-down el-icon--right"></i>
+                    {{this.$store.state.loginName}}<i class="el-icon-arrow-down el-icon--right"></i>
                   </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="a">{{ $t('userDropdownMenu.basicInfor') }}</el-dropdown-item>
-              <el-dropdown-item command="b">{{ $t('userDropdownMenu.changePassword') }}</el-dropdown-item>
-              <el-dropdown-item command="logout" divided>{{ $t('userDropdownMenu.logout') }}</el-dropdown-item>
+              <!-- <el-dropdown-item command="changePassword">{{ $t('userDropdownMenu.changePassword') }}</el-dropdown-item>
+              <el-dropdown-item command="logout" divided>{{ $t('userDropdownMenu.logout') }}</el-dropdown-item> -->
+
+               <el-dropdown-item command="changePassword">修改密码</el-dropdown-item>
+               <el-dropdown-item command="logout" divided>退出登录</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </li>
-        <li class="icon"><img :src="avatar"/></li> -->
+        <li class="icon"><img :src="avatar"/></li> 
       </ul>
     </el-header> 
-    <!-- <tabNav></tabNav> -->
+    <tabNav></tabNav>
   </div>
 </template>
 
 <script>
 //   import Cookies from 'js-cookie'
 //   import langSelect from '../../../components/lang/langSelect'
-//   import tabNav from './tabNav'
+   import tabNav from './tabNav'
 
   export default {
     name: 'Header',
@@ -82,7 +83,6 @@
         if (command === 'logout') {
           Cookies.remove('token');
           location.reload()
-
         }
       }
     }

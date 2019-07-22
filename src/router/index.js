@@ -96,7 +96,8 @@ export default new Router({
     {
       path: '/admin/login',
       name: 'adminLogin',
-      component: adminLogin
+      component: adminLogin,
+      hidden: true,
     },
     {
       path: '/admin/home',

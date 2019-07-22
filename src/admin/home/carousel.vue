@@ -1,16 +1,34 @@
 <template>
-  <div>
+  <div class='content'>
     <h1>轮播图管理</h1>
+    <el-row>
+        <el-col :span="8" v-for="(o, index) in 8" :key="o" :offset="index > 0 ? 2 : 0">
+          <el-card :body-style="{ padding: '0px' }">
+            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
+            <div style="padding: 14px;">
+              <span>好吃的汉堡</span>
+              <div class="bottom clearfix">
+                <time class="time">{{ currentDate }}</time>
+                <el-button type="text" class="button">操作按钮</el-button>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
     
   </div>
 </template>
 
 <script>
-// import LineEcharts from '../../components/ECharts/lineEcharts'
-// import Maintable from '../table/maintable'
 export default {
   name: 'carousel',
- // components: {Maintable, LineEcharts},
+  // components: {Maintable, LineEcharts},
+  data() {
+      return {
+        currentDate: new Date()
+      };
+    },
+  
   mounted () {
     // this.selfAdaption()
   },
@@ -30,154 +48,32 @@ export default {
 }
 </script>
 
-<style lang="scss">
-  $top:top;
-  $bottom:bottom;
-  $left:left;
-  $right:right;
-  $leftright: ($left, $right);
-  $pinkk: #eec2d3;
-  $bluee: #409eff;
-  $yelloww: #f4d884;
-  $grennn: #89dda0;
-  $purplee: #78a2ea;
-  $lightBluee: #b8d6ff;
-
-  $list: bluee pinkk yelloww grennn purplee lightBluee;
-  $list1: $bluee $pinkk $yelloww $grennn $purplee $lightBluee;
-  %shadow{
-    background: #fff;
-    -webkit-box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.2);
-    box-shadow: 4px 4px 40px rgba(0, 0, 0, 0.2);
-    border-color: rgba(0, 0, 0, 0.2);
-    .title{
-      font-size: 14px;
-      padding: 10px;
-      i{
-        margin-#{$right}: 5px;
-      }
-    }
+<style >
+  .content{
+    margin-top:50px;
   }
-
-  @mixin flex($direction:row,$content:space-between){
-    display: flex;
-    flex-direction: $direction;
-    justify-content: $content;
+  .time {
+    font-size: 13px;
+    color: #999;
   }
-  .card{
-    color: #666;
-    @extend %shadow;
-
-    ul{
-      @include flex;
-      li{
-        flex: 1;
-        a{
-          color: #666666;
-          align-items:center;
-          padding-#{$top}: 20px;
-          padding-#{$bottom}: 20px;
-          @include flex(column);
-          span{
-            height: 44px;
-          }
-          .num{
-            line-height: 44px;
-            font-size: 42px;
-            color: $bluee;
-            margin: 0px;
-          }
-        }
-        .kjfs-bluee{
-          color: $bluee;
-        }
-        .kjfs-pinkk{
-          color: $pinkk;
-        }
-        .kjfs-yelloww{
-          color: $yelloww;
-        }
-        .kjfs-grennn{
-          color: $grennn;
-        }
-        .kjfs-purplee{
-          color: $purplee;
-        }
-        .kjfs-lightBluee{
-          color: $lightBluee;
-        }
-        &:hover{
-          .kjfs-bluee{
-            color: #ffffff;
-            background: $bluee;
-          }
-          .kjfs-pinkk{
-            color: #ffffff;
-            background: $pinkk;
-          }
-          .kjfs-yelloww{
-            color: #ffffff;
-            background: $yelloww;
-          }
-          .kjfs-grennn{
-            color: #ffffff;
-            background: $grennn;
-          }
-          .kjfs-purplee{
-            color: #ffffff;
-            background: $purplee;
-          }
-          .kjfs-lightBluee{
-            color: #ffffff;
-            background: $lightBluee;
-          }
-        }
-      }
-    }
-    .table{
-      padding: 21px;
-      p{
-        height: 52px;
-        line-height: 52px;
-        border: 1px solid #cccccc;
-        overflow: hidden;
-        border-#{$top}: none;
-        @include flex( null,start);
-        &:first-child{
-          border-#{$top}: 1px solid #cccccc;
-        }
-        span{
-        }
-        .tit{
-          width: 90px;
-          min-width: 90px;
-          height: 100%;
-          text-align: center;
-          border-#{$right}: 1px solid #cccccc;
-          margin-#{$right}: 18px;
-        }
-        span.gitbox{
-          flex: 1;
-          height: 100%;
-          overflow: hidden;
-          @include flex(row,start);
-          a{
-            &:first-child{
-              margin-#{$right}: 30px;
-            }
-          }
-        }
-      }
-    }
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
   }
-  #lineEcharts{
-    margin-#{$top}: 30px;
-    padding-#{$top}: 30px;
-    @extend %shadow;
+  .button {
+    padding: 0;
+    float: right;
   }
-  #maintable{
-    margin-#{$top}: 30px;
-    padding-#{$top}: 10px;
-    @extend %shadow;
+  .image {
+    width: 100%;
+    display: block;
+  }
+  .clearfix:before,
+  .clearfix:after {
+      display: table;
+      content: "";
+  }
+  .clearfix:after {
+      clear: both
   }
 </style>

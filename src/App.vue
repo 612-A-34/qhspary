@@ -11,7 +11,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 /* @import '../static/css/swiper.css';
 @import '../static/css/styles.css';
 @import '../static/css/style.css';
