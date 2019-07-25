@@ -10,12 +10,12 @@
         <div class="loginCon">
           <p class="title">上海群华涂装设备制造有限公司</p>
           <p class="title">前台: vue + element-ui 网站管理系统</p>
-          <el-card  shadow="always" class="login-module" v-if="smdl">
+          <el-card  shadow="always" class="login-module" >
             <div slot="header" class="clearfix formTitlt">
               <span>密码登录</span>
               <span class="titIconbox">
+               <i class="el-icon-s-custom"></i>
               <i class="iconfont xu-saomadenglu2 fa-lg iconcolor"></i>
-              <i class="iconfont xu-saomadenglu01 el-icon--right fa-lg pointer" @click="smdl = !smdl"></i>
             </span>
             </div>
             <el-form :model="loginForm" status-icon label-width="100px" class="demo-ruleForm">
@@ -29,34 +29,10 @@
               <el-form-item>
                 <el-button class="subBtn" type="primary" @click="submitForm">登录</el-button>
               </el-form-item>
-              <!-- <p class="smalltxt">
-                <router-link class="a" to="#">忘记密码</router-link>
-                <router-link class="a" to="#">忘记会员名</router-link>
-                <router-link class="a" to="#">免费注册</router-link>
-              </p> -->
+              <el-form-item>
+                <el-checkbox v-model="isAutoLogin" @change="autoLogin10">10天内自动登录</el-checkbox>
+              </el-form-item>
             </el-form>
-          </el-card>
-
-          <el-card shadow="always" class="login-module" v-else>
-            <div slot="header" class="clearfix formTitlt">
-              <span>扫码登录</span>
-              <span class="titIconbox">
-              <i class="iconfont xu-mimadenglu1 fa-lg iconcolor"></i>
-              <i class="iconfont xu-imagevector el-icon--right fa-lg pointer" @click="smdl = !smdl"></i>
-            </span>
-            </div>
-            <div class="ewmbox">
-              <div class="ewm">
-                <img src="https://img.alicdn.com/tfscom/TB1ivYYyHvpK1RjSZFqwu3XUVXa.png">
-              </div>
-              <div class="ewmicon">
-                <i class="iconfont xu-saomadenglu fa-2x iconcolor"></i>
-                <p>打开 微信 扫一扫登录</p>
-              </div>
-              <p class="smalltxt">
-                <router-link class="a" to="#">免费注册</router-link>
-              </p>
-            </div>
           </el-card>
         </div>
       </div>
@@ -67,25 +43,35 @@
 export default {
   data () {
     return {
-      smdl: true,
+      isAutoLogin:false,
       loginForm: {
         username: 'mengjia11',
         password: '123456'
       }
     }
   },
+   mounted() {
+    this.message()
+  },
   methods: {
+    autoLogin10(){
+       //判断是否自动登录--需要登录状态存
+      let $this = this;
+      //取出localstroge 是否登录的状态
+      if(this.isAutoLogin){
+         $this.$store.commit('autoLogin',true)
+         console.log('勾选自动登录')
+      }else{
+         $this.$store.commit('autoLogin',false)
+         console.log('禁止-自动登录')
+      }
+
+    },
+
     //提交用户名密码
     // submitForm () {
     //   let that = this
-    //   if (this.loginForm.username === '' || this.loginForm.password === '') {
-    //     this.$message({
-    //       showClose: true,
-    //       message: '账号或密码不能为空',
-    //       type: 'error'
-    //     })
-    //     return false
-    //   } else {
+    // 
     //     // 将 username 设置为 token 存储在 store，仅为测试效果，实际存储 token 以后台返回为准
     //     that.$store.dispatch('setToken', that.loginForm.username).then(() => {
     //       that.$router.push({path: '/'})
@@ -96,31 +82,33 @@ export default {
     //         type: 'error'
     //       })
     //     })
-    //   }
     // },
     submitForm () {
       console.log('执行login-ost')
+      let $this = this;
       if (this.loginForm.username === '' || this.loginForm.password === '') {
-        this.$message({
+        $this.$message({
           showClose: true,
           message: '账号或密码不能为空',
           type: 'error'
         })
         return false
       } else {
-       this.$axios.post(this.BASE_URL+'/admin/users/login',this.loginForm)   //get方法和post方法的区别是get有参数加‘params:’
+       $this .$axios.post($this.BASE_URL+'/admin/users/login',this.loginForm)   //get方法和post方法的区别是get有参数加‘params:’
         .then((response)=>{
             let resp = response.data;
             console.log('this.resp',resp);
             if(resp.status===0){
-               this.$message({
+               $this.$message({
                 showClose: true,
                 message: '登录成功',
                 type:'success'
               })
-              this.$router.push({path: '/admin/home'});
+              //存入
+            //  $this.$store.commit('set_token',resp.return.session_id);
+              $this.$router.push({path: '/admin/home'});
             }else{
-              this.$message({
+              $this.$message({
                   showClose: true,
                   message: resp.message,
                   type: 'error'
@@ -128,7 +116,7 @@ export default {
             }
         })                                                                                                                                                                                                                                                                                                               
         .catch(function (error) {
-             this.$message({
+             $this.$message({
                   showClose: true,
                   message: error,
                   type: 'error'
@@ -147,9 +135,7 @@ export default {
       });
     },
   },
-  mounted() {
-    this.message()
-  }
+ 
 }
 </script>
 <style lang="scss">
@@ -217,10 +203,8 @@ export default {
           .formTitlt {
             font-size: 18px;
             font-weight: 400;
-
             .titIconbox {
               float: right;
-
               .pointer {
                 cursor: pointer;
               }

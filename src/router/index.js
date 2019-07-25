@@ -98,11 +98,15 @@ export default new Router({
       name: 'adminLogin',
       component: adminLogin,
       hidden: true,
+     
     },
     {
       path: '/admin/home',
       name: 'adminHome',
       component: adminIndex,
+      meta:{
+        requireAuth:true,              //进入这个路由之前，判断是否登录
+      },
       children: [
         {
           path: 'carousel',
@@ -114,4 +118,7 @@ export default new Router({
     },
 
   ]
-})
+});
+
+
+

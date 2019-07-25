@@ -1,16 +1,18 @@
-const createError = require('http-errors');        
-const express = require('express');
+const ejs = require('ejs');                       //ejs模板
 const path = require('path');                     //node自带模块-处理文件路径
+const express = require('express');
+const logger = require('morgan');                 //日志输出
+const jwt = require('jsonwebtoken');              //用来生成token
+const createError = require('http-errors');        
+const bodyParser = require('body-parser');        //http请求解析
 const cookieParser = require('cookie-parser');    //获取cookie信息 
 const cookieSession = require('cookie-session');  //cookie签名-不是加密
-const logger = require('morgan');                 //日志输出
-const ejs = require('ejs');                       //ejs模板
-const bodyParser = require('body-parser');        //http请求解析
+
 
 //路由
 const indexRouter = require('./routes/index');                   //渲染首页的路由
 // const usersRouter = require('./routes/users'); 
-const usersRouter = require('./routes/admin/users'); 
+const usersRouter = require('./routes/admin/users');             //孟-用户登录
 const productsWebRouter = require('./routes/website/products');  //孟-添加产品的路由
 
 var app = express();
@@ -41,10 +43,26 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
 
   if (req.method == 'OPTIONS') {
-    res.send(200); /*让options请求快速返回*/
+    res.send(200);             /*让options请求快速返回*/
   } else {
     next();
   }
+
+  //token
+  console.log("req.headers",req.headers)
+ // console.log("req.headers['authorization']",req.headers['authorization'])
+ // let token = req.headers['authorization'];
+	if(token == undefined){
+		return next();
+	}else{
+		// vertoken.verToken(token).then((data)=> {
+		// 	req.data = data;
+		// 	return next();
+		// }).catch((error)=>{
+		// 	return next();
+		// })
+	}
+
 })
 
 //登录拦截
