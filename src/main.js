@@ -21,6 +21,7 @@ Vue.prototype.BASE_URL = 'http://localhost:3000';   //请求路径
 Vue.prototype.$axios = axios;
 Vue.use(ElementUI);
 axios.defaults.withCredentials = true;              //axios默认设置不接受cookie
+axios.defaults.headers.common['Authentication-Token'] = store.state.token;     //定义全局默认配置
 
 /* eslint-disable no-new */
 new Vue({
@@ -41,7 +42,6 @@ router.beforeEach((to, from, next) => {
       console.log('路由守卫，需要登录')
       console.log('to.fullpath',to.fullPath)
       console.log('autoLogin10Days ',window.localStorage.getItem('autoLogin10Days'))
-
       //是否勾选10天内自动登录
      if(to.fullPath ==='/admin/home' && window.localStorage.getItem('autoLogin10Days')=='true'){
        console.log('路由守卫-自动登录')
@@ -52,6 +52,37 @@ router.beforeEach((to, from, next) => {
   }else{
     next();
   }
-})
+});
 
-
+//----请求头添加token信息
+// 添加请求拦截器
+axios.interceptors.request.use(config => {
+      // 在发送请求之前做些什么
+      //判断是否存在token，如果存在将每个页面header都添加token
+      if(store.state.token){
+      config.headers.common['Authentication-Token']=store.state.token
+      }
+      return config;
+    }, error => {
+      // 对请求错误做些什么
+      return Promise.reject(error);
+    });
+      
+// http response 拦截器
+axios.interceptors.response.use(
+    response => {
+       return response;
+    },
+    error => {
+      if (error.response) {
+        // switch (error.response.status) {
+        //   case 401:
+        //   this.$store.commit('del_token');
+        //   router.replace({
+        //     path: '/login',
+        //     query: {redirect: router.currentRoute.fullPath}//登录成功后跳入浏览的当前页面
+        //   })
+        // }
+      }
+    return Promise.reject(error.response.data)
+ });

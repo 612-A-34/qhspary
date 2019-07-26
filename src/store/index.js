@@ -61,4 +61,3 @@ const store = new Vuex.Store({
   })
 
 export default store //导出store
-
