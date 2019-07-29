@@ -8,6 +8,8 @@ const bodyParser = require('body-parser');        //http请求解析
 const cookieParser = require('cookie-parser');    //获取cookie信息 
 const cookieSession = require('cookie-session');  //cookie签名-不是加密
 
+//封装
+const vertoken = require('./models/admin/token_vertify.js');
 
 //路由
 const indexRouter = require('./routes/index');                   //渲染首页的路由
@@ -42,45 +44,48 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
 
-  if (req.method == 'OPTIONS') {
-    res.send(200);             /*让options请求快速返回*/
+  if (req.method == 'OPTIONS') {                               
+   return  res.sendStatus(status)   /*让options请求快速返回*/
+   //return  res.status(200)
   } else {
+    console.log('错误？？option')
     next();
   }
+  
 
   //token
   console.log("req.headers",req.headers)
- // console.log("req.headers['authorization']",req.headers['authorization'])
- // let token = req.headers['authorization'];
+  console.log("req.headers['Authorization']",req.headers['Authorization'])
+  let token = req.headers['Authorization'];
 	if(token == undefined){
+    console.log('token==undefind')
 		return next();
 	}else{
-		// vertoken.verToken(token).then((data)=> {
-		// 	req.data = data;
-		// 	return next();
-		// }).catch((error)=>{
-		// 	return next();
-		// })
+		vertoken.verToken(token).then((data)=> {
+			req.data = data;
+			return next();
+		}).catch((error)=>{
+			return next();
+		})
 	}
-
 })
 
 //登录拦截
-app.use(function(req, res, next) {
-   if(req.cookies.userId){
-     next();                                //req取数据不是res发送数据，cookies而不是cookie
-   }else{
-      if(req.originalUrl==='/admin/users/login'||req.originalUrl==='/admin/users/logout' ){
-         next();
-      }else{
-        res.json({
-           status:0,
-           message:'当前用户未登录',
-           data:''
-        })
-      }
-   }                                 
-});
+// app.use(function(req, res, next) {
+//    if(req.cookies.userId){
+//      next();                                //req取数据不是res发送数据，cookies而不是cookie
+//    }else{
+//       if(req.originalUrl==='/admin/users/login'||req.originalUrl==='/admin/users/logout' ){
+//          next();
+//       }else{
+//         return  res.json({
+//            status:0,
+//            message:'当前用户未登录',
+//            data:''
+//         })
+//       }
+//    }                                 
+// });
 
 //路由
 app.use('/', indexRouter);                             // 当访问/文件目录下的时候加载index
@@ -90,6 +95,7 @@ app.use('/website/products', productsWebRouter );      //孟
 
 // catch 404 and forward to error handler-捕获
 app.use(function(req, res, next) {
+  console.log('404???')
   next(createError(404));
 });
 

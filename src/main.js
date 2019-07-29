@@ -21,7 +21,7 @@ Vue.prototype.BASE_URL = 'http://localhost:3000';   //请求路径
 Vue.prototype.$axios = axios;
 Vue.use(ElementUI);
 axios.defaults.withCredentials = true;              //axios默认设置不接受cookie
-axios.defaults.headers.common['Authentication-Token'] = store.state.token;     //定义全局默认配置
+axios.defaults.headers.common['Authorization'] = store.state.token;     //定义全局默认配置
 
 /* eslint-disable no-new */
 new Vue({
@@ -57,14 +57,17 @@ router.beforeEach((to, from, next) => {
 //----请求头添加token信息
 // 添加请求拦截器
 axios.interceptors.request.use(config => {
+       console.log('请求拦截器')
       // 在发送请求之前做些什么
       //判断是否存在token，如果存在将每个页面header都添加token
       if(store.state.token){
-      config.headers.common['Authentication-Token']=store.state.token
+      console.log('判断是否存在token--store.state.token')
+      config.headers.common['Authorization']=store.state.token
       }
       return config;
     }, error => {
       // 对请求错误做些什么
+      console.log('请求拦截器-错误')
       return Promise.reject(error);
     });
       

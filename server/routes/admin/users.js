@@ -13,18 +13,18 @@ router.post('/login', function(req, res, next) {
       }
       db.query(`SELECT username,password FROM admin_table WHERE username='${params.username}'`,(err,data)=>{
         if(err){
-            console.log('user/admin/login',err);
+            console.log('user/admin/login-err',err);
             res.status(500).send('user/admin/login database error').end();
         }else{
             if(data.length!==0){
               if(data[0].password===params.password){
                 //cooike-session
-                res.cookie('userID',data[0].password,{        //(name,value,{path（那个目录下可以读取到cookie）,有效期}
-                    path:'/',
-                    maxAge:1000*30,
-                    signed:true,                              //cookie签名
-                });
-               req.session['user']=data;                      //seccion？？？？加密？？
+            //     res.cookie('userID',data[0].password,{        //(name,value,{path（那个目录下可以读取到cookie）,有效期}
+            //         path:'/',
+            //         maxAge:1000*30,
+            //         signed:true,                              //cookie签名
+            //     });
+            //    req.session['user']=data;                      //seccion？？？？加密？？
 
                //token
                let secretOrPrivateKey="quspary_wuxiaoyan";     // 这是加密的key（密钥）

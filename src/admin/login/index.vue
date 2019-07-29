@@ -96,7 +96,7 @@ export default {
       } else {
        $this.$axios.post($this.BASE_URL+'/admin/users/login',this.loginForm)   //get方法和post方法的区别是get有参数加‘params:’
         .then((response)=>{
-             console.log('response',response);
+            console.log('response',response);
             let resp = response.data;
             if(resp.status===0){
                $this.$message({
