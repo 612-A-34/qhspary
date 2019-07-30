@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
 const jwt = require('jsonwebtoken');              //用来生成token
+//封装
+const token_vertify = require('../../models/admin/token_vertify');
 
 let db=mysql.createPool({host:'localhost',port:'3306',user:'root',password:'mengjia88',database:'qhspray'});//保持连接
 //登录
@@ -19,20 +21,13 @@ router.post('/login', function(req, res, next) {
             if(data.length!==0){
               if(data[0].password===params.password){
                 //cooike-session
-            //     res.cookie('userID',data[0].password,{        //(name,value,{path（那个目录下可以读取到cookie）,有效期}
-            //         path:'/',
-            //         maxAge:1000*30,
-            //         signed:true,                              //cookie签名
-            //     });
-            //    req.session['user']=data;                      //seccion？？？？加密？？
-
-               //token
-               let secretOrPrivateKey="quspary_wuxiaoyan";     // 这是加密的key（密钥）
-               let content = {name:params.username};           // 要生成token的主题信息
-               let token = jwt.sign(content, secretOrPrivateKey, {
-                   expiresIn: 60*60*24*10                      // 10天过期
-               });
-   
+                res.cookie('userID',data[0].password,{        //(name,value,{path（那个目录下可以读取到cookie）,有效期}
+                    path:'/',
+                    maxAge:1000*30,
+                    signed:true,                              //cookie签名
+                });
+            //    req.session['user']=data;                    //seccion？？？？加密？？
+               let token = token_vertify.setToken();
                //返回
                return res.json({
                     status:0,
@@ -76,6 +71,7 @@ router.post('/logout', function(req, res, next) {
 //用户信息的校验
 router.post('checkLogin', function(req, res, next) {
     res.cookie('userID','',{       
+
         path:'/admin',
         maxAge:0,                                 
     });
@@ -87,9 +83,10 @@ router.post('checkLogin', function(req, res, next) {
 
 });
 
-//每次切换都去调用此接口 用来判断token是否失效 或者过期
+//用来判断token是否失效/过期
 router.post('/checkUser',(req,res)=>{
     let token = req.get("Authorization");                             // 从Authorization中获取token
+
     let secretOrPrivateKey="quspary_wuxiaoyan";                       // 这是加密的key（密钥）
     jwt.verify(token, secretOrPrivateKey, (err, decode)=> {           //验证token
         if (err) {  //  时间失效的时候 || 伪造的token

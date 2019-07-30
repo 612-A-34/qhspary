@@ -5,21 +5,19 @@ Vue.use(Vuex);
 
 //创建vuex实例
 const store = new Vuex.Store({
-    state: {       //唯一的数据源
+    state: {                                            //唯一的数据源
       count: 8,
       loginName:'孟小佳',
       autoLogin10Days:window.sessionStorage.getItem('autoLogin10Days'),
-    //  userPsd:window.sessionStorage.getItem('userPsd'),
       user:window.sessionStorage.getItem('user'),
       token:window.sessionStorage.getItem('token'),
       userImage:window.sessionStorage.getItem('userImage'),
     },
-    mutations: {   //改变数据源-方法
+    mutations: {                                       //改变数据源-方法
       increment (state) {
         state.count++
       },
-
-      //
+      //用户信息临时存储
       set_token(state,data){                             //state中的全部数据
         state.token = data;
         window.sessionStorage.setItem('token',data);     //临时存储--刷新保留--窗口关闭消失

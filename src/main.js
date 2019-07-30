@@ -46,9 +46,14 @@ router.beforeEach((to, from, next) => {
      if(to.fullPath ==='/admin/home' && window.localStorage.getItem('autoLogin10Days')=='true'){
        console.log('路由守卫-自动登录')
        //判断加校验---token 是否过期
-
-     }
-    console.log('11223')                                                                                                 
+       next();
+     }else{
+        this.$message({
+          showClose: true,
+          message: '请先进行登录',
+          type: 'error'
+        })
+     }                                                                                                
   }else{
     next();
   }

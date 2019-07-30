@@ -91,7 +91,7 @@ export default new Router({
     //admin
     {
       path: '/admin',
-      redirect:'/admin/login',
+      redirect:'/admin/home',
     },
     {
       path: '/admin/login',

@@ -84,7 +84,6 @@ export default {
     //     })
     // },
     submitForm () {
-      console.log('执行login-ost')
       let $this = this;
       if (this.loginForm.username === '' || this.loginForm.password === '') {
         $this.$message({
@@ -99,14 +98,15 @@ export default {
             console.log('response',response);
             let resp = response.data;
             if(resp.status===0){
+               $this.$store.commit('set_token',resp.token);       //本地存入token
+               $this.$store.commit('set_user',this.loginForm.username);       //本地存入token
+               $this.$store.commit('et_userImage',resp.token);       //本地存入token
                $this.$message({
                 showClose: true,
                 message: '登录成功',
                 type:'success'
-              })
-              //存入
-            //  $this.$store.commit('set_token',resp.return.session_id);
-              $this.$router.push({path: '/admin/home'});
+              });
+              this.$router.push({path: '/admin/home'});
             }else{
               $this.$message({
                   showClose: true,
@@ -123,7 +123,6 @@ export default {
                 })
         });
       }
-
     },
 
     message() {
