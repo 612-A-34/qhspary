@@ -10,7 +10,7 @@ const store = new Vuex.Store({
       loginName:'孟小佳',
       autoLogin10Days:window.sessionStorage.getItem('autoLogin10Days'),
       user:window.sessionStorage.getItem('user'),
-      token:window.sessionStorage.getItem('token'),
+      qhsparyToken:window.sessionStorage.getItem('token'),
       userImage:window.sessionStorage.getItem('userImage'),
     },
     mutations: {                                       //改变数据源-方法
@@ -19,9 +19,10 @@ const store = new Vuex.Store({
       },
       //用户信息临时存储
       set_token(state,data){                             //state中的全部数据
-        state.token = data;
-        window.sessionStorage.setItem('token',data);     //临时存储--刷新保留--窗口关闭消失
-        console.log('store-set_token')
+        state.qhsparyToken = data;
+        window.sessionStorage.setItem('qhsparyToken',data);    //临时存储--刷新保留--窗口关闭消失
+                                                               //localstroage和session都是存储键值对
+        console.log('store-set_token',window.sessionStorage.qhsparyToken)
       },
       set_user(state,data){
         state.user = data;
@@ -36,14 +37,15 @@ const store = new Vuex.Store({
         state.autoLogin10Days = value;
         if(state.autoLogin10Days){
           console.log('store-自动登录',state.autoLogin10Days)
-          window.localStorage.setItem('token',state.token);
+          window.localStorage.setItem('qhsparyToken',state.token);
           window.localStorage.setItem('user',state.user);
           window.localStorage.setItem('userImage',state.userImage);
           window.localStorage.setItem('autoLogin10Days',state.autoLogin10Days);
         }else{
-          window.localStorage.removeItem('token');                        //不选择自动登录就移除本地
+          window.localStorage.removeItem('qhsparyToken');                        //不选择自动登录就移除本地
           window.localStorage.removeItem('user');
           window.localStorage.setItem('autoLogin10Days',state.autoLogin10Days);
+          
         }
       },
       //登出

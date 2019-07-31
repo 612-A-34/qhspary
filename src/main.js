@@ -32,43 +32,17 @@ new Vue({
   template: '<App/>'
 })
 
-// 路由守卫 admin-login
-router.beforeEach((to, from, next) => {
-  console.log('进入路由守卫')
-  //取回变量，刷新后信息依然存在
-  const token = store.state.token ? store.state.token : window.sessionStorage.getItem('token');
-  //是否需要登录
-  if( to.meta.requireAuth){
-      console.log('路由守卫，需要登录')
-      console.log('to.fullpath',to.fullPath)
-      console.log('autoLogin10Days ',window.localStorage.getItem('autoLogin10Days'))
-      //是否勾选10天内自动登录
-     if(to.fullPath ==='/admin/home' && window.localStorage.getItem('autoLogin10Days')=='true'){
-       console.log('路由守卫-自动登录')
-       //判断加校验---token 是否过期
-       next();
-     }else{
-        this.$message({
-          showClose: true,
-          message: '请先进行登录',
-          type: 'error'
-        })
-     }                                                                                                
-  }else{
-    next();
-  }
-});
-
 //----请求头添加token信息
 // 添加请求拦截器
 axios.interceptors.request.use(config => {
        console.log('请求拦截器')
       // 在发送请求之前做些什么
       //判断是否存在token，如果存在将每个页面header都添加token
-      if(store.state.token){
-      console.log('判断是否存在token--store.state.token')
-      config.headers.common['Authorization']=store.state.token
+      if(store.state.qhsparyToken){
+      console.log('请求拦截器-本地-存在token',store.state.qhsparyToken)
+      config.headers.common['Authorization']=store.state.qhsparyToken
       }
+      console.log('请求拦截器-存在token-请求头添加完成')
       return config;
     }, error => {
       // 对请求错误做些什么
@@ -94,3 +68,43 @@ axios.interceptors.response.use(
       }
     return Promise.reject(error.response.data)
  });
+
+ // 路由守卫 admin-login
+router.beforeEach((to, from, next) => {
+  console.log('进入路由守卫')
+  //取回变量，刷新后信息依然存在
+  const qhsparyToken = store.state.qhsparyToken ? store.state.qhsparyToken : window.sessionStorage.getItem('qhsparyToken');
+  //是否需要登录
+  if( to.meta.requireAuth){
+      //是否勾选10天内自动登录
+    if(to.fullPath ==='/admin/home' && window.localStorage.getItem('autoLogin10Days')=='true'){
+       console.log('路由守卫-自动登录')
+       //判断加校验---token 是否过期
+       axios.get('http://localhost:3000/admin/users/checkUser').then((response)=>{
+           console.log('验证token-response',response);
+           let resp = response.data;
+           if(resp.status===0){
+             return next();
+           }else{
+            Vue.prototype.$message({
+              showClose: true,
+              type: "error",
+              message: "身份已过期，请重新登录"
+           });
+           }
+       })                                                                                                                                                                                                                                                                                                               
+       .catch(function (error) {
+        Vue.prototype.$message({
+          showClose: true,
+          type: "error",
+          message: '身份校验过程出错'
+       });
+       });   
+     }else{
+      //不需要自动登录--密码对就完事了
+      next();
+     }                                                                                                
+  }else{
+    next();
+  }
+});

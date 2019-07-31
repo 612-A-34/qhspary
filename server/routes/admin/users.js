@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const mysql = require('mysql');
-const jwt = require('jsonwebtoken');              //用来生成token
 //封装
 const token_vertify = require('../../models/admin/token_vertify');
 
@@ -13,7 +12,7 @@ router.post('/login', function(req, res, next) {
         username: req.body.username,
         password: req.body.password
       }
-      db.query(`SELECT username,password FROM admin_table WHERE username='${params.username}'`,(err,data)=>{
+      db.query(`SELECT username,password,ID FROM admin_table WHERE username='${params.username}'`,(err,data)=>{
         if(err){
             console.log('user/admin/login-err',err);
             res.status(500).send('user/admin/login database error').end();
@@ -27,7 +26,8 @@ router.post('/login', function(req, res, next) {
                     signed:true,                              //cookie签名
                 });
             //    req.session['user']=data;                    //seccion？？？？加密？？
-               let token = token_vertify.setToken();
+              let token = token_vertify.setToken(data.username,data.ID);
+               console.log('users-login-token',token)
                //返回
                return res.json({
                     status:0,
@@ -69,7 +69,7 @@ router.post('/logout', function(req, res, next) {
 });
 
 //用户信息的校验
-router.post('checkLogin', function(req, res, next) {
+router.post('/checkLogin', function(req, res, next) {
     res.cookie('userID','',{       
 
         path:'/admin',
@@ -84,17 +84,28 @@ router.post('checkLogin', function(req, res, next) {
 });
 
 //用来判断token是否失效/过期
-router.post('/checkUser',(req,res)=>{
-    let token = req.get("Authorization");                             // 从Authorization中获取token
-
-    let secretOrPrivateKey="quspary_wuxiaoyan";                       // 这是加密的key（密钥）
-    jwt.verify(token, secretOrPrivateKey, (err, decode)=> {           //验证token
-        if (err) {  //  时间失效的时候 || 伪造的token
-            res.send({'status':0});
-        } else {
-            res.send({'status':1});
-        }
-    })
+router.get('/checkUser',(req,res,next)=>{
+     console.log("req.headers",req.headers)
+     console.log("req.headers.authorization",req.headers.authorization)
+     console.log("req.headers['Authorization']",req.headers['Authorization'])
+     let token1 = req.get("Authorization");     
+     console.log('token1',token1)
+     let token = req.headers['authorization'];
+     if(token == undefined){             //没有token
+       console.log('token==undefind')
+     }else{
+       token_vertify.verToken(token).then((data)=> {
+         console.log('封装return-data',data)
+         if(data=='Invalid Signature'){
+          console.log('shibai')
+         }else{
+           
+         }
+   
+       }).catch((error)=>{
+         console.log('封装return-error',error)
+       })
+     }
 });
 
 

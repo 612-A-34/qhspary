@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');                    //获取cookie
 const cookieSession = require('cookie-session');                  //cookie签名-不是加密
 
 //封装
-const token_vertify = require('./models/admin/token_vertify.js');
+// const token_vertify = require('./models/admin/token_vertify.js');
 
 //路由
 const indexRouter = require('./routes/index');                   //渲染首页的路由
@@ -54,25 +54,25 @@ app.use(function (req, res, next) {
 })
 
 //登录拦截--token验证-
- app.use(function(req, res, next) {
-    //token
-    console.log("req.headers",req.headers)
-    console.log("req.headers.authorization",req.headers.authorization)
-    console.log("req.headers['Authorization']",req.headers['Authorization'])
-    let token = req.headers['authorization'];
-    if(token == undefined){
-      console.log('token==undefind')
-      return next();
-    }else{
-      token_vertify.verToken(token).then((data)=> {
-        console.log('封装return-data',data)
-      //	req.data = data;
-      return next();
-      }).catch((error)=>{
-        console.log('封装return-error',error)
-        return next();
-      })
-    }
+//  app.use(function(req, res, next) {
+//     //token
+//     console.log("req.headers",req.headers)
+//     console.log("req.headers.authorization",req.headers.authorization)
+//     console.log("req.headers['Authorization']",req.headers['Authorization'])
+//     let token = req.headers['authorization'];
+//     if(token == undefined){
+//       console.log('token==undefind')
+//       return next();
+//     }else{
+//       token_vertify.verToken(token).then((data)=> {
+//         console.log('封装return-data',data)
+//       //	req.data = data;
+//       return next();
+//       }).catch((error)=>{
+//         console.log('封装return-error',error)
+//         return next();
+//       })
+//     }
 
   //  if(req.cookies.userId){
   //    next();                                //req取数据不是res发送数据，cookies而不是cookie
@@ -88,7 +88,7 @@ app.use(function (req, res, next) {
   //     }
   //  }         
 
- });
+ // });
 
 //路由
 app.use('/', indexRouter);                             // 当访问/文件目录下的时候加载index
