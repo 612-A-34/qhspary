@@ -89,8 +89,11 @@ router.beforeEach((to, from, next) => {
             Vue.prototype.$message({
               showClose: true,
               type: "error",
-              message: "身份已过期，请重新登录"
+              message: "身份已过期/token遭到篡改，请重新登录"
            });
+           //store.commit('autoLogin10Days', false)
+           window.localStorage.setItem('autoLogin10Days',false)
+           next({ path: '/admin/login' });
            }
        })                                                                                                                                                                                                                                                                                                               
        .catch(function (error) {

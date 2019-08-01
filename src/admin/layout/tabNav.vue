@@ -9,12 +9,14 @@
         </li>
       </transition-group>
     </div>
+    <!--右键菜单-->
     <ul v-show="this.rightMenuShow" :style="{left:this.left+'px',top:this.top+'px'}" class="menuBox">
       <li @click="removeTab($store.getters.rightNav)"><i class="fa fa-remove"></i>{{ $t('rightMenu.close') }}</li>
       <li @click="removeOtherTab($store.getters.rightNav)">{{ $t('rightMenu.closeOther') }}</li>
-      <li @click="removeAllTab">{{ $t('rightMenu.closeAll') }}</li>
+      <li @click="removeAllTab">{{ $t('rightMenu.contextmenu.preventcloseAll') }}</li>
     </ul>
   </div>
+  <!--contextmenu.prevent-右键菜单-->
 </template>
 
 <script>
@@ -28,6 +30,7 @@
       }
     },
     methods: {
+     //右键菜单
       openMenu (item, e, index) {
         if (index === 0) {
           return false

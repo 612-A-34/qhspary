@@ -50,8 +50,11 @@ export default {
       }
     }
   },
+  created(){
+    this.setAutoLogin();
+  },
    mounted() {
-    this.message()
+    this.message();
   },
   methods: {
     autoLogin10(){
@@ -67,22 +70,11 @@ export default {
       }
 
     },
-
+    //设置当前勾选自动登录状态
+    setAutoLogin(){
+      this.autoLogin10 =this.$store.state.autoLogin10;
+    },
     //提交用户名密码
-    // submitForm () {
-    //   let that = this
-    // 
-    //     // 将 username 设置为 token 存储在 store，仅为测试效果，实际存储 token 以后台返回为准
-    //     that.$store.dispatch('setToken', that.loginForm.username).then(() => {
-    //       that.$router.push({path: '/'})
-    //     }).catch(res => {
-    //       that.$message({
-    //         showClose: true,
-    //         message: res,
-    //         type: 'error'
-    //       })
-    //     })
-    // },
     submitForm () {
       let $this = this;
       if (this.loginForm.username === '' || this.loginForm.password === '') {

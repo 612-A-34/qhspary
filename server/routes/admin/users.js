@@ -85,26 +85,34 @@ router.post('/checkLogin', function(req, res, next) {
 
 //用来判断token是否失效/过期
 router.get('/checkUser',(req,res,next)=>{
-     console.log("req.headers",req.headers)
-     console.log("req.headers.authorization",req.headers.authorization)
-     console.log("req.headers['Authorization']",req.headers['Authorization'])
+     //访问请求头中的token方法-req.headers.authorization-req.get("Authorization")-req.headers['Authorization']（失败）
      let token1 = req.get("Authorization");     
      console.log('token1',token1)
      let token = req.headers['authorization'];
-     if(token == undefined){             //没有token
-       console.log('token==undefind')
+     console.log('token-typeof', typeof(token) )
+     if(token == 'undefined'){             //没有token
+       console.log('token==undefind，没有token啥情况？？')
+       res.json({
+        status:2,
+        message:'没有勾选10天内自动登录选项，不能登录',
+        data:null
+    })
      }else{
-       token_vertify.verToken(token).then((data)=> {
-         console.log('封装return-data',data)
-         if(data=='Invalid Signature'){
-          console.log('shibai')
-         }else{
-           
-         }
-   
-       }).catch((error)=>{
-         console.log('封装return-error',error)
-       })
+       if(token_vertify.verToken(token)==='Invalid Signature' ){
+        console.log('router-users-token验证失败')
+        res.json({
+          status:1,
+          message:'token验证失败-过期/伪造',
+          data:null
+      })
+       }else{
+         console.log('router-users-token验证成功')
+         res.json({
+          status:0,
+          message:"token验证成功",
+          data:null
+      })
+       }
      }
 });
 

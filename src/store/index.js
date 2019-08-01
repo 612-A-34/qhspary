@@ -8,11 +8,17 @@ const store = new Vuex.Store({
     state: {                                            //唯一的数据源
       count: 8,
       loginName:'孟小佳',
-      autoLogin10Days:window.sessionStorage.getItem('autoLogin10Days'),
+      autoLogin10Days:window.localStorage.getItem('autoLogin10Days'),
       user:window.sessionStorage.getItem('user'),
       qhsparyToken:window.sessionStorage.getItem('token'),
       userImage:window.sessionStorage.getItem('userImage'),
     },
+    getters: {
+      changeAutoLogin10Days(state) {
+        console.log('store-getter-改变')
+          return 
+      }
+   },
     mutations: {                                       //改变数据源-方法
       increment (state) {
         state.count++
@@ -58,6 +64,7 @@ const store = new Vuex.Store({
         window.localStorage.setItem('autoLogin10Days',false);
       },
     }
-  })
+  });
+ 
 
 export default store //导出store
