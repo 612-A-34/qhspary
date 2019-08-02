@@ -41,6 +41,7 @@
 
   export default {
     name: 'Header',
+    components: {tabNav},
  //   components: {tabNav, langSelect},
     data () {
       return {

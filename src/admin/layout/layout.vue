@@ -3,7 +3,7 @@
       <!--admin-首页布局-->
       <el-container>
          <layoutAside></layoutAside>
-      <el-container>
+       <el-container>
          <layoutHeader></layoutHeader>
         <el-main id="elmain">
               <transition name="main" mode="out-in">
@@ -42,7 +42,6 @@
   .main-enter, .main-leave-to {
     opacity: 0;
     transform: translateY(30px);
-
   }
   .main-enter-active {
     transition: all 0.2s;
@@ -62,7 +61,6 @@
     font-size: 14px;
     color: #333333;
   }
-
   li {
     list-style: none;
   }
@@ -79,15 +77,12 @@
   %w100 {
     width: 100%;
   }
-
   %h100 {
     height: 100%;
   }
-
   %cursor {
     cursor: pointer;
   }
-
   html, body, #layout, .el-container, #asideNav, ul.el-menu {
     @extend %h100;
   }

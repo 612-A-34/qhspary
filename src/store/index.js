@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+//store-模块
+import layout from './modules/layout/index'
 //使用vuex
 Vue.use(Vuex);
 
@@ -63,6 +65,26 @@ const store = new Vuex.Store({
         window.localStorage.removeItem('user');
         window.localStorage.setItem('autoLogin10Days',false);
       },
+    },
+    getter:{                                                //带命名空间的绑定函数
+      addRouters: state => state.routerData.addRouters,
+      token: state => state.token,
+      info: state => state.role.info,
+      routers: state => state.routerData.routers,
+      logoShow: state => state.layout.logoShow,
+      isCollapse: state => state.layout.isCollapse,
+      uniquerouter: state => state.layout.uniquerouter,
+      tabnavBox: state => state.layout.tabnavBox,
+      visible: state => state.layout.visible,
+      left: state => state.layout.left,
+      top: state => state.layout.top,
+      rightNav: state => state.layout.rightNav,
+  },
+
+    },
+   //模块
+    modules: {
+       layout,
     }
   });
  
