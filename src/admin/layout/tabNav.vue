@@ -2,18 +2,22 @@
   <div>
     <div class="tabnavBox">
       <transition-group name="list" tag="ul">
-        <li v-for="(item, index) in $store.getters.tabnavBox" @contextmenu.prevent="openMenu(item,$event,index)"
+        <li class="tabnav"  :class="{active:true}"> <a>qwe</a></li>
+        <li  class="tabnav" :class="{active:true}"> <p>qwe</p></li>
+         <li :class="{active:true}"> <p>qwe</p></li>
+        <!-- <li v-for="(item, index) in $store.getters.tabnavBox" @contextmenu.prevent="openMenu(item,$event,index)"
             :key="item.title" class="tabnav" :class="{ active: $route.path === item.path }">
           <router-link :to="item.path">{{ $t(`routeNmae.${item.title}`) }}</router-link>
           <i @click="removeTab(item)" class="el-icon-error" v-if="index !== 0"></i>
-        </li>
+        </li> -->
+        
       </transition-group>
     </div>
     <!--右键菜单-->
     <ul v-show="this.rightMenuShow" :style="{left:this.left+'px',top:this.top+'px'}" class="menuBox">
-      <li @click="removeTab($store.getters.rightNav)"><i class="fa fa-remove"></i>{{ $t('rightMenu.close') }}</li>
+      <!-- <li @click="removeTab($store.getters.rightNav)"><i class="fa fa-remove"></i>{{ $t('rightMenu.close') }}</li>
       <li @click="removeOtherTab($store.getters.rightNav)">{{ $t('rightMenu.closeOther') }}</li>
-      <li @click="removeAllTab">{{ $t('rightMenu.contextmenu.preventcloseAll') }}</li>
+      <li @click="removeAllTab">{{ $t('rightMenu.contextmenu.preventcloseAll') }}</li> -->
     </ul>
   </div>
   <!--contextmenu.prevent-右键菜单-->
@@ -32,6 +36,9 @@
     methods: {
      //右键菜单
       openMenu (item, e, index) {
+        console.log('打开右键,item',item)
+        console.log('打开右键,e',e)
+        console.log('打开右键,index',index)
         if (index === 0) {
           return false
         }
