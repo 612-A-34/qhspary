@@ -10,7 +10,6 @@ exports.setToken = function(username,userid){
 		    }, 
 		    signkey,                          //密钥
 			{ expiresIn:60*1.5});             //有效时间
-
 }
 
 //解析token

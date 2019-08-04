@@ -5,11 +5,11 @@ import App from './App';
 import axios from 'axios';
 import store from './store';
 import router from './router';
-import VueI18n from 'vue-i18n';                      //vue-国际化
 import ElementUI from 'element-ui';
+import i18n from './components/i18n/i18n';                      //vue-国际化
 
 import 'element-ui/lib/theme-chalk/index.css';
-
+//企业网站-css
 import '../static/css/swiper.css'
 import '../static/css/styles.css'
 import '../static/css/style.css'
@@ -22,13 +22,13 @@ Vue.config.productionTip = false                    //
 Vue.prototype.BASE_URL = 'http://localhost:3000';   //请求路径
 Vue.prototype.$axios = axios;
 Vue.use(ElementUI);
-Vue.use(VueI18n);
 axios.defaults.withCredentials = true;              //axios默认设置不接受cookie
 axios.defaults.headers.common['Authorization'] = store.state.token;     //定义全局默认配置
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  i18n, 
   store,
   router,
   components: { App },
