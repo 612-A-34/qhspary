@@ -79,11 +79,9 @@ const store = new Vuex.Store({
       left: state => state.layout.left,
       top: state => state.layout.top,
       rightNav: state => state.layout.rightNav,
-  },
-
-    },
+     },
    //模块
-    modules: {
+    modules:{
        layout,
     }
   });
