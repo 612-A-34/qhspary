@@ -29,6 +29,10 @@
         top: 0
       }
     },
+    mounted(){
+       console.log('$store.getters',this.$store.getters)
+       console.log('$store.getters.tabnavBox.',this.$store.getters.tabnavBox)
+    },
     methods: {
      //右键菜单
       openMenu (item, e, index) {

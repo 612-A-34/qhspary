@@ -15,12 +15,7 @@ const store = new Vuex.Store({
       qhsparyToken:window.sessionStorage.getItem('token'),
       userImage:window.sessionStorage.getItem('userImage'),
     },
-    getters: {
-      changeAutoLogin10Days(state) {
-        console.log('store-getter-改变')
-          return 
-      }
-   },
+
     mutations: {                                       //改变数据源-方法
       increment (state) {
         state.count++
@@ -66,15 +61,24 @@ const store = new Vuex.Store({
         window.localStorage.setItem('autoLogin10Days',false);
       },
     },
-    getter:{                                                //带命名空间的绑定函数
+    actions:{
+
+    },
+
+    getters:{                                                //带命名空间的绑定函数
+      changeAutoLogin10Days(state) {
+        console.log('store-getter-改变')
+          return 
+      },
+      //模块
       addRouters: state => state.routerData.addRouters,
-      token: state => state.token,
-      info: state => state.role.info,
       routers: state => state.routerData.routers,
+    //  token: state => state.token,
+      info: state => state.role.info,
       logoShow: state => state.layout.logoShow,
       isCollapse: state => state.layout.isCollapse,
       uniquerouter: state => state.layout.uniquerouter,
-      tabnavBox: state => state.layout.tabnavBox,
+      tabnavBox: state => state.layout.tabnavBox,           
       visible: state => state.layout.visible,
       left: state => state.layout.left,
       top: state => state.layout.top,
@@ -83,7 +87,8 @@ const store = new Vuex.Store({
    //模块
     modules:{
        layout,
-    }
+    },
+
   });
  
 

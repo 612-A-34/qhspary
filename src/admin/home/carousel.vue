@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class='content'>
     <h1>轮播图管理</h1>
     <el-row>
@@ -15,8 +16,9 @@
           </el-card>
         </el-col>
       </el-row>
-    
   </div>
+
+</div>
 </template>
 
 <script>

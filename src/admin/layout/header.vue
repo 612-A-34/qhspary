@@ -110,6 +110,7 @@
 
   html, body, #app, .el-container, #asideNav, ul.el-menu {
     @extend %h100;
+    @extend %w100;  //   
   }
 
   @mixin set-value($side, $value) {
@@ -124,6 +125,7 @@
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
     display: flex;
     justify-content: space-between;
+    width:100%;                       //meng
     .hideAside {
       @extend %cursor;
     }
