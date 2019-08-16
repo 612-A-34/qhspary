@@ -21,7 +21,7 @@
               <i :class="item.iconCls?item.iconCls:[fa,fa-server]"></i>
               <span slot="title">{{ $t(`routeNmae.${item.name}`) }}</span>
             </template> -->      
-
+             <!--递归递归-->
             <!-- <menu-tree :menuData="item.children"></menu-tree> -->
           <!-- </el-submenu>
           <el-menu-item :index="item.path" v-else>
@@ -31,88 +31,21 @@
         </template>
       </el-menu> -->
 
-
       <!--孟佳-->
-       <!-- <el-menu default-active="2" text-color="rgba(255,255,255,.7)" background-color="#03152A"
+       <el-menu default-active="2" text-color="rgba(255,255,255,.7)" background-color="#03152A"
                 active-text-color="#ffffff"  class="el-menu-vertical"
-                @select="selectmenu1"  @open="handleOpen" @close="handleClose">
-          <el-submenu  v-for="(item,index) in navMenu" :index="index+''" :key='index' >
+                roter='true'
+                @select="selectMenu"  @open="handleOpen" @close="handleClose">
+          <el-submenu  v-for="(item,index) in navMenu" :index="index+''" :key='index'>
             <template slot="title">
               <i class="el-icon-location"></i>
-              <span>{{item}}</span>
+              <span>{{item.firstLevelName}}</span>
             </template>
-              <el-menu-item-group>
-                <el-menu-item index="1-1" v-for="(item1,index1) in item" :index=" index+'-'+index1 " :key='index1'  >轮播图</el-menu-item>
-              </el-menu-item-group>
+              <el-submenu index=''>
+                <el-menu-item v-for="(item1,index1) in item.secondaryName" :index=" index+'-'+index1 " 
+                             :key='index1'>{{item1.name}}</el-menu-item>
+              </el-submenu>
          </el-submenu>
-
-        <el-menu-item index="6">
-          <i class="el-icon-setting"></i>
-          <span slot="title">用户管理</span>
-         </el-menu-item>
-    </el-menu> -->
-
-      
-     <!--实验-->
-      <el-menu default-active="2" text-color="rgba(255,255,255,.7)" background-color="#03152A"
-                active-text-color="#ffffff"  class="el-menu-vertical"
-                @select="selectmenu"
-               @open="handleOpen" @close="handleClose">
-        <el-submenu index="1">
-          <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>首页管理</span>
-          </template>
-            <el-menu-item-group>
-              <el-menu-item index="1-1" @click="">轮播图</el-menu-item>
-              <el-menu-item index="1-2" >推荐产品</el-menu-item>
-            </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="2">
-         <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>产品管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="2-1">产品详情</el-menu-item>
-            <el-menu-item index="2-2">产品分类</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="3">
-         <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>新闻管理</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="3-1">公司新闻</el-menu-item>
-            <el-menu-item index="3-2">首页</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-        <el-submenu index="4">
-         <template slot="title">
-            <i class="el-icon-location"></i>
-            <span>合作案例</span>
-          </template>
-          <el-menu-item-group>
-            <el-menu-item index="4-1">成功案例管理</el-menu-item>
-            <el-menu-item index="4-2">成功案例轮播</el-menu-item>
-          </el-menu-item-group>
-        </el-submenu>
-
-         <el-menu-item index="5">
-          <i class="el-icon-setting"></i>
-          <span slot="title">服务支持</span>
-         </el-menu-item>
-
-         <el-menu-item index="6">
-          <i class="el-icon-setting"></i>
-          <span slot="title">关于我们</span>
-         </el-menu-item>
-
-        <el-menu-item index="6">
-          <i class="el-icon-setting"></i>
-          <span slot="title">用户管理</span>
-         </el-menu-item>
     </el-menu>
 
     </el-aside>
@@ -130,19 +63,35 @@
     data(){
       return{
         navMenu:[
+          { 
+             firstLevelName:"首页管理",
+             secondaryName:[ 
+               {name:'轮播图',
+                pathName:'carousel'
+               },
+               {name:'产品推荐',
+                pathName:'prodRecom'
+               }]
+          }, 
+           {
+             firstLevelName:"首页管理",
+             secondaryName:[ '产品管理','产品类别']
+          }, 
+           {
+             firstLevelName:"首页管理",
+             secondaryName:[ '产品管理','产品类别']
+          }, 
           {
-            '首页':[ '轮播图','产品推荐']
+             firstLevelName:"首页管理",
+             secondaryName:[ '产品管理','产品类别']
           }, 
            {
-            '产品管理':[ '产品管理','产品类别']
+             firstLevelName:"首页管理",
+             secondaryName:[ '产品管理','产品类别']
           }, 
-           {
-             '新闻管理':[ '新闻管理','产品类别']
+          {
+             firstLevelName:"用户管理",
           }, 
-            {
-             '新闻管理':[ '新闻管理','产品类别']
-          }, 
-          '用户管理','关于我们'
         ]
       }
     },
@@ -177,7 +126,12 @@
         })
       },
 
-         handleOpen(key, keyPath) {
+      //meng
+      selectMenu(index,indexpath){
+        console.log('aside参数data',index,indexpath)
+
+      },
+      handleOpen(key, keyPath) {
         console.log(key, keyPath);
       },
       handleClose(key, keyPath) {
@@ -195,7 +149,6 @@
   %w100 {
     width: 100%;
   }
-
   %h100 {
     height: 100%;
   }
@@ -210,6 +163,7 @@
   }
 
   #asideNav {
+    @extend %h100;
     width: auto !important;
     display: flex;
     flex-direction: column;

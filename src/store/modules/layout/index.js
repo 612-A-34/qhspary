@@ -7,8 +7,8 @@ export default {
     rightNav: {},
     tabnavBox: [
       {
-        title: 'home',
-        path: '/admin/home/carousel'
+        title: '首页',
+        path: '/admin/home'
       }
     ]
   },

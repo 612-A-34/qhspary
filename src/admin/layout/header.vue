@@ -108,11 +108,6 @@
     cursor: pointer;
   }
 
-  html, body, #app, .el-container, #asideNav, ul.el-menu {
-    @extend %h100;
-    @extend %w100;  //   
-  }
-
   @mixin set-value($side, $value) {
     @each $prop in $leftright {
       #{$side}-#{$prop}: $value;

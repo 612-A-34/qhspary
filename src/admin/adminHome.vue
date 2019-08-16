@@ -1,8 +1,11 @@
 <template>
   <div>
-    <h1> hi~ this is admin home</h1>
-    <router-view></router-view>
-  </div>
+
+    <div>
+    <h1> hi~ this is admin home--主页推荐</h1>
+    </div>
+    
+</div>
 </template>
 
 <script>
@@ -15,17 +18,7 @@ export default {
     // this.selfAdaption()
   },
   methods: {
-    // echart自适应
-    selfAdaption () {
-      let that = this
-      setTimeout(() => {
-        window.onresize = function () {
-          if (that.$refs.echarts){
-            that.$refs.echarts.chart.resize()
-          }
-        }
-      }, 10)
-    }
+   
   }
 }
 </script>

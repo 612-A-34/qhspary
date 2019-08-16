@@ -19,6 +19,9 @@ import adminIndex from '@/admin/layout/layout'
 import adminHome from '@/admin/adminHome'
 //admin--懒加载
 const carousel = () => import('@/admin/home/carousel')
+const prodRecom = () => import('@/admin/home/prodRecom')
+
+
 
 Vue.use(Router)
 
@@ -102,18 +105,30 @@ export default new Router({
     },
     {
       path: '/admin/home',
-      name: 'adminHome',
+      name: 'adminIndex',
       component: adminIndex,
       meta:{
         requireAuth:true,              //进入这个路由之前，判断是否登录
       },
       children: [
         {
+          path: '/',
+          name: 'adminHome',
+          label:'管理主页',
+          component: adminHome
+        },
+        {
           path: 'carousel',
-          name: 'carousel',
+          label:'轮播图管理',
+          name: 'carousel',  
           component: carousel
         },
-          
+        {
+          path: 'prodRecom',
+          label:'推荐产品管理',
+          name: 'prodRecom',
+          component: prodRecom
+        },
       ]
     },
 

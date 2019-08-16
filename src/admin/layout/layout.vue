@@ -18,15 +18,13 @@
 </template>
 
 <script>
-//  import layoutAside from './aside/aside'
- // import layoutHeader from './header/header'
  // import langSelect from '../../components/lang/langSelect'
 
   import layoutHeader from './header'
   import layoutAside from './aside'
 
   export default {
-    name: 'adminHome',
+    name: 'adminIndex',
     components: {
       layoutHeader,
    //   langSelect,
@@ -54,18 +52,17 @@
     background-color: #E9EEF3;
     color: #333;
     text-align: center;
-    line-height: 160px;
   }
   body > .el-container {
     margin-bottom: 40px;
   }
-  .el-container:nth-child(5) .el-aside,
+  /* .el-container:nth-child(5) .el-aside,
   .el-container:nth-child(6) .el-aside {
     line-height: 260px;
   }
   .el-container:nth-child(7) .el-aside {
     line-height: 320px;
-  }
+  } */
 </style>
 <style lang="scss">
   * {
@@ -80,11 +77,9 @@
   li {
     list-style: none;
   }
-
   a {
     text-decoration: none;
   }
-
   $top: top;
   $bottom: bottom;
   $left: left;
@@ -102,13 +97,11 @@
   html, body, #layout, .el-container, #asideNav, ul.el-menu {
     @extend %h100;
   }
-
   @mixin set-value($side, $value) {
     @each $prop in $leftright {
       #{$side}-#{$prop}: $value;
     }
   }
-
   #elmain {
     background-color: #f0f2f5;
   }
