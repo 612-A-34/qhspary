@@ -6,106 +6,64 @@
         <p v-else>vue-xuAdmin后台模板</p> -->
         <p >群华涂装后台管理系统</p>
       </div>
-      <!-- <el-menu  background-color="#03152A"  text-color="rgba(255,255,255,.7)"  active-text-color="#ffffff"
+      <el-menu  background-color="#03152A"  text-color="rgba(255,255,255,.7)"  active-text-color="#ffffff"
                     class="el-menu-vertical"
                     @select="selectmenu"
                     :collapse="$store.getters.isCollapse"
                     :default-active="$route.path" 
                     :router="$store.getters.uniquerouter"
                     :unique-opened="$store.getters.uniquerouter"
-                    :collapse-transition="true"
-            >
+                    :collapse-transition="true" >
         <template v-for="(item,index) in $store.getters.routers" v-if="!item.hidden">
+          <!--还有子菜单-->
           <el-submenu v-if="!item.alone && item.children.length>0" :index="index+''">
             <template slot="title">
               <i :class="item.iconCls?item.iconCls:[fa,fa-server]"></i>
               <span slot="title">{{ $t(`routeNmae.${item.name}`) }}</span>
-            </template> -->      
+            </template>      
              <!--递归递归-->
-            <!-- <menu-tree :menuData="item.children"></menu-tree> -->
-          <!-- </el-submenu>
+             <menu-tree :menuData="item.children"></menu-tree>
+           </el-submenu>
+
+           <!--最后一级菜单-->
           <el-menu-item :index="item.path" v-else>
             <i :class="item.iconCls?item.iconCls:[fa,fa-file]"></i>
             <span slot="title">{{ $t(`routeNmae.${item.name}`) }}</span>
           </el-menu-item>
         </template>
-      </el-menu> -->
-
-      <!--孟佳-->
-       <el-menu default-active="2" text-color="rgba(255,255,255,.7)" background-color="#03152A"
-                active-text-color="#ffffff"  class="el-menu-vertical"
-                roter='true'
-                @select="selectMenu"  @open="handleOpen" @close="handleClose">
-          <el-submenu  v-for="(item,index) in navMenu" :index="index+''" :key='index'>
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>{{item.firstLevelName}}</span>
-            </template>
-              <el-submenu index=''>
-                <el-menu-item v-for="(item1,index1) in item.secondaryName" :index=" index+'-'+index1 " 
-                             :key='index1'>{{item1.name}}</el-menu-item>
-              </el-submenu>
-         </el-submenu>
-    </el-menu>
+      </el-menu>
 
     </el-aside>
   </div>
 </template>
 
 <script>
-//  import menuTree from './menuTree'
-
+ import menuTree from './menuTree'
   export default {
     name: 'adminAsideNav',
     components: {
-   //   menuTree,
+      menuTree,
     },
     data(){
       return{
-        navMenu:[
-          { 
-             firstLevelName:"首页管理",
-             secondaryName:[ 
-               {name:'轮播图',
-                pathName:'carousel'
-               },
-               {name:'产品推荐',
-                pathName:'prodRecom'
-               }]
-          }, 
-           {
-             firstLevelName:"首页管理",
-             secondaryName:[ '产品管理','产品类别']
-          }, 
-           {
-             firstLevelName:"首页管理",
-             secondaryName:[ '产品管理','产品类别']
-          }, 
-          {
-             firstLevelName:"首页管理",
-             secondaryName:[ '产品管理','产品类别']
-          }, 
-           {
-             firstLevelName:"首页管理",
-             secondaryName:[ '产品管理','产品类别']
-          }, 
-          {
-             firstLevelName:"用户管理",
-          }, 
-        ]
+       
       }
     },
     watch: {
-      // 监听浏览器直接输入路由，将此路由添加到tabnavBox
-    //   '$route.path': function (val) {
-    //     this.selectmenu(val)
-    //   }
+      // 监听浏览器直接输入路由，将此路由添加到tabnavBox--
+      '$route.path': function (val) {
+        console.log('watch-$route.path',)
+        this.selectmenu(val)
+      }
     },
     mounted(){
-    console.log('this.store',this.$store.state)
+       console.log('$route.path',this.$route.path)
+       console.log('store.getters.routers',this.$store.getters.routers)
+       this.selectmenu(this.$route.path)
     },
     methods: {
       selectmenu (key) {
+        console.log('aside执行selectmenu',)
         let router = this.$store.getters.routers
         let name = ''
         let navTitle = function (path, routerARR) {
@@ -125,18 +83,6 @@
           path: key
         })
       },
-
-      //meng
-      selectMenu(index,indexpath){
-        console.log('aside参数data',index,indexpath)
-
-      },
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
-      }
     }
   }
 </script>

@@ -24,116 +24,149 @@ const prodRecom = () => import('@/admin/home/prodRecom')
 
 
 Vue.use(Router)
+let defaultRouter = [
+  {
+    path: '/',
+    name: 'NavMemu',
+    component: NavMenu,
+    children: [
+      {
+        path: '/',
+        name: 'Home',
+        component: Home
+      },
+      {  
+        path: 'productCenter',
+        name: 'productCenter',
+        component: productCenter,
+        meta: {
+          isRoot: true
+        },
+        children:[ ],             //最好是配合子组件的时候再用
+      },
+      {
+        path: 'productCenter/productList/:productSort',
+        name: 'productList',
+        component: productList,
+        props: true,
+      },
+      {
+        path: 'productCenter/productDetial/:productSort/:productId',
+        name: 'productDetial',
+        component: productDetial,
+        props: true,
+      },
+      {
+        
+        path: 'service',
+        name: 'service',
+        component: service
+      },
+      { //合作案例
+        path: '/cooperationCase',
+        name: 'cooperationCase',
+        component: cooperationCase
+      },
+      {
+        path: '/cooperationCase/caseDetail',
+        name: 'caseDetail',
+        component: caseDetail
+      },
+      {
+        path: '/newsList',
+        name: 'newsList',
+        component: newsList
+      },
+      {
+        path: '/newsDetail',
+        name: 'newsDetail',
+        component: newsDetail
+      },
+      {
+        path: '/aboutUs',
+        name: 'aboutUs',
+        component: aboutUs
+      },
+    ]
+  },
+  //admin
+  {
+    path: '/admin',
+    redirect:'/admin/home',
+  },
+  {
+    path: '/admin/login',
+    name: 'adminLogin',
+    component: adminLogin,
+    hidden: true,
+   
+  },
+  {
+    path: '/admin/home',
+    name: 'adminIndex',
+    component: adminIndex,
+    meta:{
+      requireAuth:true,              //进入这个路由之前，判断是否登录
+    },
+    children: [
+      {
+        path: '/',
+        name: 'adminHome',
+        label:'管理主页',
+        component: adminHome
+      },
+    ]
+  },
+];
+
+//admin-路由权限
+let addRouter = [
+  {
+    path: '/',
+    iconCls: 'el-icon-tickets',         // 图标样式class
+    name: carousel,
+    component: carousel,
+    children: [
+      {
+        path: '/addArticle',
+        iconCls: 'el-icon-edit-outline', // 图标样式class
+        name:carousel ,
+        component: carousel,
+        children: []
+      },
+      {
+        path: '/prodRecom',
+        iconCls: 'el-icon-edit-outline', // 图标样式class
+        name: prodRecom,
+        component: prodRecom,
+        children: []
+      }
+    ]
+  },
+  {
+    path: '/',
+    iconCls: 'fa fa-paw', // 图标样式class
+    name: carousel,
+    component: carousel,
+    children: [
+      {
+        path: '/icon',
+        iconCls: 'fa fa-life-ring', // 图标样式class
+        name:carousel,
+        component: carousel,
+        children: []
+      }
+    ]
+  },
+ ];
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'NavMemu',
-      component: NavMenu,
-      children: [
-        {
-          path: '/',
-          name: 'Home',
-          component: Home
-        },
-        {  
-          path: 'productCenter',
-          name: 'productCenter',
-          component: productCenter,
-          meta: {
-            isRoot: true
-          },
-          children:[ ],             //最好是配合子组件的时候再用
-        },
-        {
-          path: 'productCenter/productList/:productSort',
-          name: 'productList',
-          component: productList,
-          props: true,
-        },
-        {
-          path: 'productCenter/productDetial/:productSort/:productId',
-          name: 'productDetial',
-          component: productDetial,
-          props: true,
-        },
-        {
-          
-          path: 'service',
-          name: 'service',
-          component: service
-        },
-        { //合作案例
-          path: '/cooperationCase',
-          name: 'cooperationCase',
-          component: cooperationCase
-        },
-        {
-          path: '/cooperationCase/caseDetail',
-          name: 'caseDetail',
-          component: caseDetail
-        },
-        {
-          path: '/newsList',
-          name: 'newsList',
-          component: newsList
-        },
-        {
-          path: '/newsDetail',
-          name: 'newsDetail',
-          component: newsDetail
-        },
-        {
-          path: '/aboutUs',
-          name: 'aboutUs',
-          component: aboutUs
-        },
-      ]
-    },
-    //admin
-    {
-      path: '/admin',
-      redirect:'/admin/home',
-    },
-    {
-      path: '/admin/login',
-      name: 'adminLogin',
-      component: adminLogin,
-      hidden: true,
-     
-    },
-    {
-      path: '/admin/home',
-      name: 'adminIndex',
-      component: adminIndex,
-      meta:{
-        requireAuth:true,              //进入这个路由之前，判断是否登录
-      },
-      children: [
-        {
-          path: '/',
-          name: 'adminHome',
-          label:'管理主页',
-          component: adminHome
-        },
-        {
-          path: 'carousel',
-          label:'轮播图管理',
-          name: 'carousel',  
-          component: carousel
-        },
-        {
-          path: 'prodRecom',
-          label:'推荐产品管理',
-          name: 'prodRecom',
-          component: prodRecom
-        },
-      ]
-    },
-
-  ]
+  routes: defaultRouter
 });
+export {defaultRouter, addRouter}
+
+ 
+
 
 
 

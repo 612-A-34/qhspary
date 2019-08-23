@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 //store-模块
 import layout from './modules/layout/index'
+import routerData from './modules/routerData'
 //使用vuex
 Vue.use(Vuex);
 
@@ -87,6 +88,7 @@ const store = new Vuex.Store({
    //模块
     modules:{
        layout,
+       routerData,
     },
 
   });
