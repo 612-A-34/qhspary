@@ -79,6 +79,26 @@ router.beforeEach((to, from, next) => {
   const qhsparyToken = store.state.qhsparyToken ? store.state.qhsparyToken : window.sessionStorage.getItem('qhsparyToken');
   //是否需要登录
   if( to.meta.requireAuth){
+    if (!store.getters.info.role) {
+      !async function getAddRouters () {
+        await store.dispatch('getInfo', store.getters.token)
+        await store.dispatch('newRoutes', store.getters.info.role)
+        console.log(store.getters.addRouters)
+        await router.addRoutes(store.getters.addRouters) 
+        next({path: '/admin/home'})
+      }()
+    } else {
+      let is404 = to.matched.some(record => {
+        if(record.meta.role){
+          return record.meta.role.indexOf(store.getters.info.role) === -1
+        }
+      })
+      if(is404){
+        next({path: '/404'})
+        return false
+      }
+      next()
+    }
       //是否勾选10天内自动登录
     if(to.fullPath ==='/admin/home' && window.localStorage.getItem('autoLogin10Days')=='true'){
        console.log('路由守卫-自动登录')
@@ -87,7 +107,11 @@ router.beforeEach((to, from, next) => {
            console.log('验证token-response',response);
            let resp = response.data;
            if(resp.status===0){
-             return next();
+                     
+             //token验证成功
+             console.log('main---??')
+           
+
            }else{
             Vue.prototype.$message({
               showClose: true,

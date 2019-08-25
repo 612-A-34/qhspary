@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 //store-模块
 import layout from './modules/layout/index'
 import routerData from './modules/routerData'
+import role from './modules/role'
 //使用vuex
 Vue.use(Vuex);
 
@@ -22,7 +23,7 @@ const store = new Vuex.Store({
         state.count++
       },
       //用户信息临时存储
-      set_token(state,data){                             //state中的全部数据
+      set_token(state,data){                                   //state中的全部数据
         state.qhsparyToken = data;
         window.sessionStorage.setItem('qhsparyToken',data);    //临时存储--刷新保留--窗口关闭消失
                                                                //localstroage和session都是存储键值对
@@ -89,6 +90,7 @@ const store = new Vuex.Store({
     modules:{
        layout,
        routerData,
+       role,
     },
 
   });

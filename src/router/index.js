@@ -144,7 +144,7 @@ let addRouter = [
     ]
   },
   {
-    path: '/',
+    path: '/sdss',
     iconCls: 'fa fa-paw', // 图标样式class
     name: carousel,
     component: carousel,

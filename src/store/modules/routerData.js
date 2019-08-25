@@ -15,7 +15,7 @@ const routerData = {
   actions: {
     newRoutes ({commit}, role) {
       //  通过递归路由表，删除掉没有权限的路由
-      
+      console.log('执行')
       function eachSelect (routers, userRole) {
         for (let j = 0; j < routers.length; j++) {
           if (routers[j].meta && routers[j].meta.role.length && routers[j].meta.role.indexOf(userRole) === -1) {
