@@ -42,7 +42,7 @@ let defaultRouter = [
         meta: {
           isRoot: true
         },
-        children:[ ],             //最好是配合子组件的时候再用
+        children:[],             //最好是配合子组件的时候再用
       },
       {
         path: 'productCenter/productList/:productSort',
@@ -90,16 +90,15 @@ let defaultRouter = [
     ]
   },
   //admin
-  {
-    path: '/admin',
-    redirect:'/admin/home',
-  },
+  // {      
+  //   path: '/admin',
+  //   redirect:'/admin/home',   //重定向使路由守卫失效
+  // }, 
   {
     path: '/admin/login',
     name: 'adminLogin',
     component: adminLogin,
     hidden: true,
-   
   },
   {
     path: '/admin/home',
@@ -109,12 +108,12 @@ let defaultRouter = [
       requireAuth:true,              //进入这个路由之前，判断是否登录
     },
     children: [
-      {
-        path: '/',
-        name: 'adminHome',
-        label:'管理主页',
-        component: adminHome
-      },
+      // {
+      //   path: '/',
+      //   name: 'adminHome',
+      //   label:'管理主页',
+      //   component: adminHome
+      // },
     ]
   },
 ];
@@ -123,40 +122,103 @@ let defaultRouter = [
 let addRouter = [
   {
     path: '/',
+    name: 'adminHome',
+    label:'管理主页',
+    component: adminHome,
+    meta: {role: ['superAdmin']},
+    children:[]
+  },
+  {
+    path: '/homeMana',
     iconCls: 'el-icon-tickets',         // 图标样式class
     name: carousel,
+    label:'首页管理',
     component: carousel,
+    meta: {role: ['superAdmin']},
     children: [
       {
         path: '/addArticle',
         iconCls: 'el-icon-edit-outline', // 图标样式class
+        label:'轮播图管理',
         name:carousel ,
         component: carousel,
+        meta: {role: ['superAdmin']},
         children: []
       },
       {
         path: '/prodRecom',
         iconCls: 'el-icon-edit-outline', // 图标样式class
+        label:'推荐产品管理',
         name: prodRecom,
         component: prodRecom,
+        meta: {role: ['superAdmin']},
+        children:[]
+      }
+    ]
+  },
+  {
+    path: '/ssss',
+    iconCls: 'fa fa-paw',            // 图标样式class
+    label:'产品管理',
+    name: carousel,
+    component: carousel,
+    meta: {role: ['superAdmin']},
+    children: [
+      {
+        path: '/icon',
+        iconCls: 'fa fa-life-ring', // 图标样式class
+        label:'行业新闻管理',
+        name:carousel,
+        component: carousel,
+        meta: {role: ['superAdmin']},
+        children: []
+      },
+      {
+        path: '/icon',
+        iconCls: 'fa fa-life-ring', // 图标样式class
+        label:'公司新闻管理',
+        name:carousel,
+        component: carousel,
+        meta: {role: ['superAdmin']},
         children: []
       }
     ]
   },
   {
-    path: '/sdss',
-    iconCls: 'fa fa-paw', // 图标样式class
+    path: '/ssss',
+    iconCls: 'fa fa-paw',            // 图标样式class
+    label:'新闻管理',
     name: carousel,
     component: carousel,
+    meta: {role: ['superAdmin']},
     children: [
       {
         path: '/icon',
         iconCls: 'fa fa-life-ring', // 图标样式class
+        label:'行业新闻管理',
         name:carousel,
         component: carousel,
+        meta: {role: ['superAdmin']},
+        children: []
+      },
+      {
+        path: '/icon',
+        iconCls: 'fa fa-life-ring', // 图标样式class
+        label:'公司新闻管理',
+        name:carousel,
+        component: carousel,
+        meta: {role: ['superAdmin']},
         children: []
       }
     ]
+  },
+  {
+    path: '/jjhjj',
+    iconCls: 'fa fa-paw',            // 图标样式class
+    label:'用户管理',
+    name: carousel,
+    component: carousel,
+    meta: {role: ['superAdmin']},
   },
  ];
 

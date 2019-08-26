@@ -74,31 +74,39 @@ axios.interceptors.response.use(
 
  // 路由守卫 admin-login
 router.beforeEach((to, from, next) => {
-  console.log('进入路由守卫')
+  console.log('进入路由守卫to',to)
   //取回变量，刷新后信息依然存在
-  const qhsparyToken = store.state.qhsparyToken ? store.state.qhsparyToken : window.sessionStorage.getItem('qhsparyToken');
+ const qhsparyToken = store.state.qhsparyToken ? store.state.qhsparyToken : window.sessionStorage.getItem('qhsparyToken');
+  function routeRender () {  
+    console.log('进入路由渲染函数-store.getters.info.role',store.getters.info.role)
+      if (!store.getters.info.role) {
+          console.log('进入--渲染函数')
+        !async function getAddRouters () {         //!或+--让匿名函数立即执行
+          console.log('进入路由渲染函数')
+          await store.dispatch('getInfo', store.getters.token)
+          await store.dispatch('newRoutes', store.getters.info.role)
+          console.log(store.getters.addRouters)
+          await router.addRoutes(store.getters.addRouters) 
+          next({path: '/admin/home'})
+        }()
+      } else {
+        let is404 = to.matched.some(record => {
+          if(record.meta.role){
+            return record.meta.role.indexOf(store.getters.info.role) === -1
+          }
+        })
+        if(is404){
+          next({path: '/404'})
+          return false
+        }
+        next()
+      }
+    };
+
   //是否需要登录
   if( to.meta.requireAuth){
-    if (!store.getters.info.role) {
-      !async function getAddRouters () {
-        await store.dispatch('getInfo', store.getters.token)
-        await store.dispatch('newRoutes', store.getters.info.role)
-        console.log(store.getters.addRouters)
-        await router.addRoutes(store.getters.addRouters) 
-        next({path: '/admin/home'})
-      }()
-    } else {
-      let is404 = to.matched.some(record => {
-        if(record.meta.role){
-          return record.meta.role.indexOf(store.getters.info.role) === -1
-        }
-      })
-      if(is404){
-        next({path: '/404'})
-        return false
-      }
-      next()
-    }
+      console.log('路由守卫--需要登录')
+      routeRender();
       //是否勾选10天内自动登录
     if(to.fullPath ==='/admin/home' && window.localStorage.getItem('autoLogin10Days')=='true'){
        console.log('路由守卫-自动登录')
@@ -107,11 +115,8 @@ router.beforeEach((to, from, next) => {
            console.log('验证token-response',response);
            let resp = response.data;
            if(resp.status===0){
-                     
              //token验证成功
-             console.log('main---??')
-           
-
+        
            }else{
             Vue.prototype.$message({
               showClose: true,
@@ -132,9 +137,11 @@ router.beforeEach((to, from, next) => {
        });   
      }else{
       //不需要自动登录--密码对就完事了
+      routeRender()
       next();
      }                                                                                                
   }else{
+    console.log('nandao??')
     next();
   }
 });

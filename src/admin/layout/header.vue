@@ -9,7 +9,6 @@
         </li>
 
         <!-- <li> <langSelect></langSelect>  </li>
-
         <!-- <li>{{ $t(`role.${this.$store.getters.info.role}`) }}</li> -->
         <li>欢迎！超级管理员：</li>
 
@@ -27,7 +26,7 @@
             </el-dropdown-menu>
           </el-dropdown>
         </li>
-        <li class="icon"><img :src="avatar"/></li> 
+        <!-- <li class="icon"><img :src="avatar"/></li>  -->
       </ul>
     </el-header> 
     <tabNav></tabNav>

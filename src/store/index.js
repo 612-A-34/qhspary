@@ -75,7 +75,7 @@ const store = new Vuex.Store({
       //模块
       addRouters: state => state.routerData.addRouters,
       routers: state => state.routerData.routers,
-    //  token: state => state.token,
+      token: state => state.qhsparyToken,
       info: state => state.role.info,
       logoShow: state => state.layout.logoShow,
       isCollapse: state => state.layout.isCollapse,

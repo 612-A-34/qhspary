@@ -4,14 +4,16 @@
         <el-submenu v-if="child.children.length > 0" :index="child.path">
           <template slot="title">
             <i :class="child.iconCls?child.iconCls:[fa,fa-file]"></i>
-            <span slot="title">{{ $t(`routeNmae.${child.name}`) }}</span>
+            <!-- <span slot="title">{{ $t(`routeNmae.${child.name}`) }}</span> -->
+                 <span slot="title">{{child.label}}</span>
           </template>
           <menu-tree :menuData="child.children"></menu-tree>
         </el-submenu>
 
         <el-menu-item v-else :index="child.path">
           <i :class="child.iconCls?child.iconCls:[fa,fa-file]"></i>
-          <span slot="title">{{ $t(`routeNmae.${child.name}`) }}</span>
+          <!-- <span slot="title">{{ $t(`routeNmae.${child.name}`) }}</span> -->
+               <span slot="title">{{child.label}}</span>
         </el-menu-item>
       </template>
     </div>

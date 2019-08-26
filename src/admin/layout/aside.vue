@@ -16,10 +16,12 @@
                     :collapse-transition="true" >
         <template v-for="(item,index) in $store.getters.routers" v-if="!item.hidden">
           <!--还有子菜单-->
-          <el-submenu v-if="!item.alone && item.children.length>0" :index="index+''">
+          <!-- <el-submenu v-if="!item.alone && item.children.length>0" :index="index+''"> -->
+          <el-submenu v-if="item.children.length>0" :index="index+''">
             <template slot="title">
               <i :class="item.iconCls?item.iconCls:[fa,fa-server]"></i>
-              <span slot="title">{{ $t(`routeNmae.${item.name}`) }}</span>
+              <!-- <span slot="title">{{ $t(`routeNmae.${item.name}`) }}</span> -->
+              <span slot="title">{{ item.label}}</span>
             </template>      
              <!--递归递归-->
              <menu-tree :menuData="item.children"></menu-tree>
@@ -28,7 +30,8 @@
            <!--最后一级菜单-->
           <el-menu-item :index="item.path" v-else>
             <i :class="item.iconCls?item.iconCls:[fa,fa-file]"></i>
-            <span slot="title">{{ $t(`routeNmae.${item.name}`) }}</span>
+            <!-- <span slot="title">{{ $t(`routeNmae.${item.name}`) }}</span> -->
+            <span slot="title">{{item.label}}</span>
           </el-menu-item>
         </template>
       </el-menu>
