@@ -74,18 +74,18 @@ axios.interceptors.response.use(
 
  // 路由守卫 admin-login
 router.beforeEach((to, from, next) => {
-  console.log('进入路由守卫to',to)
+  console.log('进入路由守卫-to',to,)
   //取回变量，刷新后信息依然存在
  const qhsparyToken = store.state.qhsparyToken ? store.state.qhsparyToken : window.sessionStorage.getItem('qhsparyToken');
+
   function routeRender () {  
     console.log('进入路由渲染函数-store.getters.info.role',store.getters.info.role)
       if (!store.getters.info.role) {
           console.log('进入--渲染函数')
-        !async function getAddRouters () {         //!或+--让匿名函数立即执行
+        !async function getAddRouters () {                          //!或+--让匿名函数立即执行
           console.log('进入路由渲染函数')
           await store.dispatch('getInfo', store.getters.token)
           await store.dispatch('newRoutes', store.getters.info.role)
-          console.log(store.getters.addRouters)
           await router.addRoutes(store.getters.addRouters) 
           next({path: '/admin/home'})
         }()

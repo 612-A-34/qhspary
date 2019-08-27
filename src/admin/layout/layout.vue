@@ -22,6 +22,7 @@
 
   import layoutHeader from './header'
   import layoutAside from './aside'
+  import {defaultRouter, addRouter} from '@/router/index'
 
   export default {
     name: 'adminIndex',
@@ -32,6 +33,7 @@
     },
     created () {
      // this.$router.push('/index')
+         console.log('layout-addRouter',addRouter)
     }
   }
 </script>
@@ -105,6 +107,4 @@
   #elmain {
     background-color: #f0f2f5;
   }
-
-
 </style>

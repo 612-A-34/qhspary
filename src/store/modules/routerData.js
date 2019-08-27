@@ -7,22 +7,22 @@ const routerData = {
   },
   mutations: {
     setRouters: (state, routers) => {
-      state.addRouters = routers                     // 保存动态路由用来addRouter
-   //   state.routers = defaultRouter.concat(routers) // 所有有权限的路由表，用来生成菜单列表--带有前端路由
-      state.routers = routers                         //菜单
+      state.addRouters = routers;                               // 保存动态路由用来addRouter/菜单
+      defaultRouter[2].children = routers;
+      state.routers = defaultRouter;                            // 所有有权限的路由表，用来生成菜单列表--带有前端路由
     } 
   },
   actions: {
     newRoutes ({commit}, role) {
       //  通过递归路由表，删除掉没有权限的路由
-      function eachSelect (routers, userRole) {
-        for (let j = 0; j < routers.length; j++) {
-          if (routers[j].meta && routers[j].meta.role.length && routers[j].meta.role.indexOf(userRole) === -1) {  //indexof()没有出现返回-1
-            routers.splice(j, 1)
+      function eachSelect (addRouter, userRole) {
+        for (let j = 0; j < addRouter.length; j++) {
+          if (addRouter[j].meta && addRouter[j].meta.role.length && addRouter[j].meta.role.indexOf(userRole) === -1) {  //indexof()没有出现返回-1
+            addRouter.splice(j, 1)
             j = j !== 0 ? j - 1 : j
           }
-          if (routers[j].children && routers[j].children.length) {
-            eachSelect(routers[j].children, userRole)  //递归
+          if (addRouter[j].children && addRouter[j].children.length) {
+            eachSelect(addRouter[j].children, userRole)  //递归
           }
         }
       }

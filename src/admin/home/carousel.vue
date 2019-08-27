@@ -1,7 +1,6 @@
 <template>
 <div>
   <div class='content'>
-    <h1>轮播图管理</h1>
     <el-row>
         <el-col :span="8" v-for="(o, index) in 8" :key="o" :offset="index > 0 ? 2 : 0">
           <el-card :body-style="{ padding: '0px' }">

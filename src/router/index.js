@@ -20,6 +20,8 @@ import adminHome from '@/admin/adminHome'
 //admin--懒加载
 const carousel = () => import('@/admin/home/carousel')
 const prodRecom = () => import('@/admin/home/prodRecom')
+const productsManage = () => import('@/admin/products/productsManage')
+const proSortManage = () => import('@/admin/products/proSortManage')
 
 
 
@@ -101,126 +103,120 @@ let defaultRouter = [
     hidden: true,
   },
   {
-    path: '/admin/home',
+    path: '/admin',
     name: 'adminIndex',
     component: adminIndex,
     meta:{
       requireAuth:true,              //进入这个路由之前，判断是否登录
     },
     children: [
-      // {
-      //   path: '/',
-      //   name: 'adminHome',
-      //   label:'管理主页',
-      //   component: adminHome
-      // },
+      {
+        path: '/admin/home',
+        name: 'adminHome',
+        label:'管理主页',
+        component: adminHome,
+        meta: {role: ['superAdmin']},
+        children:[]
+      },
+      {
+        path: '/admin/homeMana',
+        iconCls: 'el-icon-tickets',         // 图标样式class
+        name: carousel,
+        label:'首页管理',
+        component: carousel,
+        meta: {role: ['superAdmin']},
+        children: [
+          {
+            path: '/addArticle',
+            iconCls: 'el-icon-edit-outline', // 图标样式class
+            label:'轮播图管理',
+            name:carousel ,
+            component: carousel,
+            meta: {role: ['superAdmin']},
+            children: []
+          },
+          {
+            path: '/prodRecom',
+            iconCls: 'el-icon-edit-outline', // 图标样式class
+            label:'推荐产品管理',
+            name: prodRecom,
+            component: prodRecom,
+            meta: {role: ['superAdmin']},
+            children:[]
+          }
+        ]
+      },
+      {
+        path: '/admin/product',
+        iconCls: 'fa fa-paw',            // 图标样式class
+        label:'产品管理',
+        // name: productsManage,
+        // component: productsManage,
+        meta: {role: ['superAdmin']},
+        children: [
+          {
+            path: '/admin/productsManage',
+            iconCls: 'fa fa-life-ring', // 图标样式class
+            label:'产品管理',
+            name:productsManage,
+            component: productsManage,
+            meta: {role: ['superAdmin']},
+            children: []
+          },
+          {
+            path: '/admin/icon',
+            iconCls: 'fa fa-life-ring', // 图标样式class
+            label:'产品分类管理',
+            name:carousel,
+            component: carousel,
+            meta: {role: ['superAdmin']},
+            children: []
+          }
+        ]
+      },
+      {
+        path: '/admin/ssss',
+        iconCls: 'fa fa-paw',            // 图标样式class
+        label:'新闻管理',
+        name: carousel,
+        component: carousel,
+        meta: {role: ['superAdmin']},
+        children: [
+          {
+            path: '/admin/icon',
+            iconCls: 'fa fa-life-ring', // 图标样式class
+            label:'行业新闻管理',
+            name:carousel,
+            component: carousel,
+            meta: {role: ['superAdmin']},
+            children: []
+          },
+          {
+            path: '/admin/icon',
+            iconCls: 'fa fa-life-ring', // 图标样式class
+            label:'公司新闻管理',
+            name:carousel,
+            component: carousel,
+            meta: {role: ['superAdmin']},
+            children: []
+          }
+        ]
+      },
+      {
+        path: '/admin/jjhjj',
+        iconCls: 'fa fa-paw',            // 图标样式class
+        label:'用户管理',
+        name: carousel,
+        component: carousel,
+        meta: {role: ['superAdmin']},
+        children: [],
+      },
     ]
   },
 ];
 
 //admin-路由权限
-let addRouter = [
-  {
-    path: '/',
-    name: 'adminHome',
-    label:'管理主页',
-    component: adminHome,
-    meta: {role: ['superAdmin']},
-    children:[]
-  },
-  {
-    path: '/homeMana',
-    iconCls: 'el-icon-tickets',         // 图标样式class
-    name: carousel,
-    label:'首页管理',
-    component: carousel,
-    meta: {role: ['superAdmin']},
-    children: [
-      {
-        path: '/addArticle',
-        iconCls: 'el-icon-edit-outline', // 图标样式class
-        label:'轮播图管理',
-        name:carousel ,
-        component: carousel,
-        meta: {role: ['superAdmin']},
-        children: []
-      },
-      {
-        path: '/prodRecom',
-        iconCls: 'el-icon-edit-outline', // 图标样式class
-        label:'推荐产品管理',
-        name: prodRecom,
-        component: prodRecom,
-        meta: {role: ['superAdmin']},
-        children:[]
-      }
-    ]
-  },
-  {
-    path: '/ssss',
-    iconCls: 'fa fa-paw',            // 图标样式class
-    label:'产品管理',
-    name: carousel,
-    component: carousel,
-    meta: {role: ['superAdmin']},
-    children: [
-      {
-        path: '/icon',
-        iconCls: 'fa fa-life-ring', // 图标样式class
-        label:'行业新闻管理',
-        name:carousel,
-        component: carousel,
-        meta: {role: ['superAdmin']},
-        children: []
-      },
-      {
-        path: '/icon',
-        iconCls: 'fa fa-life-ring', // 图标样式class
-        label:'公司新闻管理',
-        name:carousel,
-        component: carousel,
-        meta: {role: ['superAdmin']},
-        children: []
-      }
-    ]
-  },
-  {
-    path: '/ssss',
-    iconCls: 'fa fa-paw',            // 图标样式class
-    label:'新闻管理',
-    name: carousel,
-    component: carousel,
-    meta: {role: ['superAdmin']},
-    children: [
-      {
-        path: '/icon',
-        iconCls: 'fa fa-life-ring', // 图标样式class
-        label:'行业新闻管理',
-        name:carousel,
-        component: carousel,
-        meta: {role: ['superAdmin']},
-        children: []
-      },
-      {
-        path: '/icon',
-        iconCls: 'fa fa-life-ring', // 图标样式class
-        label:'公司新闻管理',
-        name:carousel,
-        component: carousel,
-        meta: {role: ['superAdmin']},
-        children: []
-      }
-    ]
-  },
-  {
-    path: '/jjhjj',
-    iconCls: 'fa fa-paw',            // 图标样式class
-    label:'用户管理',
-    name: carousel,
-    component: carousel,
-    meta: {role: ['superAdmin']},
-  },
- ];
+let addRouter = defaultRouter[2].children;
 
 export default new Router({
   routes: defaultRouter

@@ -14,7 +14,7 @@
                     :router="$store.getters.uniquerouter"
                     :unique-opened="$store.getters.uniquerouter"
                     :collapse-transition="true" >
-        <template v-for="(item,index) in $store.getters.routers" v-if="!item.hidden">
+        <template v-for="(item,index) in $store.getters.addRouters" v-if="!item.hidden">
           <!--还有子菜单-->
           <!-- <el-submenu v-if="!item.alone && item.children.length>0" :index="index+''"> -->
           <el-submenu v-if="item.children.length>0" :index="index+''">
@@ -55,25 +55,21 @@
     watch: {
       // 监听浏览器直接输入路由，将此路由添加到tabnavBox--
       '$route.path': function (val) {
-        console.log('watch-$route.path',)
         this.selectmenu(val)
       }
     },
     mounted(){
-       console.log('$route.path',this.$route.path)
-       console.log('store.getters.routers',this.$store.getters.routers)
        this.selectmenu(this.$route.path)
     },
     methods: {
       selectmenu (key) {
-        console.log('aside执行selectmenu',)
-        let router = this.$store.getters.routers
+        let router = this.$store.getters.addRouters
         let name = ''
-        let navTitle = function (path, routerARR) {
+        let navTitle = function (path, routerARR) {                    //函数表达式-立即执行
           for (let i = 0; i < routerARR.length; i++) {
             if (routerARR[i].children.length > 0 || routerARR[i].path === path) {
               if (routerARR[i].path === path && routerARR[i].children.length < 1) {
-                name = routerARR[i].name
+                name = routerARR[i].label
                 break
               }
               navTitle(path, routerARR[i].children)
