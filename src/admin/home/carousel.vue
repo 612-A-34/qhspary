@@ -1,58 +1,44 @@
 <template>
 <div>
-  <div class='content'>
-     <div class="height:40px;float:left;">
-       <i class="el-icon-s-management"></i>
-       轮播图管理
+
+     <div class='title' style="">
+       <p class='p'style=""><i class="el-icon-s-management" style="blue"></i>&nbsp;轮播图管理</p>
+       <el-button type="primary" plain>添加图片</el-button>
      </div>
-     <el-table :data="tableData" style="width: 100%" ref="carouselTable"  highlight-current-row>
-        <el-table-column type="index" width="50"></el-table-column>
-        <el-table-column label=""  width="180">
-          <template slot-scope="scope">
-            <i class="el-icon-time"></i>
-            <span style="margin-left: 10px">{{ scope.row.date }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column
-          label="姓名"
-          width="180">
-          <template slot-scope="scope">
-            <el-popover trigger="hover" placement="top">
-              <p>姓名: {{ scope.row.name }}</p>
-              <p>住址: {{ scope.row.address }}</p>
-              <div slot="reference" class="name-wrapper">
-                <el-tag size="medium">{{ scope.row.name }}</el-tag>
-              </div>
-            </el-popover>
-          </template>
-        </el-table-column>
-        <el-table-column label="操作">
-          <template slot-scope="scope">
-            <el-button
-              size="mini"
-              @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-            <el-button
-              size="mini"
-              type="danger"
-              @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          </template>
-        </el-table-column>
-  </el-table>
-    <el-row>
-        <el-col :span="8" v-for="(o, index) in 8" :key="o" :offset="index > 0 ? 2 : 0">
-          <el-card :body-style="{ padding: '0px' }">
-            <img src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png" class="image">
-            <div style="padding: 14px;">
-              <span>好吃的汉堡</span>
-              <div class="bottom clearfix">
-                <time class="time">{{ currentDate }}</time>
-                <el-button type="text" class="button">操作按钮</el-button>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-  </div>
+     <div>
+        <el-table :data="tableData" style="width: 100%" ref="carouselTable"  highlight-current-row>
+            <el-table-column type="index" width="50"></el-table-column>
+            <el-table-column label="轮播图名称"  width="180">
+              <template slot-scope="scope">
+                <i class="el-icon-time"></i>
+                <span style="margin-left: 10px">{{ scope.row.date }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="缩略图" width="180">
+              <template slot-scope="scope">
+              
+              </template>
+            </el-table-column>
+            <el-table-column label="缩略图" width="180">
+              <template slot-scope="scope">
+                <el-popover trigger="hover" placement="top">
+                  <p>姓名: {{ scope.row.name }}</p>
+                  <p>住址: {{ scope.row.address }}</p>
+                  <div slot="reference" class="name-wrapper">
+                    <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                  </div>
+                </el-popover>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作">
+              <template slot-scope="scope">
+                <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+              </template>
+            </el-table-column>
+         </el-table>
+     </div>
+   
 
 </div>
 </template>
@@ -104,8 +90,20 @@ export default {
 
 <style >
   .content{
-    background: #FFFFFF;
+    
   }
+  .title{
+   background: #FFFFFF;
+   width: 100%;
+   height:50px;
+  }
+  .p{
+   float:left;
+   margin:15px;
+   font-size:16px;
+   font-weight:bold;
+  }
+
   .time {
     font-size: 13px;
     color: #999;

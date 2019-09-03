@@ -94,6 +94,8 @@ app.use(function (req, res, next) {
 app.use('/', indexRouter);                             // 当访问/文件目录下的时候加载index
 app.use('/admin/users', usersRouter); 
 app.use('/website/products', productsWebRouter );       //孟 
+//图片长传
+app.use('/public', express.static('public'));
 
 
 // catch 404 and forward to error handler-捕获
