@@ -3,6 +3,7 @@ const path = require('path');                                     //node自带�
 const express = require('express');
 const logger = require('morgan');                                 //日志输出
 const jwt = require('jsonwebtoken');                              //用来生成token
+const formidable = require('formidable');                         //图片上传
 const createError = require('http-errors');        
 const bodyParser = require('body-parser');                        //http请求解析
 const cookieParser = require('cookie-parser');                    //获取cookie信息 
@@ -13,8 +14,8 @@ const cookieSession = require('cookie-session');                  //cookie签名
 
 //路由
 const indexRouter = require('./routes/index');                   //渲染首页的路由
-// const usersRouter = require('./routes/users'); 
-const usersRouter = require('./routes/admin/users');             //孟-用户登录
+const usersRouter = require('./routes/admin/users');             //孟-管理系统-用户管理
+const adminHomeRouter = require('./routes/admin/home/home');     //孟-管理系统-用户管理
 const productsWebRouter = require('./routes/website/products');  //孟-添加产品的路由
 
 var app = express();
@@ -35,12 +36,13 @@ app.use(cookieSession({                                   //cookieSession 必须
   name: 'session'                                         //可以改变浏览器cookie的名字
  }));
 app.use(bodyParser.json());                               //对post数据进行json转换
-app.use(express.static(path.join(__dirname, 'public')));  //存取静态文件
+app.use(express.static(path.join(__dirname, 'public')));  //设置静态文件目录
 
 //跨域设置
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Credentials', 'true');
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+//  res.header('Access-Control-Allow-Origin','*');
   res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
   console.log('req.method ',req.method)
@@ -92,8 +94,9 @@ app.use(function (req, res, next) {
 
 //路由
 app.use('/', indexRouter);                             // 当访问/文件目录下的时候加载index
+app.use('/website/products', productsWebRouter );      //孟-网站-产品 
+app.use('/admin/home', adminHomeRouter);               //孟-管理系统 
 app.use('/admin/users', usersRouter); 
-app.use('/website/products', productsWebRouter );       //孟 
 //图片长传
 app.use('/public', express.static('public'));
 

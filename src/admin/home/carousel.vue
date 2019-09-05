@@ -3,7 +3,7 @@
 
      <div class='title' style="">
        <p class='p'style=""><i class="el-icon-s-management" style="blue"></i>&nbsp;轮播图管理</p>
-       <el-button type="primary" plain>添加图片</el-button>
+       <el-button type="primary" plain @click="addCarousel">添加图片</el-button>
      </div>
      <div>
         <el-table :data="tableData" style="width: 100%" ref="carouselTable"  highlight-current-row>
@@ -16,7 +16,13 @@
             </el-table-column>
             <el-table-column label="缩略图" width="180">
               <template slot-scope="scope">
-              
+                <el-popover trigger="hover" placement="top">
+                  <p>姓名: {{ scope.row.name }}</p>
+                  <p>住址: {{ scope.row.address }}</p>
+                  <div slot="reference" class="name-wrapper">
+                    <el-tag size="medium">{{ scope.row.name }}</el-tag>
+                  </div>
+                </el-popover>
               </template>
             </el-table-column>
             <el-table-column label="缩略图" width="180">
@@ -38,7 +44,22 @@
             </el-table-column>
          </el-table>
      </div>
-   
+    
+    <!--添加轮播图弹框-->
+    <el-dialog title="提示" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
+        <span>这是一段信息</span>
+        <el-upload class="upload-demo" :limit="1" :on-exceed="handleExceed"
+                   :action="BASE_URL+'/admin/home/uploadCarousel' " 
+                  :on-preview="handlePreview"
+                  :on-remove="handleRemove" :file-list="fileList2" list-type="picture">
+          <el-button size="small" type="primary">点击上传</el-button>
+          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+        </el-upload>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+      </span>
+    </el-dialog>
 
 </div>
 </template>
@@ -49,6 +70,8 @@ export default {
   // components: {Maintable, LineEcharts},
   data() {
       return {
+        dialogVisible: false,
+        fileList2: [{name: '', url: ''}],
         tableData: [{
           date: '2016-05-02',
           name: '王小虎',
@@ -71,8 +94,40 @@ export default {
   
   mounted () {
     // this.selfAdaption()
+    this.selectCarousel();
   },
   methods: {
+     //添加轮播图
+     addCarousel(){
+       this.dialogVisible=true;
+
+     },
+     handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePreview(file) {
+        console.log(file);
+      },
+      handleExceed(files, fileList) {
+        this.$message.warning(`当前限制选择1个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+      },
+        handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      },
+     //查询所有轮播图
+     selectCarousel(){
+        this.$axios.get(this.BASE_URL+'/admin/home/carousel').then((response)=>{
+            console.log('this.productsList',);
+        })                                                                                                                                                                                                                                                                                                               
+        .catch(function (error) {
+            console.log(error);
+        });
+    },
+
     // echart自适应
     selfAdaption () {
       let that = this
