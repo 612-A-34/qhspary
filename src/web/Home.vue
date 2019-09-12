@@ -4,26 +4,15 @@
             <!-- 幻灯片 -->
             <div id="slider">
                 <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide">
-                            <a>
-                                <img src="../../static/picture/1-1g101164a70-l.jpg" alt="幻灯2">
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a>
-                                <img src="../../static/picture/1-1g1011646030-l.jpg" alt="幻灯1">
-                            </a>
-                        </div>
-                    </div>
-                    <!-- Add Pagination -->
-                    <div class="swiper-pagination big-p1">
-                    </div>
-                    <!-- Add Navigation -->
-                    <div class="icon-arrows-left icon">
-                    </div>
-                    <div class="icon-arrows-right icon">
-                    </div>
+                    <!-- <div class="swiper-wrapper"> -->
+                      <div class="swiper-slide">
+                        <el-carousel>
+                            <el-carousel-item v-for="item in carousel" :key="item.id">
+                                <el-image :src="href+item.home_banner_href":alt="item.home_banner_name" 
+                                           fit="fill" style="width:100%; height:auto;"></el-image>
+                            </el-carousel-item>
+                        </el-carousel>
+                     </div>       
                 </div>
             </div>
             <!-- 幻灯片结束 -->
@@ -39,7 +28,7 @@
                             <div class="us-des col-md-8 col-sm-5 col-xs-12">
                                 <p>
                                     <b>
-                                        三一集团有限公司
+                                        上海群华涂装设备制造有限公司
                                     </b>
                                     始创于1989年。自成立以来，三一始终秉持“创建一流企业，造就一流人才，做出一流贡献”的愿景，打造了知名的“三一”品牌。
                                 </p>
@@ -409,10 +398,31 @@ export default {
   name: 'Home',
   components:{ successCase },
   data() {
-    return {}
+    return {
+       carousel:[],
+       href:this.BASE_URL+'/images/carousel/',
+    }
+  },
+   mounted () {
+    this.webSelectCarousel();
+  },
+  methods: {
+      //查询所有轮播图
+      webSelectCarousel(){
+        this.$axios.get(this.BASE_URL+'/website/web_home/carousel').then((response)=>{
+            console.log('已有轮播图列表',response);
+            this.carousel = response.data.data;
+        }).catch(function (error) {
+            console.log(error);
+        });
+    },
+
   }
-};
+}
 </script>
-<style>
+<style >
+.carouselmg{
+    height:300px;
+}
 
 </style>

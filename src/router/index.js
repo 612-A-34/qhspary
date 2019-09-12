@@ -119,7 +119,7 @@ let defaultRouter = [
         children:[]
       },
       {
-        path: '/admin/homeMana',
+        path: '/admin/homeManage',
         iconCls: 'el-icon-tickets',         // 图标样式class
         name: carousel,
         label:'首页管理',
@@ -127,7 +127,7 @@ let defaultRouter = [
         meta: {role: ['superAdmin']},
         children: [
           {
-            path: '/addArticle',
+            path: '/admin/homeManage/carousel',
             iconCls: 'el-icon-edit-outline', // 图标样式class
             label:'轮播图管理',
             name:carousel ,
@@ -136,7 +136,7 @@ let defaultRouter = [
             children: []
           },
           {
-            path: '/prodRecom',
+            path: '/admin/homeManage/prodRecom',
             iconCls: 'el-icon-edit-outline', // 图标样式class
             label:'推荐产品管理',
             name: prodRecom,
@@ -147,31 +147,31 @@ let defaultRouter = [
         ]
       },
       {
-        path: '/admin/product',
+        path: '/admin/productManage',
         iconCls: 'fa fa-paw',            // 图标样式class
         label:'产品管理',
-        // name: productsManage,
-        // component: productsManage,
+        name: productsManage,
+        component: productsManage,
         meta: {role: ['superAdmin']},
         children: [
           {
-            path: '/admin/productsManage',
+            path: '/admin/productsManage/product',
             iconCls: 'fa fa-life-ring', // 图标样式class
-            label:'产品管理',
+            label:'产品详情管理',
             name:productsManage,
             component: productsManage,
             meta: {role: ['superAdmin']},
             children: []
           },
           {
-            path: '/admin/icon',
+            path: '/admin/productManage/proSortManage',
             iconCls: 'fa fa-life-ring', // 图标样式class
             label:'产品分类管理',
-            name:carousel,
-            component: carousel,
+            name:proSortManage,
+            component: proSortManage,
             meta: {role: ['superAdmin']},
             children: []
-          }
+          },
         ]
       },
       {

@@ -141,7 +141,7 @@ router.beforeEach((to, from, next) => {
       next();
      }                                                                                                
   }else{
-    console.log('nandao??')
+    console.log('未进入路由守卫')
     next();
   }
 });
