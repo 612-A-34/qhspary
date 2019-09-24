@@ -13,11 +13,12 @@ const cookieSession = require('cookie-session');                  //cookie签名
 // const token_vertify = require('./models/admin/token_vertify.js');
 
 //路由
-const indexRouter = require('./routes/index');                   //渲染首页的路由
-const usersRouter = require('./routes/admin/users');             //孟-管理系统-用户管理
-const adminHomeRouter = require('./routes/admin/home/home');     //孟-管理系统-用户管理
-const productsWebRouter = require('./routes/website/products');  //孟-官网-产品
-const WebHomeRouter = require('./routes/website/web_home');      //孟-管理-首页
+const indexRouter = require('./routes/index');                        //渲染首页的路由
+const usersRouter = require('./routes/admin/users');                  //孟-管理系统-用户管理
+const adminHomeRouter = require('./routes/admin/home/home');          //孟-管理系统-首页管理
+const adminProductsRouter = require('./routes/admin/admin_products');  //孟-管理系统-产品管理
+const productsWebRouter = require('./routes/website/products');       //孟-官网-产品
+const WebHomeRouter = require('./routes/website/web_home');           //孟-管理-首页
 
 var app = express();
 console.log('服务开启');
@@ -96,8 +97,9 @@ app.use(function (req, res, next) {
 //路由
 app.use('/', indexRouter);                             // 当访问/文件目录下的时候加载index
 app.use('/website/products', productsWebRouter );      //孟-官网-产品 
-app.use('/website/web_home', WebHomeRouter );              //孟-官网-产品 
-app.use('/admin/home', adminHomeRouter);               //孟-管理系统 
+app.use('/website/web_home', WebHomeRouter );          //孟-官网-产品 
+app.use('/admin/home', adminHomeRouter);               //孟-管理系统-首页管理
+app.use('/admin/products', adminProductsRouter);       //孟-管理系统-产品管理
 app.use('/admin/users', usersRouter);                  //管理系统-用户管理
 
 //静态文件目录设置

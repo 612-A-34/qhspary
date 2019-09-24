@@ -1,42 +1,85 @@
 <template>
   <div >
      <!--产品管理-->
-     <el-tabs type="border-card">
-        <el-tab-pane label="产品管理列表">
+     <el-tabs type="border-card" v-model="activeTabName" >
+        <el-tab-pane label="产品管理列表" name="firstTab">
                 <div class='title'>
-                    <p class='p'><i class="el-icon-s-management" style="blue"></i>&nbsp;产品管理列表</p>
-                    <el-button type="primary" plain @click="addProduct" icon="el-icon-plus">
+                    <p class='p'><i class="el-icon-s-management"></i>&nbsp;产品管理列表</p>
+                    <el-button type="primary" plain @click="addProduct" icon="el-icon-plus" size="mini">
                                添加产品</el-button>
                 </div>
-                <div>
-                      <el-table :data="tableData" style="width: 100%" ref="carouselTable"  highlight-current-row>
-                          <el-table-column type="index" width="50"></el-table-column>
-                          <el-table-column label="轮播图名称"  width="280">
+                 <el-divider></el-divider>
+                <div class='content'>
+                      <el-form :inline="true" v-model="queryCondition" style="float:left" size="mini">
+                        <el-form-item label="产品名称">
+                          <el-input v-model="queryCondition.pro_name" placeholder="产品名称查询"></el-input>
+                        </el-form-item>
+                        <el-form-item label="产品类别">  
+                          <el-select v-model="queryCondition.productClassfiyId" placeholder="请选择产品类别">
+                            <el-option v-for="item in productsSorts" :label="item.productClassfiy" :value="item.id"></el-option>
+                          </el-select>
+                        </el-form-item>
+                        <el-form-item>
+                          <el-button type="primary" @click="queryProductlist">查询</el-button>
+                        </el-form-item>
+                      </el-form>
+                
+                     <div class="tableStyle">
+                        <el-table :data="tableData" style="width: 100%" ref="table"  highlight-current-row
+                                   border  height="410" size="mini" :header-row-class-name="getTenHeaderRowName">
+                          <el-table-column label="产品ID"  prop="id" align="center" width="70"></el-table-column>
+                          <el-table-column label="产品名称" prop="pro_name" align="center" width="250"></el-table-column>
+                          <el-table-column label="产品分类" prop="productClassfiy" align="center" width="120"></el-table-column>
+                          <el-table-column label="产品简介" prop="description" align="center"></el-table-column>
+                          <el-table-column label="缩略图" prop="href" width="200">
                             <template slot-scope="scope">
-                              <span style="margin-left: 10px">{{ scope.row.home_banner_name }}</span>
-                            </template>
-                          </el-table-column>
-                          <el-table-column label="缩略图" width="280">
-                            <template slot-scope="scope">
-                              <el-image   style="width:190px; height:80px"  fit="scale-down" lazy
-                                          :src="href+scope.row.home_banner_href" >
+                              <el-image   style="width:180px; height:80px"  fit="scale-down" lazy
+                                          :src="href+scope.row.href" >
                               </el-image>
                             </template>
                           </el-table-column>
-                          <el-table-column label="操作">
+                          <el-table-column label="操作" width="155">
                             <template slot-scope="scope">
-                              <!-- <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button> -->
+                              <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                               <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
                             </template>
-                          </el-table-column>
-                      </el-table>
+                          </el-table-column> 
+                        </el-table>
+                     </div>
+                    
+                      <el-pagination layout="total, sizes, prev, pager, next, jumper" :page-sizes="[5, 10, 15, 20]"
+                          @size-change="handleSizeChange"
+                          @current-change="handleCurrentChange"
+                          :current-page="queryCondition.currentPage"
+                          :page-size='queryCondition.pageSize'
+                          :total='total'>
+                        </el-pagination>
                   </div>
         </el-tab-pane>
-        <el-tab-pane label="产品详情">
-              产品详情
+        <!--详情编辑-->
+        <el-tab-pane label="产品详情" name="secondTab">
+              <div>
+                <el-form ref="form" :model="productDetail" label-width="80px">
+                    <el-form-item label="产品名称" >
+                      <el-input v-model="productDetail.pro_name"></el-input>
+                    </el-form-item>
+                    <el-form-item label="产品分类">
+                      <el-select v-model="productDetail.productClassfiyId" placeholder="请选择产品类别">
+                        <el-option v-for="item in productsSorts" :label="item.productClassfiy" :value="item.id"></el-option>
+                      </el-select>
+                    </el-form-item>
+                    <el-form-item label="产品简介">
+                      <el-input v-model="productDetail.Introduction"></el-input>
+                    </el-form-item>
+                  </el-form>
+              </div>
               <div id="wangeditor">
                 <div ref="editorElem" style="text-align:left;"></div>
               </div>
+              <el-button type="primary" plain @click="submitProductDetail">确定</el-button>
+              <el-button type="primary" plain @click="cancel">取消</el-button>
+              
+              
         </el-tab-pane>
       </el-tabs>
                                   
@@ -45,96 +88,201 @@
 </template>
 <script>
 import E from "wangeditor";
+import website from "@/mixins/website";
 export default {
     name: 'productsManage',
+    mixins:[website], 
     components: {},
     mounted () {
           this.wangEditer();          //创建富文本实例
+          this._queryproductsSorts();  
+          this.queryProductlist();
+          console.log('随便',this.productsSorts)
     },
     data(){
         return{
+            activeTabName:'firstTab',
+            total:0,
             editor: null,
             editorContent: '',
+            href:this.BASE_URL+'/images/products/',
+            productDetail:{
+              pro_name:'',
+              productClassfiyId:'',
+              Introduction:'',
+              editorContent:'',
+            },
+            productsSorts:[],
+            queryCondition:{
+              pro_name:'',
+              productSort:'',
+              currentPage:1,
+              pageSize:5,
+            },
             tableData: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }]
+              id:'',
+              pro_name:'暂时无数据',
+              productClassfiy:'',
+              Introduction:'暂无数据',
+            },]
         }
     },
     methods:{
+      queryProductlist(){
+        console.log('查询productSort',this.productSort)
+        this.$axios.get(this.BASE_URL+'/admin/products/queryProductlist',{params:this.queryCondition})
+        .then((response)=>{
+            this.total = response.data.data.total;
+            this.tableData = response.data.data.selectList;
+        })                                                                                                                                                                                                                                                                                                               
+        .catch(function (error) {
+            console.log(error);
+        });
+      },
+      //添加产品
       addProduct(){
-
+        this.activeTabName="secondTab";
+        this.productDetail={
+          pro_name:'',
+          productClassfiy:'',
+          discription:'',
+        }
+      },
+      //修改产品详情
+      handleEdit(){
+        this.$axios.get(this.BASE_URL+'/admin/products/queryProductlist',{params:this.queryCondition})
+        .then((response)=>{
+             console.log('this.productsList',response);
+            this.total = response.data.data.total;
+            this.tableData = response.data.data.selectList;
+            console.log('this.table',this.tableData)
+            console.log('this.total',this.total)
+        })                                                                                                                                                                                                                                                                                                               
+        .catch(function (error) {
+            console.log(error);
+        });
       },
       wangEditer(){
           this.editor = new E(this.$refs.editorElem);
+          //this.editor.customConfig.uploadImgServer = '/upload';     // 上传图片到服务器
+          this.editor.customConfig.uploadImgShowBase64 = true;        // 使用 base64 保存图片
           // 编辑器的事件，每次改变会获取其html内容
           this.editor.customConfig.onchange = html => {
-         this.editorContent = html;
-     this.catchData(this.editorContent); // 把这个html通过catchData的方法传入父组件
-    };
-    this.editor.customConfig.menus = [
-      // 菜单配置
-      'head', // 标题
-      'bold', // 粗体
-      'fontSize', // 字号
-      'fontName', // 字体
-      'italic', // 斜体
-      'underline', // 下划线
-      'strikeThrough', // 删除线
-      'foreColor', // 文字颜色
-      'backColor', // 背景颜色
-      'link', // 插入链接
-      'list', // 列表
-      'justify', // 对齐方式
-      'quote', // 引用
-      'emoticon', // 表情
-      'image', // 插入图片
-      'table', // 表格
-      'code', // 插入代码
-      'undo', // 撤销
-      'redo' // 重复
-    ];
-    this.editor.create(); // 创建富文本实例
+          this.productDetail.editorContent = html;
+          this.catchData(this.productDetail.editorContent);           // 把这个html通过catchData的方法传入父组件
+          };
+          this.editor.customConfig.menus = [
+            // 菜单配置
+            'head',          // 标题
+            'bold',          // 粗体
+            'fontSize',      // 字号
+            'fontName',      // 字体
+            'italic',        // 斜体
+            'underline',     // 下划线
+            'strikeThrough', // 删除线
+            'foreColor',     // 文字颜色
+            'backColor',     // 背景颜色
+            'link',          // 插入链接
+            'list',          // 列表
+            'justify',       // 对齐方式
+            'quote',         // 引用
+            'emoticon',      // 表情
+            'image',         // 插入图片
+            'table',         // 表格
+            'code',          // 插入代码
+            'undo',          // 撤销
+            'redo'           // 重复
+          ];
+          this.editor.create(); // 创建富文本实例
       },
+      //提交详情-新建/修改
+      submitProductDetail(){
+        console.log('添加产品上传参数',this.productDetail);
+        this.$axios.post(this.BASE_URL+'/admin/products/addProduct',this.productDetail)
+         .then((response)=>{
+            console.log('新建---',response);
+            if( response.data.status===0){
+               this.$message({
+                  message: '新产品添加成功！',
+                  type: 'success'
+                });
+                //添加成功后，数据置空
+                this.productDetail={
+                    pro_name:'',
+                    productClassfiy:'',
+                    discription:'',
+                  }
 
+            }else{
+               this.$message({
+                showClose: true,
+                message: '新产品上传失败！',
+                type: 'error'
+              });
+            }
+        })                                                                                                                                                                                                                                                                                                               
+        .catch(function (error) {
+            console.log(error);
+        });
+       
+        
+
+
+      },
+      cancel(){
+
+      },
+      handleSizeChange(val) {
+        console.log(`每页 ${val} 条`);
+        this.queryCondition.pageSize = val;
+        this.queryProductlist();
+      },
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`);
+        this.queryCondition.currentPage = val;
+        this.queryProductlist();
+      },
+      getTenHeaderRowName({ row, rowIndex }) {
+          return 'tableStyle-header'
+      },
+      
     },
 }
 </script>
-<style scoped>
+<style scope >
  .title{
    background: #FFFFFF;
    width: 100%;
-   height:43px;
+   height:45px;
   }
   .p{
    float:left;
-   margin:15px;
+   margin:0px;
    font-size:16px;
    font-weight:bold;
   }
+  .content{
+   margin:0px;
+   padding: 0%;
+  }
+ 
+  .el-popper{
+     z-index: 999999;
+  }
+  .tableStyle .tableStyle-header th{
+        border-right: solid 1px #BED0EC;
+        background-color: #56A9FF;
+        text-align: center;
+        color:#FFFFFF;
+        box-shadow: 5px 5px 5px 2px rgba(0,0,0,0.1); 
+    }
+  .tableStyle .tableStyle-row td{
+        font-family: 'MicrosoftYaHei';
+        font-size: 16px;
+        border-bottom: solid 1px #BED0EC;
+        border-right: solid 1px #BED0EC;
+        text-align: center;
+        padding: 2px 0;
+    }
+ 
 </style>
