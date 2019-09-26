@@ -56,30 +56,10 @@
                         </el-pagination>
                   </div>
         </el-tab-pane>
+
         <!--详情编辑-->
         <el-tab-pane label="产品详情" name="secondTab">
-              <div>
-                <el-form ref="form" :model="productDetail" label-width="80px">
-                    <el-form-item label="产品名称" >
-                      <el-input v-model="productDetail.pro_name"></el-input>
-                    </el-form-item>
-                    <el-form-item label="产品分类">
-                      <el-select v-model="productDetail.productClassfiyId" placeholder="请选择产品类别">
-                        <el-option v-for="item in productsSorts" :label="item.productClassfiy" :value="item.id"></el-option>
-                      </el-select>
-                    </el-form-item>
-                    <el-form-item label="产品简介">
-                      <el-input v-model="productDetail.Introduction"></el-input>
-                    </el-form-item>
-                  </el-form>
-              </div>
-              <div id="wangeditor">
-                <div ref="editorElem" style="text-align:left;"></div>
-              </div>
-              <el-button type="primary" plain @click="submitProductDetail">确定</el-button>
-              <el-button type="primary" plain @click="cancel">取消</el-button>
-              
-              
+            <productDetailEditor :productDetail="productDetail"></productDetailEditor>
         </el-tab-pane>
       </el-tabs>
                                   
@@ -87,14 +67,15 @@
   </div>
 </template>
 <script>
-import E from "wangeditor";
 import website from "@/mixins/website";
+import productDetailEditor from "./productDetailEditor";
 export default {
     name: 'productsManage',
     mixins:[website], 
-    components: {},
+    components: {productDetailEditor},
+   
     mounted () {
-          this.wangEditer();          //创建富文本实例
+    
           this._queryproductsSorts();  
           this.queryProductlist();
           console.log('随便',this.productsSorts)
@@ -104,7 +85,6 @@ export default {
             activeTabName:'firstTab',
             total:0,
             editor: null,
-            editorContent: '',
             href:this.BASE_URL+'/images/products/',
             productDetail:{
               pro_name:'',
@@ -144,23 +124,73 @@ export default {
         this.activeTabName="secondTab";
         this.productDetail={
           pro_name:'',
-          productClassfiy:'',
-          discription:'',
+          productClassfiyId:'',
+          editorContent:'',
+          Introduction:'',
         }
       },
-      //修改产品详情
-      handleEdit(){
-        this.$axios.get(this.BASE_URL+'/admin/products/queryProductlist',{params:this.queryCondition})
-        .then((response)=>{
-             console.log('this.productsList',response);
-            this.total = response.data.data.total;
-            this.tableData = response.data.data.selectList;
-            console.log('this.table',this.tableData)
-            console.log('this.total',this.total)
+      //修改产品详情-参数所有数据
+      handleEdit(index,row){
+        console.log('修改某个产品',row)
+        this.activeTabName="secondTab";
+        this.productDetail={
+          pro_name:row.pro_name,
+          productClassfiyId:row.productClassfiyId,
+          Introduction:row.Introduction,
+          editorContent:row.discription,
+        }
+        
+         
+      
+      },
+
+      //提交详情-新建/修改
+      submitProductDetail(){
+        console.log('添加产品上传参数',this.productDetail);
+        this.$axios.post(this.BASE_URL+'/admin/products/addProduct',this.productDetail)
+         .then((response)=>{
+            console.log('新建---',response);
+            if( response.data.status===0){
+               this.$message({
+                  message: '新产品添加成功！',
+                  type: 'success'
+                });
+                //添加成功后，数据置空
+                this.productDetail={
+                    pro_name:'',
+                    productClassfiy:'',
+                    editorContent:'',
+                    Introduction:'',
+                  }
+                this.queryProductlist();
+            }else{
+               this.$message({
+                showClose: true,
+                message: '新产品上传失败！',
+                type: 'error'
+              });
+            }
         })                                                                                                                                                                                                                                                                                                               
         .catch(function (error) {
             console.log(error);
         });
+       
+      },
+      cancel(){
+
+      },
+      handleSizeChange(val) {
+        console.log(`每页 ${val} 条`);
+        this.queryCondition.pageSize = val;
+        this.queryProductlist();
+      },
+      handleCurrentChange(val) {
+        console.log(`当前页: ${val}`);
+        this.queryCondition.currentPage = val;
+        this.queryProductlist();
+      },
+      getTenHeaderRowName({ row, rowIndex }) {
+          return 'tableStyle-header'
       },
       wangEditer(){
           this.editor = new E(this.$refs.editorElem);
@@ -194,56 +224,6 @@ export default {
             'redo'           // 重复
           ];
           this.editor.create(); // 创建富文本实例
-      },
-      //提交详情-新建/修改
-      submitProductDetail(){
-        console.log('添加产品上传参数',this.productDetail);
-        this.$axios.post(this.BASE_URL+'/admin/products/addProduct',this.productDetail)
-         .then((response)=>{
-            console.log('新建---',response);
-            if( response.data.status===0){
-               this.$message({
-                  message: '新产品添加成功！',
-                  type: 'success'
-                });
-                //添加成功后，数据置空
-                this.productDetail={
-                    pro_name:'',
-                    productClassfiy:'',
-                    discription:'',
-                  }
-
-            }else{
-               this.$message({
-                showClose: true,
-                message: '新产品上传失败！',
-                type: 'error'
-              });
-            }
-        })                                                                                                                                                                                                                                                                                                               
-        .catch(function (error) {
-            console.log(error);
-        });
-       
-        
-
-
-      },
-      cancel(){
-
-      },
-      handleSizeChange(val) {
-        console.log(`每页 ${val} 条`);
-        this.queryCondition.pageSize = val;
-        this.queryProductlist();
-      },
-      handleCurrentChange(val) {
-        console.log(`当前页: ${val}`);
-        this.queryCondition.currentPage = val;
-        this.queryProductlist();
-      },
-      getTenHeaderRowName({ row, rowIndex }) {
-          return 'tableStyle-header'
       },
       
     },
