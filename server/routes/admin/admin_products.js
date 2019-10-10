@@ -19,11 +19,10 @@ router.get('/queryProductlist',(req,res)=>{
         productList.total = data[0]['COUNT(id)'];
         new Promise(
             function (resolve, reject) {
-              console.log('skip:,req.query.pageSize',skip,)
               db.query(`SELECT product_table.*,productclassfiy.productClassfiy FROM product_table
                         left JOIN productclassfiy ON  (product_table.productClassfiyId= productclassfiy.id)
                         WHERE ( productClassfiyId='${req.query.productClassfiyId}' or '${req.query.productClassfiyId}'='')
-                        limit ${skip},${req.query.pageSize} `,(err,data)=>{
+                        limit ${skip},${req.query.pageSize}`,(err,data)=>{
                         if(err){
                           console.log('管理系统-产品列表-分页sql',err);
                           res.status(500).send('产品列表-分页sql-error').end();

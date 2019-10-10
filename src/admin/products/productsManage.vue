@@ -13,7 +13,8 @@
                       <el-form :inline="true" v-model="queryCondition" style="float:left" size="mini">
                         <el-form-item label="产品类别">  
                           <el-select v-model="queryCondition.productClassfiyId" placeholder="请选择产品类别">
-                            <el-option v-for="item in productsSorts" :label="item.productClassfiy" :value="item.id"></el-option>
+                            <el-option v-for="item in productsSorts" :label="item.productClassfiy" :value="item.id"
+                                       @change="productsSortChange"></el-option>
                           </el-select>
                         </el-form-item>
                         <el-form-item>
@@ -171,6 +172,11 @@ export default {
       },
       cancel(){
 
+      },
+      //产品类别下拉框改变
+      productsSortChange(){
+        this.queryCondition.currentPage=1;
+        this.queryCondition.pageSize=5;
       },
       handleSizeChange(val) {
         console.log(`每页 ${val} 条`);

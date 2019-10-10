@@ -2,7 +2,7 @@
 <div>
   <div id="layout">
       <!--admin-首页布局-->
-      <el-container >
+      <el-container style="height:100%" >
          <layoutAside></layoutAside>
        <el-container direction="vertical">
          <layoutHeader></layoutHeader>
