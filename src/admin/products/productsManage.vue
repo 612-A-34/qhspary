@@ -11,9 +11,6 @@
                  <el-divider></el-divider>
                 <div class='content'>
                       <el-form :inline="true" v-model="queryCondition" style="float:left" size="mini">
-                        <el-form-item label="产品名称">
-                          <el-input v-model="queryCondition.pro_name" placeholder="产品名称查询"></el-input>
-                        </el-form-item>
                         <el-form-item label="产品类别">  
                           <el-select v-model="queryCondition.productClassfiyId" placeholder="请选择产品类别">
                             <el-option v-for="item in productsSorts" :label="item.productClassfiy" :value="item.id"></el-option>
@@ -38,7 +35,7 @@
                               </el-image>
                             </template>
                           </el-table-column>
-                          <el-table-column label="操作" width="155">
+                          <el-table-column label="操作" width="156">
                             <template slot-scope="scope">
                               <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
                               <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
@@ -75,10 +72,8 @@ export default {
     components: {productDetailEditor},
    
     mounted () {
-    
           this._queryproductsSorts();  
           this.queryProductlist();
-          console.log('随便',this.productsSorts)
     },
     data(){
         return{
@@ -86,34 +81,34 @@ export default {
             total:0,
             editor: null,
             href:this.BASE_URL+'/images/products/',
-            productDetail:{
+            productDetail:{              
               pro_name:'',
               productClassfiyId:'',
-              Introduction:'',
+              description:'',
               editorContent:'',
             },
             productsSorts:[],
-            queryCondition:{
-              pro_name:'',
-              productSort:'',
+            queryCondition:{               //查询条件
               currentPage:1,
               pageSize:5,
+              productClassfiyId:'',
             },
             tableData: [{
               id:'',
               pro_name:'暂时无数据',
               productClassfiy:'',
-              Introduction:'暂无数据',
+              description:'暂无数据',
             },]
         }
     },
     methods:{
       queryProductlist(){
-        console.log('查询productSort',this.productSort)
+        console.log('产品列表查询条件',this.queryCondition)
         this.$axios.get(this.BASE_URL+'/admin/products/queryProductlist',{params:this.queryCondition})
         .then((response)=>{
             this.total = response.data.data.total;
             this.tableData = response.data.data.selectList;
+            console.log('查询产品列表',response);
         })                                                                                                                                                                                                                                                                                                               
         .catch(function (error) {
             console.log(error);
@@ -126,7 +121,7 @@ export default {
           pro_name:'',
           productClassfiyId:'',
           editorContent:'',
-          Introduction:'',
+          description:'',
         }
       },
       //修改产品详情-参数所有数据
@@ -136,18 +131,16 @@ export default {
         this.productDetail={
           pro_name:row.pro_name,
           productClassfiyId:row.productClassfiyId,
-          Introduction:row.Introduction,
-          editorContent:row.discription,
-        }
-        
-         
-      
+          description:row.description,
+          editorContent:row.content,
+        }   
+        console.log('修改获取行内容赋值', this.productDetail)
       },
 
       //提交详情-新建/修改
       submitProductDetail(){
         console.log('添加产品上传参数',this.productDetail);
-        this.$axios.post(this.BASE_URL+'/admin/products/addProduct',this.productDetail)
+        this.$axios.post(this.BASE_URL+'/admin/products/addProduct',this .productDetail)
          .then((response)=>{
             console.log('新建---',response);
             if( response.data.status===0){

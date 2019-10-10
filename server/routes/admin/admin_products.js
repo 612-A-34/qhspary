@@ -1,6 +1,7 @@
 const express = require('express');
 var router = express.Router();
 const mysql = require('mysql');
+//产品管理
 
 //自建数据库
 let db=mysql.createPool({host:'localhost',port:'3306',user:'root',password:'mengjia88',database:'qhspray'});//保持连接
@@ -8,8 +9,8 @@ let db=mysql.createPool({host:'localhost',port:'3306',user:'root',password:'meng
 router.get('/queryProductlist',(req,res)=>{
   let skip = (parseInt(req.query.currentPage)-1)*parseInt(req.query.pageSize); //计算索引值
   let productList = {};
-  db.query(` SELECT COUNT(id) FROM product_table WHERE (pro_name='${req.query.pro_name}' or '${req.query.pro_name}'='') OR
-            (productClassfiyId='${req.query.productSort}' or '${req.query.productSort}'='')`,(err,data)=>{
+  db.query(`SELECT COUNT(id) FROM product_table WHERE  
+           productClassfiyId='${req.query.productClassfiyId}' or '${req.query.productClassfiyId}' ='' `,(err,data)=>{
     if(err){
         console.log('管理系统-产品列表-total-sql',err);
         res.status(500).send('管理系统-产品列表-分页sql-error').end();
@@ -19,16 +20,17 @@ router.get('/queryProductlist',(req,res)=>{
         new Promise(
             function (resolve, reject) {
               console.log('skip:,req.query.pageSize',skip,)
-              db.query(`SELECT * FROM product_table WHERE (pro_name='${req.query.pro_name}' or '${req.query.pro_name}'='') OR
-                        (productClassfiyId='${req.query.productSort}' or '${req.query.productSort}'='')
-                        limit ${skip},${req.query.pageSize}`,(err,data)=>{
-                if(err){
-                  console.log('管理系统-产品列表-分页sql',err);
-                  res.status(500).send('产品列表-分页sql-error').end();
-                  }else{
-                  console.log('产品列表-分页sql-success',data);
-                  resolve(data); // 数据处理完成
-                };
+              db.query(`SELECT product_table.*,productclassfiy.productClassfiy FROM product_table
+                        left JOIN productclassfiy ON  (product_table.productClassfiyId= productclassfiy.id)
+                        WHERE ( productClassfiyId='${req.query.productClassfiyId}' or '${req.query.productClassfiyId}'='')
+                        limit ${skip},${req.query.pageSize} `,(err,data)=>{
+                        if(err){
+                          console.log('管理系统-产品列表-分页sql',err);
+                          res.status(500).send('产品列表-分页sql-error').end();
+                          }else{
+                          console.log('产品列表-分页sql-success',data);
+                          resolve(data); // 数据处理完成
+                        };
               });
             }
         ).then(data => {
@@ -110,7 +112,9 @@ router.get('/productList/:productSort',(req,res)=>{
           new Promise(
               function (resolve, reject) {
                 console.log('skip:,req.query.pageSize',skip,)
-                db.query(`SELECT * FROM product_table WHERE productClassfiy='${req.params.productSort}' limit ${skip},${req.query.pageSize}`,(err,data)=>{
+                db.query(`SELECT product_table.*,productclassfiy.productClassfiy  
+                 FROM product_table full outer JOIN productclassfiy ON  product_table.productClassfiyId= productclassfiy.id
+                 WHERE productClassfiy='${req.params.productSort}' limit ${skip},${req.query.pageSize}`,(err,data)=>{
                   if(err){
                     console.log('产品列表-分页sql',err);
                     res.status(500).send('产品列表-分页sql-error').end();
