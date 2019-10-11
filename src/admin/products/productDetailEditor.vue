@@ -40,6 +40,7 @@ export default {
     watch:{
         productDetail:{
         handler:function(val,oldval){
+          console.log('')
           this.wangEditer();
         },
         deep:true                   //对象内部的属性监听，也叫深度监听

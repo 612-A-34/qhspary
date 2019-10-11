@@ -115,7 +115,7 @@ export default {
             console.log(error);
         });
       },
-      //添加产品
+      //添加产品-切换tab页面
       addProduct(){
         this.activeTabName="secondTab";
         this.productDetail={
@@ -169,6 +169,38 @@ export default {
             console.log(error);
         });
        
+      },
+      //删除某个产品
+      handleDelete(index,row){
+         console.log('row',row)
+          this.$axios.get(this.BASE_URL+'/admin/products/deleteProduct/'+row.id)
+           .then((response)=>{
+            console.log('新建---',response);
+            if( response.data.status===0){
+               this.$message({
+                  message: '新产品添加成功！',
+                  type: 'success'
+                });
+                //添加成功后，数据置空
+                this.productDetail={
+                    pro_name:'',
+                    productClassfiy:'',
+                    editorContent:'',
+                    Introduction:'',
+                  }
+                this.queryProductlist();
+            }else{
+               this.$message({
+                showClose: true,
+                message: '新产品上传失败！',
+                type: 'error'
+              });
+            }
+         })                                                                                                                                                                                                                                                                                                               
+        .catch(function (error) {
+            console.log(error);
+        });
+      
       },
       cancel(){
 
@@ -228,7 +260,7 @@ export default {
     },
 }
 </script>
-<style scope >
+<style scoped >
  .title{
    background: #FFFFFF;
    width: 100%;
@@ -244,7 +276,6 @@ export default {
    margin:0px;
    padding: 0%;
   }
- 
   .el-popper{
      z-index: 999999;
   }
