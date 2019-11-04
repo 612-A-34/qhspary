@@ -13,12 +13,12 @@ const cookieSession = require('cookie-session');                  //cookie签名
 // const token_vertify = require('./models/admin/token_vertify.js');
 
 //路由
-const indexRouter = require('./routes/index');                        //渲染首页的路由
-const usersRouter = require('./routes/admin/users');                  //孟-管理系统-用户管理
-const adminHomeRouter = require('./routes/admin/home/home');          //孟-管理系统-首页管理
+const indexRouter = require('./routes/index');                         //渲染首页的路由
+const usersRouter = require('./routes/admin/users');                   //孟-管理系统-用户管理
+const adminHomeRouter = require('./routes/admin/home/home');           //孟-管理系统-首页管理
 const adminProductsRouter = require('./routes/admin/admin_products');  //孟-管理系统-产品管理
-const productsWebRouter = require('./routes/website/products');       //孟-官网-产品
-const WebHomeRouter = require('./routes/website/web_home');           //孟-管理-首页
+const productsWebRouter = require('./routes/website/products');        //孟-官网-产品
+const WebHomeRouter = require('./routes/website/web_home');            //孟-管理-首页
 
 var app = express();
 console.log('服务开启');
@@ -45,7 +45,7 @@ app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
   //  res.header('Access-Control-Allow-Origin','*');
-  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With , yourHeaderFeild');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Content-Length, Authorization, Accept, X-Requested-With ,yourHeaderFeild');
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
   console.log('req.method ',req.method)
   if (req.method == 'OPTIONS') {  
